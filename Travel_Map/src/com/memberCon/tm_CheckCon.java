@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.memberDAO.tm_memberDAO;
+
 @WebServlet("/tm_CheckCon")
 public class tm_CheckCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -20,42 +22,11 @@ public class tm_CheckCon extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
+		tm_memberDAO dao = new tm_memberDAO();
 
-		boolean check = false;
+		String mb_id = request.getParameter("id");
 
-		String id = request.getParameter("id");
-
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524";
-			String dbid = "cgi_7_6_1216";
-			String dbpw = "smhrd6";
-
-			conn = DriverManager.getConnection(url, dbid, dbpw);
-			if (conn != null) {
-				System.out.println("접속 성공");
-			} else {
-			}
-
-			String sql = "SELECT * FROM t_member WHERE mb_id = ?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-
-			rs = psmt.executeQuery();
-			if (rs.next()) {
-				check = true;
-				System.out.println("중복");
-			} else {
-				System.out.println("가능");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
+		boolean check = dao.Check(mb_id);
 
 		PrintWriter out = response.getWriter();
 

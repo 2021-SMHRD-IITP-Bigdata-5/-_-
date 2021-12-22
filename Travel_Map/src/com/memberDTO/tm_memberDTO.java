@@ -2,89 +2,90 @@ package com.memberDTO;
 
 public class tm_memberDTO {
 
-	private String id;
-	private String pw;
-	private String name;
-	private int age;
-	private String gender;
-	private String email;
-	private String addr;
-	private String img;
-	private String nickname;
+	private String mb_id;
+	private String mb_pw;
+	private String mb_name;
+	private int mb_age;
+	private String mb_gender;
+	private String mb_email;
+	private String mb_addr;
+	private String mb_img;
+	private String mb_nickname;
 	private int mb_follow;
 	private int mb_follower;
+	private String mb_joindate;
 	private String admin_yn;
 
-	public String getId() {
-		return id;
+	public String getMb_id() {
+		return mb_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMb_id(String mb_id) {
+		this.mb_id = mb_id;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getMb_pw() {
+		return mb_pw;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setMb_pw(String mb_pw) {
+		this.mb_pw = mb_pw;
 	}
 
-	public String getName() {
-		return name;
+	public String getMb_name() {
+		return mb_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMb_name(String mb_name) {
+		this.mb_name = mb_name;
 	}
 
-	public int getAge() {
-		return age;
+	public int getMb_age() {
+		return mb_age;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setMb_age(int mb_age) {
+		this.mb_age = mb_age;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getMb_gender() {
+		return mb_gender;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setMb_gender(String mb_gender) {
+		this.mb_gender = mb_gender;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMb_email() {
+		return mb_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMb_email(String mb_email) {
+		this.mb_email = mb_email;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getMb_addr() {
+		return mb_addr;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setMb_addr(String mb_addr) {
+		this.mb_addr = mb_addr;
 	}
 
-	public String getImg() {
-		return img;
+	public String getMb_img() {
+		return mb_img;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setMb_img(String mb_img) {
+		this.mb_img = mb_img;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getMb_nickname() {
+		return mb_nickname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMb_nickname(String mb_nickname) {
+		this.mb_nickname = mb_nickname;
 	}
 
 	public int getMb_follow() {
@@ -103,6 +104,14 @@ public class tm_memberDTO {
 		this.mb_follower = mb_follower;
 	}
 
+	public String getMb_joindate() {
+		return mb_joindate;
+	}
+
+	public void setMb_joindate(String mb_joindate) {
+		this.mb_joindate = mb_joindate;
+	}
+
 	public String getAdmin_yn() {
 		return admin_yn;
 	}
@@ -111,28 +120,43 @@ public class tm_memberDTO {
 		this.admin_yn = admin_yn;
 	}
 
-	public tm_memberDTO(String id, String pw, String name, int age, String gender, String email, String addr,
-			String img, String nickname, int mb_follow, int mb_follower, String admin_yn) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.age = age;
-		this.gender = gender;
-		this.email = email;
-		this.addr = addr;
-		this.img = img;
-		this.nickname = nickname;
+	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, int mb_age, String mb_gender, String mb_email,
+			String mb_addr, String mb_img, String mb_nickname, int mb_follow, int mb_follower, String mb_joindate,
+			String admin_yn) {
+		this.mb_id = mb_id;
+		this.mb_pw = mb_pw;
+		this.mb_name = mb_name;
+		this.mb_age = mb_age;
+		this.mb_gender = mb_gender;
+		this.mb_email = mb_email;
+		this.mb_addr = mb_addr;
+		this.mb_img = mb_img;
+		this.mb_nickname = mb_nickname;
+		this.mb_follow = mb_follow;
+		this.mb_follower = mb_follower;
+		this.mb_joindate = mb_joindate;
+		this.admin_yn = admin_yn;
+	}
+
+	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, int mb_age, String mb_gender, String mb_email,
+			String mb_addr, String mb_img, String mb_nickname, int mb_follow, int mb_follower, String admin_yn) {
+		this.mb_id = mb_id;
+		this.mb_pw = mb_pw;
+		this.mb_name = mb_name;
+		this.mb_age = mb_age;
+		this.mb_gender = mb_gender;
+		this.mb_email = mb_email;
+		this.mb_addr = mb_addr;
+		this.mb_img = mb_img;
+		this.mb_nickname = mb_nickname;
 		this.mb_follow = mb_follow;
 		this.mb_follower = mb_follower;
 		this.admin_yn = admin_yn;
 	}
 
-	public tm_memberDTO() {
-	}
-
-	public tm_memberDTO(String id, String pw) {
-		this.id = id;
-		this.pw = pw;
+	public tm_memberDTO(String mb_id, String mb_pw) {
+		this.mb_id = mb_id;
+		this.mb_pw = mb_pw;
 	}
 
 }

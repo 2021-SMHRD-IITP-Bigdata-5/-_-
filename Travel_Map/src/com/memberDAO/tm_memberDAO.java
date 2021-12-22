@@ -62,28 +62,17 @@ public class tm_memberDAO {
 		getConn();
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524";
-			String dbid = "cgi_7_6_1216";
-			String dbpw = "smhrd6";
-
-			conn = DriverManager.getConnection(url, dbid, dbpw);
-			if (conn != null) {
-				System.out.println("접속 성공");
-			} else {
-			}
 			String sql = "INSERT INTO t_member VALUES(?,?,?,?,?,?,?,?,?,?,?,sysdate,?)";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getPw());
-			psmt.setString(3, dto.getName());
-			psmt.setInt(4, dto.getAge());
-			psmt.setString(5, dto.getGender());
-			psmt.setString(6, dto.getEmail());
-			psmt.setString(7, dto.getAddr());
-			psmt.setString(8, dto.getImg());
-			psmt.setString(9, dto.getNickname());
+			psmt.setString(1, dto.getMb_id());
+			psmt.setString(2, dto.getMb_pw());
+			psmt.setString(3, dto.getMb_name());
+			psmt.setInt(4, dto.getMb_age());
+			psmt.setString(5, dto.getMb_gender());
+			psmt.setString(6, dto.getMb_email());
+			psmt.setString(7, dto.getMb_addr());
+			psmt.setString(8, dto.getMb_img());
+			psmt.setString(9, dto.getMb_nickname());
 			psmt.setInt(10, dto.getMb_follow());
 			psmt.setInt(11, dto.getMb_follower());
 			psmt.setString(12, dto.getAdmin_yn());
@@ -99,17 +88,57 @@ public class tm_memberDAO {
 
 	}
 
-	public boolean Login(tm_memberDTO dto) {
+	public tm_memberDTO Login(tm_memberDTO dto) {
 
 		getConn();
+
+		tm_memberDTO sessiondto = null;
 
 		try {
 			String sql = "SELECT * FROM t_member WHERE mb_id = ? and mb_pw = ?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getPw());
+			psmt.setString(1, dto.getMb_id());
+			psmt.setString(2, dto.getMb_pw());
 			rs = psmt.executeQuery();
 
+			if (rs.next()) {
+				String session_id = rs.getString("mb_id");
+				String session_pw = rs.getString("mb_pw");
+				String session_name = rs.getString("mb_name");
+				int session_age = rs.getInt("mb_age");
+				String session_gender = rs.getString("mb_gender");
+				String session_email = rs.getString("mb_email");
+				String session_addr = rs.getString("mb_addr");
+				String session_img = rs.getString("mb_img");
+				String session_nickname = rs.getString("mb_nickname");
+				int session_follow = rs.getInt("mb_follow");
+				int session_follower = rs.getInt("mb_follower");
+				String session_joindate = rs.getString("mb_joindate");
+				String session_admin_yn = rs.getString("admin_yn");
+
+				sessiondto = new tm_memberDTO(session_id, session_pw, session_name, session_age, session_gender,
+						session_email, session_addr, session_img, session_nickname, session_follow, session_follower,
+						session_joindate, session_admin_yn);
+			} else {
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		close();
+
+		return sessiondto;
+	}
+
+	public boolean Check(String id) {
+
+		getConn();
+		try {
+			String sql = "SELECT * FROM t_member WHERE mb_id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				check = true;
 			} else {
@@ -118,7 +147,7 @@ public class tm_memberDAO {
 			e.printStackTrace();
 		} finally {
 		}
-		close();
 		return check;
 	}
+
 }

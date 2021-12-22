@@ -1,5 +1,6 @@
 package com.memberCon;
 
+import java.io.Console;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,13 +30,15 @@ public class tm_LoginCon extends HttpServlet {
 		tm_memberDAO dao = new tm_memberDAO();
 		tm_memberDTO dto = new tm_memberDTO(id, pw);
 
-		boolean check = dao.Login(dto);
+		tm_memberDTO sessiondto = dao.Login(dto);
 
-		if (check == true) {
+		if (dto != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("dto", dto);
+			session.setAttribute("dto", sessiondto);
 			response.sendRedirect("tm_Main.jsp");
-			System.out.println(id + "로그인성공");
+			System.out.println(sessiondto.getMb_id() + "로그인성공");
+			System.out.println(sessiondto.getMb_follow() + "팔로우");
+			System.out.println(sessiondto.getMb_follower() + "팔로워");
 		} else {
 			response.sendRedirect("tm_Login.jsp");
 		}

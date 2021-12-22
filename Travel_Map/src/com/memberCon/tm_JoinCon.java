@@ -20,20 +20,20 @@ public class tm_JoinCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		int age = Integer.parseInt(request.getParameter("age"));
-		String gender = request.getParameter("gender");
-		String email = request.getParameter("email");
-		String addr = request.getParameter("addr");
-		String img = ""; 
-		String nickname = request.getParameter("nickname");
+		String mb_id = request.getParameter("id");
+		String mb_pw = request.getParameter("pw");
+		String mb_name = request.getParameter("name");
+		int mb_age = Integer.parseInt(request.getParameter("age"));
+		String mb_gender = request.getParameter("gender");
+		String mb_email = request.getParameter("email");
+		String mb_addr = request.getParameter("addr");
+		String mb_img = ""; 
+		String mb_nickname = request.getParameter("nickname");
 		int mb_follow = 0;
 		int mb_follower = 0;
 		String admin_yn = "n";
 
-		tm_memberDTO dto = new tm_memberDTO(id, pw, name, age, gender, email, addr, img, nickname, mb_follow,
+		tm_memberDTO dto = new tm_memberDTO(mb_id, mb_pw, mb_name,mb_age, mb_gender, mb_email, mb_addr, mb_img, mb_nickname, mb_follow,
 				mb_follower, admin_yn);
 		tm_memberDAO dao = new tm_memberDAO();
 
