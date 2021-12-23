@@ -2,93 +2,86 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/mainstyle2.css" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/mainstyle.css"/>
 </head>
+
 <body>
-	<div style="float: left;"> <!-- 변경 -->
-    <div id="blank" ></div>
-    <div><p id="web_name"><b>My Real Travel in GwangJu</b></p></div>
-    <div id="header">
-        <nav>
-            <ul class="menu">
-                <li><botton>검색</botton></li>
-                <li><botton>여행계획</botton></li>
-                <li><botton>My</botton></li>
-                <li><botton>SNS</botton></li>
-            </ul>
-            <a class="cta" herf=""></a>
-        </nav>
-    </div>
-    <div id='middle'>
-        <input type="text" id="search_keyword_query" placeholder="검색어 입력" >
-        <button id="search_keyword_query_button"><img src="./img/search.png"></button>
-    </div>
-
-        <div id = "info">
-            <ul class = "list_around">
-                <li>
-                    <button class="btn_around" onClick="goodtaste()">
-                        <span class="ico_food"><img src="./img/restaurant.png"></span>
-                        <span class="txt_around">맛집</span>
-                    </button>
-                </li>
-                <li>
-                    <button class="btn_around">
-                        <span class="ico_tourist"><img src="./img/amusement-park.png"></span>
-                        <span class="txt_around">관광지</span>
-                    </button>
-                </li>
-                <li>
-                    <button class="btn_around">
-                        <span class="ico_cafe"><img src="./img/cafe.png"></span>
-                        <span class="txt_around">카페</span>
-                    </button>
-                </li>
-            </ul>
-            
-
-
+    <div id="side_all">
+        <div id="side_one"></div>
+        <div id="side_two"><b>My Real Travel in GwangJu</b></div>
+        <div id="side_three">
+            <nav>
+                <ul class="side_menu">
+                    <li><button><a href="#">검색</a></button></li>
+                    <li><button><a href="#">여행계획</a></button></li>
+                    <li><button><a href="#">My</a></button></li>
+                    <li><button><a href="#">SNS</a></button></li>
+                </ul>
+            </nav>
         </div>
-        <div id="bottom">1</div>
+        <div id="side_four">
+            <input type="text" id="search_keyword_query" placeholder="검색어 입력">
+            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
         </div>
-        <div id="map" style="width:30%; height: 100vh; float: right;"></div>	<!-- 변경 -->
+        <div id="side_five">
+           <ul>
+               <li><button>
+                   <span><img src="./img/restaurant.png"></span>
+                   <span>맛집</span>
+                </button></li>
+               <li><button>
+                   <span><img src="./img/amusement-park.png"></span>
+                   <span>관광지</span>
+                </button></li>
+               <li><button>
+                <span><img src="./img/cafe.png"></span>
+                <span>카페</span>
+                </button></li>
+           </ul>
+        </div>
+        <div id="side_six"></div>
+    </div>
+	</div>
 	
-		
-		<script src="js/jquery-3.6.0.min.js"></script>
-		
-		<script type="text/javascript"
+	<div id="map" style="width:30%; height: 100vh; float: right;"></div> <!-- 변경 -->
+
+
+	<script src="js/jquery-3.6.0.min.js"></script>
+
+	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script>
 		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 		var infowindow = new kakao.maps.InfoWindow({
-			zIndex : 1
+			zIndex: 1
 		});
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
+			mapOption = {
+				center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+				level: 3
+				// 지도의 확대 레벨
+			};
 
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
-		
+
 		var txt;
-		function search(){
+		function search() {
 			txt = $('input[type=text]').val()
 			// 키워드로 장소를 검색합니다
 			ps.keywordSearch(txt, placesSearchCB);
 		}
-		
+
 
 		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
@@ -113,29 +106,30 @@
 
 			// 마커를 생성하고 지도에 표시합니다
 			var marker = new kakao.maps.Marker({
-				map : map,
-				position : new kakao.maps.LatLng(place.y, place.x)
+				map: map,
+				position: new kakao.maps.LatLng(place.y, place.x)
 			});
 
 			// 마커에 클릭이벤트를 등록합니다
-			kakao.maps.event.addListener(marker, 'mouseover', function() {
+			kakao.maps.event.addListener(marker, 'mouseover', function () {
 				// 마커위에 커서 올렸을 때  장소명이 인포윈도우에 표출됩니다
 				infowindow.setContent('<div style="padding:5px;font-size:12px;">'
-								+ place.place_name + '</div>');
+					+ place.place_name + '</div>');
 				infowindow.open(map, marker);
 			});
-			kakao.maps.event.addListener(marker, 'mouseout', function() {
+			kakao.maps.event.addListener(marker, 'mouseout', function () {
 				// 마커 위에서 커서를 내렸을때 인포윈도우 삭제(안보이게)
 				infowindow.close();
-				
+
 			});
-			kakao.maps.event.addListener(marker, 'mouseout', function() {
+			kakao.maps.event.addListener(marker, 'mouseout', function () {
 				// 마커클릭했을 때 해당 장소 정보 보여주는 페이지로 이동
-				location.href="info.jsp?place="+txt
+				location.href = "info.jsp?place=" + txt
 			});
 		}
 	</script>
-    
+
 
 </body>
+
 </html>
