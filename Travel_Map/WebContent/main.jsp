@@ -7,50 +7,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/mainstyle2.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/N1_main.css" />
+    <title>main</title>
 </head>
 
 <body>
+	<div id="side_bar"><b><b>My Real Travel in GwangJu </b></b><button>로그인</button></div> 
     <div id="side_all">
-        <div id="side_one"></div>
-        <div id="side_two"><b>My Real Travel in GwangJu</b></div>
-        <div id="side_three">
+        <div id="side_one">
             <nav>
                 <ul class="side_menu">
-                    <li><button><a href="#">검색</a></button></li>
-                    <li><button><a href="#">여행계획</a></button></li>
-                    <li><button><a href="#">My</a></button></li>
-                    <li><button><a href="#">SNS</a></button></li>
+                    <li><button id = "side_menu_search"><a href="#" >검색</a></button></li>
+                    <li><button id = "side_menu_travelplan"><a href="#" >여행계획</a></button></li>
+                    <li><button id = "side_menu_my"><a href="#" >My</a></button></li>
+                    <li><button id = "side_menu_sns"><a href="#" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
-        <div id="side_four">
+        <div id="side_two">
             <input type="text" id="search_keyword_query" placeholder="검색어 입력">
             <button id="search_keyword_query_button"><img src="./img/search.png"></button>
         </div>
-        <div id="side_five">
+        <div id="side_three">
            <ul>
                <li><button>
-                   <span><img src="./img/restaurant.png"></span>
-                   <span>맛집</span>
+                   <img src="./img/restaurant.png">
+                   <p>맛집</p>
                 </button></li>
                <li><button>
                    <span><img src="./img/amusement-park.png"></span>
-                   <span>관광지</span>
+                   <p>관광지</p>
                 </button></li>
                <li><button>
                 <span><img src="./img/cafe.png"></span>
-                <span>카페</span>
+                <p>카페</p>
                 </button></li>
+				<li><button>
+					<span><img src="./img/hotel.png"></span>
+					<p>숙박</p>
+					</button></li>
            </ul>
         </div>
-        <div id="side_six"></div>
+        <div id="side_four"></div>
     </div>
-	</div>
-	
-	<div id="map" style="width:30%; height: 100vh; float: right;"></div> <!-- 변경 -->
-
 
 	<script src="js/jquery-3.6.0.min.js"></script>
 
