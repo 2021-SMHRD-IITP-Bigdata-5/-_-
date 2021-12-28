@@ -231,17 +231,16 @@
 			//console.log("ovr : ", ovr[i])
 			console.log(marker_storage[i])
 			ovr[i].setMap(null);
-			//marker_storage[i].setMap(null);
+			marker_storage[i].setMap(null);
 			
- 			let a = marker_storage[i]
-			for(let j = 0; j < marker_storage.length; j++) {
-				  if(marker_storage[j] == a)  {
-				    marker_storage.splice(j, 1);
-				    i--;
+ 			let a = positions[i]
+			for(let j = 0; j < positions.length; j++) {
+				  if(positions[j] == a)  {
+				    positions.splice(j, 1);
 				  }
 			}
 			
-			console.log('삭제결과>>',marker_storage);
+			console.log('삭제결과>>',positions);
 			///return marker_storage */
 		}
 		
