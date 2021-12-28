@@ -38,9 +38,13 @@
         border : none;
         box-shadow: 0px 4px 16px rgb(81, 200, 152, 0.3);
     }
-
+    #side_bar button:focus { 
+        background-color: #157A88;
+        cursor: pointer;
+    }
     #side_bar button:hover { 
         background-color: #157A88;
+        cursor: pointer;
     }
 
 #side_all { 
@@ -48,21 +52,17 @@
     width: 500px;
     height: 95vh;
     float: left;
-    
+    border-right: 1px solid #eee;
 }
 
 
 #side_one {
-    height: 5%;
+    height: 5.8%;
     background-color: #CDFBE4;
 }
     .side_menu { 
         float:left;
         list-style: none;
-    }
-
-    .side_menu ul { 
-        margin-left: 300px;
     }
     
     .side_menu li { 
@@ -72,7 +72,6 @@
         margin-right: 20px;
         transform: translate(17%, -0%);
     }
-	
     .side_button { 
         background-color: #52C999;
         width: 80px;
@@ -83,15 +82,17 @@
         border : none;
         box-shadow: 0px 4px 16px rgb(81, 200, 152, 0.3);
     }
-
+    .side_button:focus { 
+        background-color: #157A88;
+        cursor: pointer;
+    }
+    .side_button:hover { 
+        cursor: pointer;
+    }
     li button a { 
         color: black;
         text-decoration: none;
     }
-     li button:hover { 
-         cursor: pointer;
-         background-color: #157A88;
-     }
 
 
 
