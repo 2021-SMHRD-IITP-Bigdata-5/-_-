@@ -12,43 +12,48 @@
 </head>
 
 <body>
+	<div id="side_bar">
+		<b>My Real Travel in GwangJu </b>
+		<button>회원가입</button>
+		<button>로그인</button>
+	</div> 
     <div id="side_all">
-        <div id="side_one"></div>
-        <div id="side_two"><b>My Real Travel in GwangJu</b></div>
-        <div id="side_three">
+        <div id="side_one">
             <nav>
                 <ul class="side_menu">
-                    <li><button><a href="#">검색</a></button></li>
-                    <li><button><a href="#">여행계획</a></button></li>
-                    <li><button><a href="#">My</a></button></li>
-                    <li><button><a href="#">SNS</a></button></li>
+                    <li><button id = "side_menu_search"><a href="#" >검색</a></button></li>
+                    <li><button id = "side_menu_travelplan"><a href="#" >여행계획</a></button></li>
+                    <li><button id = "side_menu_my"><a href="#" >My</a></button></li>
+                    <li><button id = "side_menu_sns"><a href="#" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
-        <div id="side_four">
+        <div id="side_two">
             <input type="text" id="search_keyword_query" placeholder="검색어 입력">
             <button id="search_keyword_query_button"><img src="./img/search.png"></button>
         </div>
-        <div id="side_five">
+        <div id="side_three">
            <ul>
                <li><button>
-                   <span><img src="./img/restaurant.png"></span>
-                   <span>맛집</span>
+                   <img src="./img/restaurant.png">
+                   <p>맛집</p>
                 </button></li>
                <li><button>
-                   <span><img src="./img/amusement-park.png"></span>
-                   <span>관광지</span>
+				<img src="./img/location.png">
+                   <p>관광지</p>
                 </button></li>
                <li><button>
-                <span><img src="./img/cafe.png"></span>
-                <span>카페</span>
+                <img src="./img/cafe.png">
+                <p>카페</p>
                 </button></li>
+				<li><button>
+					<img src="./img/hotel.png">
+					<p>숙박</p>
+					</button></li>
            </ul>
         </div>
-        <div id="side_six"></div>
+        <div id="side_four"></div>
     </div>
-
-
 
 	<script src="js/jquery-3.6.0.min.js"></script>
 
