@@ -49,7 +49,7 @@
     </div>
 	</div>
 	
-	<div id="map" style="width:30%; height: 100vh; float: right;"></div> <!-- 변경 -->
+	<div id="map" style="width:71%; height: 100vh; float: right;"></div> <!-- 변경 -->
 
 
 	<script src="js/jquery-3.6.0.min.js"></script>
