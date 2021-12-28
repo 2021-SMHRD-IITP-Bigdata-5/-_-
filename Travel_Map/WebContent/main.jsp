@@ -15,8 +15,8 @@
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button>회원가입</button>
-		<button>로그인</button>
+		<button onClick="location.href='Join.jsp'">회원가입</button>
+		<button onClick="location.href='Login.jsp'">로그인</button>
 	</div> 
     <div id="side_all">
         <div id="side_one">
@@ -57,7 +57,7 @@
         </div>
     </div>
     
-    
+    s
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>
 	
@@ -157,7 +157,7 @@
 		}
 		
 		function displayMarker(positions, map_name, map_stars, map_addr, map_img) {
-
+			console.log(positions);
 			for(var i =0; i <positions.length; i++){
 				// 마커를 생성하고 지도에 표시합니다
 				var marker = new kakao.maps.Marker({
@@ -231,9 +231,9 @@
 			//console.log("ovr : ", ovr[i])
 			console.log(marker_storage[i])
 			ovr[i].setMap(null);
-			marker_storage[i].setMap(null);
+			//marker_storage[i].setMap(null);
 			
-			/*let a = marker_storage[i]
+ 			let a = marker_storage[i]
 			for(let j = 0; j < marker_storage.length; j++) {
 				  if(marker_storage[j] == a)  {
 				    marker_storage.splice(j, 1);
@@ -242,7 +242,7 @@
 			}
 			
 			console.log('삭제결과>>',marker_storage);
-			return marker_storage*/
+			///return marker_storage */
 		}
 		
 	</script>
