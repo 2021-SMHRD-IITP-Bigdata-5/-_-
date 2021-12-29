@@ -159,4 +159,11 @@ public class tm_memberDTO {
 		this.mb_pw = mb_pw;
 	}
 
+	public tm_memberDTO(String mb_id, int mb_follow, int mb_follower) {
+		this.mb_id = mb_id;
+		this.mb_follow = mb_follow;
+		this.mb_follower = mb_follower;
+	}
+
+	
 }
