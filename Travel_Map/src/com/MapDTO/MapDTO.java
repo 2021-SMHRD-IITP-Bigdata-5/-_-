@@ -10,6 +10,12 @@ public class MapDTO {
 	String map_info;
 	String map_addr;
 	String map_img;
+	
+	public MapDTO(String map_name, String map_addr) {
+		super();
+		this.map_name = map_name;
+		this.map_addr = map_addr;
+	}
 	public MapDTO(String map_seq, String map_name, String map_latitude, String map_longtitude, String map_type,
 			String map_stars, String map_info, String map_addr, String map_img) {
 		super();

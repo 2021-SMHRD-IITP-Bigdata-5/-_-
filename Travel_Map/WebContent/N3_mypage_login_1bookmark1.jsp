@@ -32,7 +32,7 @@
 		<div id="side_two">
 			<ul>
 			
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'">즐겨찾기</button></li>
+				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'">내 계획</button></li>
 				<li><button class = "side_button" onClick="location.href='N3_mypage_login_2mynews.jsp'">내소식</button></li>
 				<li><button class = "side_button" onClick="location.href='N3_mypage_login_3myinfo.jsp'">내정보</button></li>
 			</ul>

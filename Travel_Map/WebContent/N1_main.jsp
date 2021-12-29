@@ -190,7 +190,8 @@
 					+ 							map_addr 
 					+'						</div>'
 					+'                		<div class="jibun ellipsis">별점 : '+star+'</div>'  
-					+'						<div align="right" style="padding:10px;"><button onclick="location.href=\'N2_travelplan1.html\'" id="move_button">계획세우러가기</button></div> ' 
+					+'						<div align="right" style="padding:10px;"><button onclick="favorites(\''+map_name+'\')" id="move_button" style=\"width:60px; margin-right:10px;\">즐겨찾기</buttton>   '					
+					+' 						<button onclick="location.href=\'N2_travelplan1.jsp\'" id="move_button">계획세우러가기</button></div> ' 
 					//+'                	<div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' 
 					+ '            		</div>' 
 					+ '       		</div>'
@@ -234,7 +235,7 @@
 			ovr[i].setMap(null);
 			marker_storage[i].setMap(null);
 			
- 			let a = positions[i]
+ 			/*let a = positions[i]
 			for(let j = 0; j < positions.length; j++) {
 				  if(positions[j] == a)  {
 				    positions.splice(j, 1);
@@ -243,6 +244,22 @@
 			
 			console.log('삭제결과>>',positions);
 			///return marker_storage */
+		}
+		function favorites(map_name){
+			$.ajax({
+				url : "favoriteCon",
+				type : "get",
+				data : {
+					"map_name":map_name
+				},
+				success : function(res) {
+					alert("잘들감");
+				},
+				error : function() {
+					alert("요청 실패!")
+				}
+				
+			})
 		}
 		
 	</script>
