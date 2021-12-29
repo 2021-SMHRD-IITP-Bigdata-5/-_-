@@ -16,7 +16,7 @@
 			<input type="submit"name="전송">
 	</form>
 	
-	<a href = "tm_Join.jsp"><buttton>회원가입 페이지로 이동</buttton></a>
+	<a href = "Join.jsp"><buttton>회원가입 페이지로 이동</buttton></a>
 
 
 </body>

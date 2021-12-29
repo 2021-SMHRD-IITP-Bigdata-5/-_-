@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +7,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./assets/css/N4_mypage_login_2mynews.css" />
-	<title>N4_mypage_login_2mynews</title>
+	<link rel="stylesheet" href="./assets/css/N4_mypage_login_1bookmark1.css" />
+	<title>N4_mypage_login_1bookmark1</title>
 </head>
 
 <body>
@@ -21,17 +23,18 @@
                 <ul class="side_menu">
                     <!-- onClick="window.location.reload()" -->
                     <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.html'"><a href="#" >여행계획</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.html'"><a href="#" >SNS</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
                 </ul>
 			</nav>
 		</div>
 		<div id="side_two">
 			<ul>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'">즐겨찾기</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_2mynews.html'">내소식</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_3myinfo.html'">내정보</button></li>
+			
+				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'">즐겨찾기</button></li>
+				<li><button class = "side_button" onClick="location.href='N3_mypage_login_2mynews.jsp'">내소식</button></li>
+				<li><button class = "side_button" onClick="location.href='N3_mypage_login_3myinfo.jsp'">내정보</button></li>
 			</ul>
 		</div>
 		<div id="side_three">

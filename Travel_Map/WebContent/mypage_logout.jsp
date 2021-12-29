@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,35 +7,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/N5_mypage_sns.css" />
-    <title>N5_mypage_sns</title>
+    <link rel="stylesheet" href="./assets/css/N3_mypage_logout.css" />
+    <title>mypage</title>
 </head>
 
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button>회원가입</button>
+		<button>로그인</button>
 	</div> 
     <div id="side_all">
         <div id="side_one">
             <nav>
                 <ul class="side_menu">
-                    <!-- onClick="window.location.reload()" -->
-                    <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.html'"><a href="#" >여행계획</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.html'"><a href="#" >SNS</a></button></li>
+                    <li><button class = "side_button"><a href="main.jsp" >검색</a></button></li>
+                    <li><button class = "side_button"><a href="N2_travelplan1.jsp">여행계획</a></button></li>
+                    <li><button class = "side_button"><a href="N4_mypage_login_1bookmark1.jsp" >My</a></button></li>
+                    <li><button class = "side_button"><a href="N5_mypage_sns.jsp" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
         <div id="side_two">
-            <input type="text" id="search_keyword_query" placeholder=" 검색어 입력">
-            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
         </div>
         <div id="side_three">
+			<br>
+			<p>아직 로그인 되어 있지 않습니다. <br><br> 
+				회원가입을 통해 <br><br>
+				<b>My Real Travel in GwangJu</b>의 
+			다양한 기능들을 누려보세요 ! </p>
+
+
         </div>
-        <div id="side_four"></div>
+        <div id="side_four">
+			<ul>
+				<li><button class = "side_button"><a href="#">회원가입</a></button></li>
+				<li><button class = "side_button"><a href="#">로그인</a></button></li>
+			</ul>
+
+		</div>
+		<div id="side_five">
+		</div>
+
     </div>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    

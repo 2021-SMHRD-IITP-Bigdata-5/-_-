@@ -1,12 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./assets/css/N4_mypage_login_1bookmark1.css" />
-	<title>N4_mypage_login_1bookmark1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/N5_mypage_sns.css" />
+    <title>N5_mypage_sns</title>
 </head>
 
 <body>
@@ -15,34 +17,26 @@
 		<button onClick="location.href='Join.jsp'">회원가입</button>
 		<button onClick="location.href='Login.jsp'">로그인</button>
 	</div> 
-	<div id="side_all">
-		<div id="side_one">
-			<nav>
+    <div id="side_all">
+        <div id="side_one">
+            <nav>
                 <ul class="side_menu">
                     <!-- onClick="window.location.reload()" -->
                     <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.html'"><a href="#" >여행계획</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.html'"><a href="#" >SNS</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
                 </ul>
-			</nav>
-		</div>
-		<div id="side_two">
-			<ul>
-			
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'">즐겨찾기</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_2mynews.html'">내소식</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_3myinfo.html'">내정보</button></li>
-			</ul>
-		</div>
-		<div id="side_three">
-		</div>
-		<div id="side_four">
-		</div>
-		<div id="side_five">
-		</div>
-
-	</div>
+            </nav>
+        </div>
+        <div id="side_two">
+            <input type="text" id="search_keyword_query" placeholder=" 검색어 입력">
+            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
+        </div>
+        <div id="side_three">
+        </div>
+        <div id="side_four"></div>
+    </div>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>
