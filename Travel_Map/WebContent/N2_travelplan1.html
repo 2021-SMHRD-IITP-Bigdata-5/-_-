@@ -27,15 +27,15 @@
                 </ul>
             </nav>
         </div>
-        <div id="side_two">
+        <div id="side_two" style="height:90%;">
 			<ul>
-				<li style="margin-top: 0px;"><button class="travel_plan"><a href="">여행계획1</a></button></li>
-				<li><button class="travel_plan"><a href="">여행계획2</a></button></li>
-				<li><button class="travel_plan"><a href="">여행계획3</a></button></li>
-				<li><button class="travel_plan" onClick="addplan()"><a href="">+</a></button></li>
+				<li><button class="travel_plan"><a href="N2_travelplan2.html">여행계획을만들어주세요!</a></button></li>
+				<li><button class="travel_plan"><a href="N2_travelplan2.html">여행계획을만들어주세요!</a></button></li>
+				<li><button class="travel_plan"><a href="N2_travelplan2.html">여행계획을만들어주세요!</a></button></li>
+				<li><button class="travel_plan" id="addplan_button" onClick="addplan()"><a href="#">+</a></button></li>
 			</ul>
         </div>
-		<div id="side_three"><b>뭘넣을까 .. ?</b></div>
+		<!--  <div id="side_three"><b>뭘넣을까 .. ?</b></div> -->
     </div>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
@@ -43,7 +43,15 @@
 	
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		
+		function addplan(){
+			let addtag =""
+			addtag="<li><button class=\"travel_plan\"><a href=\"N2_travelplan2.html\">여행계획을만들어주세요!</a></button></li>"
+			$('#addplan_button').parent().before(addtag);
+		}
 	
+	</script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 

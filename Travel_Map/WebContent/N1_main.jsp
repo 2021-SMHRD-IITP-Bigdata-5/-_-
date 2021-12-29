@@ -190,7 +190,7 @@
 					+ 							map_addr 
 					+'						</div>'
 					+'                		<div class="jibun ellipsis">별점 : '+star+'</div>'  
-					+'						<div align="right" style="padding:10px;"><button onclick="plan_page()" id="move_button">계획세우러가기</button></div> ' 
+					+'						<div align="right" style="padding:10px;"><button onclick="location.href=\'N2_travelplan1.html\'" id="move_button">계획세우러가기</button></div> ' 
 					//+'                	<div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' 
 					+ '            		</div>' 
 					+ '       		</div>'
