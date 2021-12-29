@@ -1,6 +1,7 @@
 package com.myTravelCon;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,16 +36,28 @@ public class tm_myTravelCon extends HttpServlet {
 		HttpSession session = request.getSession();
 		tm_memberDTO sessiondto = (tm_memberDTO) session.getAttribute("dto");
 
+//		do {}
+//			while();
+
+//		for
+
+//		while
+
+		String count = multi.getParameter("count");
 		int map_seq = Integer.parseInt(multi.getParameter("map_seq"));
 		String travel_memo = (String) multi.getParameter("travel_memo");
 		String travel_character = (String) multi.getParameter("travel_character");
+		String travel_fileO = multi.getFilesystemName("travel_fileO");
+		String travel_fileT = multi.getFilesystemName("travel_fileT");
 		String mb_id = sessiondto.getMb_id();
 		int travel_order = Integer.parseInt(multi.getParameter("travel_order"));
 
-		System.out.println(map_seq + travel_memo + travel_character + mb_id + travel_order + "마이 트래블컨");
+		System.out.println(map_seq + travel_memo + travel_character + travel_fileO + travel_fileT + mb_id + travel_order
+				+ "마이 트래블컨");
 
 		tm_myTravelDAO dao = new tm_myTravelDAO();
-		tm_myTravelDTO dto = new tm_myTravelDTO(map_seq, travel_memo, travel_character, mb_id, travel_order);
+		tm_myTravelDTO dto = new tm_myTravelDTO(map_seq, travel_memo, travel_fileO, travel_fileT, travel_character,
+				mb_id, travel_order);
 
 		int cnt = dao.myTravelInsert(dto);
 		if (cnt > 0) {

@@ -8,8 +8,8 @@ public class tm_myTravelDTO {
 	private int map_seq;
 	private String travel_memo;
 	private String travel_character;
-	private String travel_file1;
-	private String travel_file2;
+	private String travel_fileO;
+	private String travel_fileT;
 	private String reg_date;
 	private String mb_id;
 	private int travel_order;
@@ -46,20 +46,20 @@ public class tm_myTravelDTO {
 		this.travel_character = travel_character;
 	}
 
-	public String getTravel_file1() {
-		return travel_file1;
+	public String getTravel_fileO() {
+		return travel_fileO;
 	}
 
-	public void setTravel_file1(String travel_file1) {
-		this.travel_file1 = travel_file1;
+	public void setTravel_fileO(String travel_fileO) {
+		this.travel_fileO = travel_fileO;
 	}
 
-	public String getTravel_file2() {
-		return travel_file2;
+	public String getTravel_fileT() {
+		return travel_fileT;
 	}
 
-	public void setTravel_file2(String travel_file2) {
-		this.travel_file2 = travel_file2;
+	public void setTravel_fileT(String travel_fileT) {
+		this.travel_fileT = travel_fileT;
 	}
 
 	public String getReg_date() {
@@ -86,14 +86,14 @@ public class tm_myTravelDTO {
 		this.travel_order = travel_order;
 	}
 
-	public tm_myTravelDTO(int travel_seq, int map_seq, String travel_memo, String travel_character, String travel_file1,
-			String travel_file2, String reg_date, String mb_id, int travel_order) {
+	public tm_myTravelDTO(int travel_seq, int map_seq, String travel_memo, String travel_character, String travel_fileO,
+			String travel_fileT, String reg_date, String mb_id, int travel_order) {
 		this.travel_seq = travel_seq;
 		this.map_seq = map_seq;
 		this.travel_memo = travel_memo;
 		this.travel_character = travel_character;
-		this.travel_file1 = travel_file1;
-		this.travel_file2 = travel_file2;
+		this.travel_fileO = travel_fileO;
+		this.travel_fileT = travel_fileT;
 		this.reg_date = reg_date;
 		this.mb_id = mb_id;
 		this.travel_order = travel_order;
@@ -103,12 +103,12 @@ public class tm_myTravelDTO {
 
 	}
 
-	public tm_myTravelDTO(String travel_memo, String travel_character, String travel_file1, String travel_file2,
+	public tm_myTravelDTO(String travel_memo, String travel_character, String travel_fileO, String travel_fileT,
 			String mb_id, int travel_order) {
 		this.travel_memo = travel_memo;
 		this.travel_character = travel_character;
-		this.travel_file1 = travel_file1;
-		this.travel_file2 = travel_file2;
+		this.travel_fileO = travel_fileO;
+		this.travel_fileT = travel_fileT;
 		this.mb_id = mb_id;
 		this.travel_order = travel_order;
 	}
@@ -116,6 +116,18 @@ public class tm_myTravelDTO {
 	public tm_myTravelDTO(String travel_memo, String travel_character, String mb_id, int travel_order) {
 		this.travel_memo = travel_memo;
 		this.travel_character = travel_character;
+		this.mb_id = mb_id;
+		this.travel_order = travel_order;
+	}
+	
+
+	public tm_myTravelDTO(int map_seq, String travel_memo, String travel_character, String travel_fileO,
+			String travel_fileT, String mb_id, int travel_order) {
+		this.map_seq = map_seq;
+		this.travel_memo = travel_memo;
+		this.travel_character = travel_character;
+		this.travel_fileO = travel_fileO;
+		this.travel_fileT = travel_fileT;
 		this.mb_id = mb_id;
 		this.travel_order = travel_order;
 	}

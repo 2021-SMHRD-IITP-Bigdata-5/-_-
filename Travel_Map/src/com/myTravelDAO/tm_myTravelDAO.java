@@ -61,15 +61,17 @@ public class tm_myTravelDAO {
 		getConn();
 		try {
 			String sql = "INSERT INTO my_travel_map" //
-					+ "(map_seq,travel_memo,travel_character,mb_id,travel_order)" //
-					+ "VALUES(?,?,?,?,?)";
+					+ "(map_seq,travel_memo,travel_character,travel_fileO,travel_fileT,mb_id,travel_order)" //
+					+ "VALUES(?,?,?,?,?,?,?)";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, dto.getMap_seq());
 			psmt.setString(2, dto.getTravel_memo());
 			psmt.setString(3, dto.getTravel_character());
-			psmt.setString(4, dto.getMb_id());
-			psmt.setInt(5, dto.getTravel_order());
+			psmt.setString(4, dto.getTravel_fileO());
+			psmt.setString(5, dto.getTravel_fileT());
+			psmt.setString(6, dto.getMb_id());
+			psmt.setInt(7, dto.getTravel_order());
 
 			cnt = psmt.executeUpdate();
 
