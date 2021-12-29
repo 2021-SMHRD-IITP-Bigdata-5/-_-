@@ -149,5 +149,44 @@ public class tm_memberDAO {
 		}
 		return check;
 	}
+	public void followIncrease(String mb_id) {
+
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_follow = mb_follow+1 WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+
+	}
+
+	public void followerIncrease(String f_id) {
+
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_follower = mb_follower+1 WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, f_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+
+	}
 
 }

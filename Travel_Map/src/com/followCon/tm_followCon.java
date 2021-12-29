@@ -40,8 +40,8 @@ public class tm_followCon extends HttpServlet {
 
 		if (follow_cnt > 0) {
 			
-			// dao.followIncrease(mb_id);   기능 추가
-			// dao.followerIncrease(f_id);	기능 추가
+			 dao.followIncrease(mb_id);
+			 dao.followerIncrease(f_id);	
 			
 		}
 
