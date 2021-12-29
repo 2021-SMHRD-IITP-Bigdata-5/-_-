@@ -39,10 +39,10 @@ public class tm_followCon extends HttpServlet {
 		int follow_cnt = follow_dao.follow(follow_dto);
 
 		if (follow_cnt > 0) {
-			
-			 dao.followIncrease(mb_id);
-			 dao.followerIncrease(f_id);	
-			
+
+			dao.followIncrease(mb_id);
+			dao.followerIncrease(f_id);
+
 		}
 
 	}
