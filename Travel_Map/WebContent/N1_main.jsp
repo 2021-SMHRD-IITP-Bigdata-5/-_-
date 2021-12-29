@@ -22,10 +22,11 @@
         <div id="side_one">
             <nav>
                 <ul class="side_menu">
-                    <li><button class = "side_button"><a href="#" >검색</a></button></li>
-                    <li><button class = "side_button"><a href="#" >여행계획</a></button></li>
-                    <li><button class = "side_button"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button"><a href="#" >SNS</a></button></li>
+                	<!-- onClick="window.location.reload()" -->
+                    <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.html'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.html'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.html'"><a href="#" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
