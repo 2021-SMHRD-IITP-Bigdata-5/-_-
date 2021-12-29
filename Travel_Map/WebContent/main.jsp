@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/N1_main2.css" />
+    <link rel="stylesheet" href="./assets/css/N1_main.css" />
     <link rel="stylesheet" href="./assets/css/overlay.css" />
     <title>main</title>
 </head>
