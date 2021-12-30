@@ -4,33 +4,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="./assets/css/Join.css">
+<title>Join</title>
 </head>
 <body>
 
-	회원가입 페이지
+    <div class="join_box">
+        <form action="tm_JoinCon" method="post">
+        <div class="input_area">
+            <label for="input_area">아이디 : </label>
+            <br>
+            <input type="text" name="id"></input>
+            <button type="button" id="Check" onClick="idCheck()">중복체크</button>
+        </div>
+        <div class="input_area">
+            <label for="input_area">비밀번호 :</label>
+            <br>
+            <input type="password" name="pw"><br> 
+        </div>
+        <div class="input_area">
+            <label for="input_area"> 이름 :</label>
+            <br>
+            <input type="text" name="name"><br>
+        </div>
+        <div class="input_area">
+            <label for="input_area">닉네임 :</label>
+            <br>
+            <input type="text" name="nickname"><br>
+        </div>
+        <div class="input_area">
+            <label for="input_area">생년월일 :</label>
+            <br>
+        <input type="date">
+        </div>
+        <div class="input_area">
+            <label for="input_area">성별 : </label>
+            <br>
+             남<input type="radio" name="gender" value="m" style="width:1.4vw; height:1.3vh;">
+             여<input type="radio" name="gender" value="w" style="width:1.4vw; height:1.3vh;"><br>
+            <hr>
+            </div>
+        <div class="input_area">
+            <label for="input_area">이메일 :</label>
+            <br><input type="text" name="email"><br>
+        </div>
+        <div class="input_area">
+            <label for="input_area">주소 :</label>
+            <br><input type="text" name="addr"><br></div>
+        <div class="input_area">
+            <input type="submit" name="회원가입" value="회원가입" >
+        </div>
 
-	<form action="tm_JoinCon" method="post">
-
-		ID :<input type="text" name="id">
-			 	<button type="button" id="Check" onClick="idCheck()">중복체크</button>
-					<p id="result"></p> 
-		PW :<input type="password" name="pw"><br> 
-		NAME :<input type="text" name="name"><br>
-		AGE :<select name="age">
-					<% for(int i = 1 ; i<= 99 ; i++) { %>
-				 	<option value="<%=i%>"> <%=i%> </option>
-					<% } %>
-			    </select><br>
-		GENDER : 남<input type="radio" name="gender" value="m">
-				  여<input type="radio" name="gender" value="w"><br>
-		EMAIL :<input type="text" name="email"><br>
-		ADDR :<input type="text" name="addr"><br>
-		NICKNAME :<input type="text" name="nickname"><br>
-		          <input type="submit" name="회원가입">
-			
-			
-	</form>
+    </div>
+    </form>
 
 	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
