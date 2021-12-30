@@ -58,8 +58,8 @@ public class tm_snsDAO {
 
 		getConn();
 		try {
-			String sql = "INSERT INTO t_travel_board(tb_title,tb_content,tb_file,mb_id)" //
-					+ "VALUES(?,?,?,?)";
+			String sql = "INSERT INTO t_travel_board(tb_title,tb_content,tb_file,mb_id,travel_seq)" //
+					+ "VALUES(?,?,?,?,13)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getTb_title());
 			psmt.setString(2, dto.getTb_content());
@@ -156,5 +156,62 @@ public class tm_snsDAO {
 			close();
 		}
 		return dto;
+	}
+
+	public void CountInc(int tb_seq) {
+
+		getConn();
+
+		try {
+			String sql = "UPDATE t_travel_board SET tb_cnt = tb_cnt + 1 WHERE tb_seq = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, tb_seq);
+
+			psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+
+	}
+
+	public int likesInc(int tb_seq) {
+
+		int tb_likes = 0;
+		getConn();
+		try {
+			String sql = "UPDATE t_travel_board SET tb_likes = tb_likes + 1 WHERE tb_seq = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, tb_seq);
+
+			psmt.executeUpdate();
+
+			sql = "SELECT * FROM t_travel_board WHERE tb_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, tb_seq);
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				tb_likes = rs.getInt("tb_likes");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+		return tb_likes;
+
+	}
+
+	public void selectMember(String mb_id) {
+
+		getConn();
+		
+		close();
+
 	}
 }
