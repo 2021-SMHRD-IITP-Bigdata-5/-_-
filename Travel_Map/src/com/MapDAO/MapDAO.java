@@ -59,7 +59,7 @@ public class MapDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, division);
 			rs = psmt.executeQuery();
-			
+			cnt = 1;
 			while (rs.next()) {
 				String map_seq = rs.getString(1);
 				String map_name = rs.getString(2);
@@ -72,6 +72,10 @@ public class MapDAO {
 				String map_img = rs.getString(11);
 				dto = new MapDTO(map_seq, map_name, map_latitude, map_longtitude, map_type, map_stars, map_info, map_addr, map_img);
 				arr.add(dto);
+				cnt++;
+				if(cnt==150) {
+					break;
+				}
 				
 			}
 		} catch (Exception e) {
@@ -83,7 +87,53 @@ public class MapDAO {
 		return arr;
 	}
 
-
+	public MapDTO bring_map(String map_name) {
+		MapDTO dto = null;
+		try {
+			getConn();
+			String sql = "select * from t_map where map_name = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, map_name);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				String map_addr = rs.getString(8);
+					dto = new MapDTO(map_name, map_addr);
+			}
+				
+			
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return dto;
+	}
+	
+	public int insert_favorit(MapDTO dto) {
+		int cnt = 0;
+		try {
+			getConn();
+			String sql = "select * from t_map where map_name = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getMap_name());
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				String map_addr = rs.getString(8);
+			}
+				
+			
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
 
 
 }
