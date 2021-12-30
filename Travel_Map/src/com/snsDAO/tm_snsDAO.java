@@ -88,7 +88,7 @@ public class tm_snsDAO {
 			} else {
 			}
 
-			String sql = "SELECT * FROM t_travel_board ";
+			String sql = "SELECT * FROM t_travel_board ORDER BY tb_seq DESC ";
 			psmt = conn.prepareStatement(sql);
 
 			rs = psmt.executeQuery();
