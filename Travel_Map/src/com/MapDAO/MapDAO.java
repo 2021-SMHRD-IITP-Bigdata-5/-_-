@@ -134,6 +134,41 @@ public class MapDAO {
 		return cnt;
 	}
 	
-
+	public ArrayList<MapDTO> MapSearch(String keyword) {
+		
+		ArrayList<MapDTO> MapArr = new ArrayList<MapDTO>();
+		
+		try {
+			getConn();
+			
+			String sql = "select * from t_map where map_name like ? or map_addr like ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%" + keyword + "%");
+			psmt.setString(2, "%" + keyword + "%");
+			rs = psmt.executeQuery();
+			
+			while (rs.next() == true) {
+				String map_seq = rs.getString(1);
+				String map_name = rs.getString(2);
+				String map_latitude = rs.getString(3);
+				String map_longtitude = rs.getString(4);
+				String map_type = rs.getString(5);
+				String map_stars = rs.getString(6);
+				String map_info = rs.getString(7);
+				String map_addr = rs.getString(8);
+				String map_img = rs.getString(11);
+				dto = new MapDTO(map_seq, map_name, map_latitude, map_longtitude, map_type, map_stars, map_info, map_addr, map_img);
+				MapArr.add(dto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return MapArr;
+	}
 
 }
