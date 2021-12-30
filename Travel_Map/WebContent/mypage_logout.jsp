@@ -1,3 +1,4 @@
+<%@page import="com.memberDTO.tm_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,17 +15,29 @@
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button>회원가입</button>
-		<button>로그인</button>
+		<button onClick="location.href='Join.jsp'">회원가입</button>
+		<% tm_memberDTO dto = (tm_memberDTO)session.getAttribute("dto");
+		if (dto == null) {%>
+		<button onClick="location.href='Login.jsp'">로그인</button>
+		<%} else { %>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
+		<%} %>
 	</div> 
     <div id="side_all">
         <div id="side_one">
             <nav>
                 <ul class="side_menu">
-                    <li><button class = "side_button"><a href="main.jsp" >검색</a></button></li>
-                    <li><button class = "side_button"><a href="N2_travelplan1.jsp">여행계획</a></button></li>
-                    <li><button class = "side_button"><a href="N4_mypage_login_1bookmark1.jsp" >My</a></button></li>
-                    <li><button class = "side_button"><a href="N5_mypage_sns.jsp" >SNS</a></button></li>
+                	<!-- onClick="window.location.reload()" -->
+                    <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
+					<%if (dto == null) {%>
+					<li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >SNS</a></button></li>
+					<%} else {%>
+                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
+                    <%} %>
                 </ul>
             </nav>
         </div>
@@ -41,8 +54,8 @@
         </div>
         <div id="side_four">
 			<ul>
-				<li><button class = "side_button"><a href="#">회원가입</a></button></li>
-				<li><button class = "side_button"><a href="#">로그인</a></button></li>
+				<li><button class = "side_button" onClick="location.href='Join.jsp'"><a href="#">회원가입</a></button></li>
+				<li><button class = "side_button" onClick="location.href='Login.jsp'"><a href="#">로그인</a></button></li>
 			</ul>
 
 		</div>

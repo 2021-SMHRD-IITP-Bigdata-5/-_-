@@ -29,6 +29,13 @@ public class MapDTO {
 		this.map_addr = map_addr;
 		this.map_img = map_img;
 	}
+	public MapDTO(String map_name, String map_stars, String map_addr, String map_img) {
+		super();
+		this.map_name = map_name;
+		this.map_stars = map_stars;
+		this.map_addr = map_addr;
+		this.map_img = map_img;
+	}
 	public String getMap_seq() {
 		return map_seq;
 	}

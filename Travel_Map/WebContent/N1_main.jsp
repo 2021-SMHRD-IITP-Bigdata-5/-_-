@@ -1,3 +1,4 @@
+<%@page import="com.memberDTO.tm_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +17,12 @@
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
 		<button onClick="location.href='Join.jsp'">회원가입</button>
+		<% tm_memberDTO dto = (tm_memberDTO)session.getAttribute("dto");
+		if (dto == null) {%>
 		<button onClick="location.href='Login.jsp'">로그인</button>
+		<%} else { %>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
+		<%} %>
 	</div> 
     <div id="side_all">
         <div id="side_one">
@@ -24,15 +30,21 @@
                 <ul class="side_menu">
                 	<!-- onClick="window.location.reload()" -->
                     <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
+					<%if (dto == null) {%>
+					<li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >My</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >SNS</a></button></li>
+					<%} else {%>
                     <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
+                    <%} %>
                 </ul>
             </nav>
         </div>
         <div id="side_two">
             <input type="text" id="search_keyword_query" placeholder="검색어 입력">
-            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
+            <button id="search_keyword_query_button" onClick="MapSearch()"><img src="./img/search.png"></button>
         </div>
         <div id="side_three">
            <ul>
@@ -57,7 +69,60 @@
         <div id="side_four">
         </div>
     </div>
-    
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+    	function MapSearch() {
+    		
+    		$('#side_four').html('');
+    		
+    		$.ajax({
+				url : 'MapSearchCon',
+				type : 'get',
+				data : { 
+					'keyword' : $('#search_keyword_query').val()
+				},
+				dataType : 'json',
+				success : function(res) {
+					
+					console.log(res)
+					
+					let table = "";
+					
+					for(let i = 0; i < res.length; i++) {
+						
+						table += '<ul class="tour_list">';
+						table += '<table width="400" height="100" align="left">';
+						table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
+						+ res[i].map_name + '</a></h3></td>';
+						table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
+						table += '<tr><td><div class="map_name style="display:none;"">'
+							+ res[i].map_name + '</div></td></tr>';
+						if (res[i].map_stars == 0) {
+							table += '<tr><td>★ : <a class="map_stars">평가중</div></td></tr>';
+						} else {
+							table += '<tr><td>★ : <a class="map_stars">'
+								+ res[i].map_stars + '</div></td></tr>';
+						}
+						table += '<tr><td><div class="map_addr">'
+							+ res[i].map_addr + '</div></td></tr>';
+						table += '<div class ="map_img" style="display:none;">'
+								+ res[i].map_img + '</div>';
+						table += '<div class ="map_latitude" style="display:none;">'
+								+ res[i].map_latitude + '</div>';
+						table += '<div class ="map_longtitude" style="display:none;">'
+								+ res[i].map_longtitude + '</div>';
+						table += '<hr width="400" align="left">';
+						table += '</ul>';
+					}
+					$('#side_four').append(table);
+				},
+				error : function() {
+					alert('검색실패');
+				}
+			});
+    		
+    	}
+    </script>
     
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>
@@ -78,26 +143,37 @@
 							console.log(res);
 							let table = "";
 							for (let i = 0; i < res.length; i++) {
-								table += '<ul class="tour_list">'
-								table += '<li>'
-								table += '<h3><a href="#" class ="local_find" value = '+i+'>'
-										+ res[i].map_name + '</a></h3>';
-								table += '<div class="map_name style="display:none;"">'
-										+ res[i].map_name + '</div>';
-								table += '<div class="map_stars">'
-										+ res[i].map_stars + '</div>';
-								//table += '<div>' + res[i].map_type + '</div>';
-								table += '<div class="map_addr">'
-										+ res[i].map_addr + '</div>';
+								table += '<ul class="tour_list">';
+								table += '<table width="400" height="100" align="left">';
+								table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
+								+ res[i].map_name + '</a></h3></td>';
+								if (res[i].map_img == "null") {
+									table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right"></th></tr>';
+								} else {
+									table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
+								}
+								table += '<tr><td><div class="map_name style="display:none;"">'
+									+ res[i].map_name + '</div></td></tr>';
+								if (res[i].map_stars == 0) {
+									table += '<tr><td>★ : <a class="map_stars">평가중</div></td></tr>';
+								} else {
+									table += '<tr><td>★ : <a class="map_stars">'
+										+ res[i].map_stars + '</div></td></tr>';
+								}
+								table += '<tr><td><div class="map_addr">'
+									+ res[i].map_addr + '</div></td></tr>';
+								if (res[i].map_img == "null") {
+									table += '<div class ="map_img" style="display:none;">./phm_img/No_Image.png</div>';
+								} else {
+									table += '<div class ="map_img" style="display:none;">'
+										+ res[i].map_img + '</div>';
+								}
 								table += '<div class ="map_latitude" style="display:none;">'
 										+ res[i].map_latitude + '</div>';
 								table += '<div class ="map_longtitude" style="display:none;">'
 										+ res[i].map_longtitude + '</div>';
-								table += '<div class ="map_img" style="display:none;">'
-									+ res[i].map_img + '</div>';
-								table += '</li>'
-								table += '</ul>'
-
+								table += '<hr width="400" align="left">';
+								table += '</ul>';
 							}
 							$('#side_four').append(table)
 
@@ -169,12 +245,6 @@
 				});
 				marker_storage.push(marker);
 				
-				let star =null;
-				if(map_stars==0){
-					star="데이터부족";
-				}else{
-					star=map_stars+"점";
-				}
 				var content = '<div class="wrap">'
 					+ '   		 <div class="info">'
 					+ '        		<div class="title">'
@@ -189,7 +259,7 @@
 					+ '               		<div class="ellipsis">'
 					+ 							map_addr 
 					+'						</div>'
-					+'                		<div class="jibun ellipsis">별점 : '+star+'</div>'  
+					+'                		<div class="jibun ellipsis">별점 : '+map_stars+'</div>'  
 					+'						<div align="right" style="padding:10px;"><button onclick="favorites(\''+map_name+'\')" id="move_button" style=\"width:60px; margin-right:10px;\">즐겨찾기</buttton>   '					
 					+' 						<button onclick="location.href=\'N2_travelplan1.jsp\'" id="move_button">계획세우러가기</button></div> ' 
 					//+'                	<div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' 

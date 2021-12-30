@@ -115,37 +115,13 @@ public class MapDAO {
 		int cnt = 0;
 		try {
 			getConn();
-			String sql = "insert into T_MAP_FAVORITES values(?,?)";
+			String sql = "select * from t_map where map_name = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getMap_name());
-			psmt.setString(2, dto.getMap_addr());
-			cnt = psmt.executeUpdate();
-			
-				
-			
-		} catch (Exception e) {
-			System.out.println("클래스파일 로딩실패");
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return cnt;
-	}
-	
-	public ArrayList<MapDTO> bring_favorit() {
-		ArrayList<MapDTO> arr = new ArrayList<MapDTO>();
-		MapDTO dto = null;
-		try {
-			getConn();
-			String sql = "select * from T_MAP_FAVORITES";
-			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			
-			while(rs.next()) {
-				String map_name = rs.getString(1);
-				String map_addr = rs.getString(2);
-				dto = new MapDTO(map_name, map_addr);
-				arr.add(dto);
+			if(rs.next()) {
+				String map_addr = rs.getString(8);
 			}
 				
 			
@@ -155,19 +131,36 @@ public class MapDAO {
 		} finally {
 			close();
 		}
-		return arr;
+		return cnt;
 	}
 	
-	public int delete_favorite(String map_name) {
-		int cnt = 0;
+	public ArrayList<MapDTO> MapSearch(String keyword) {
+		
+		ArrayList<MapDTO> MapArr = new ArrayList<MapDTO>();
+		
 		try {
 			getConn();
-			String sql = "delete from T_MAP_FAVORITES where FAV_MAP_NAME = ? ";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, map_name);
-			cnt = psmt.executeUpdate();
 			
-				
+			String sql = "select * from t_map where map_name like ? or map_addr like ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%" + keyword + "%");
+			psmt.setString(2, "%" + keyword + "%");
+			rs = psmt.executeQuery();
+			
+			while (rs.next() == true) {
+				String map_seq = rs.getString(1);
+				String map_name = rs.getString(2);
+				String map_latitude = rs.getString(3);
+				String map_longtitude = rs.getString(4);
+				String map_type = rs.getString(5);
+				String map_stars = rs.getString(6);
+				String map_info = rs.getString(7);
+				String map_addr = rs.getString(8);
+				String map_img = rs.getString(11);
+				dto = new MapDTO(map_seq, map_name, map_latitude, map_longtitude, map_type, map_stars, map_info, map_addr, map_img);
+				MapArr.add(dto);
+			}
 			
 		} catch (Exception e) {
 			System.out.println("클래스파일 로딩실패");
@@ -175,8 +168,7 @@ public class MapDAO {
 		} finally {
 			close();
 		}
-		return cnt;
+		return MapArr;
 	}
-
 
 }
