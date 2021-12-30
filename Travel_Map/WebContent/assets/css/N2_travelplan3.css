@@ -151,11 +151,12 @@
     #side_three { 
         height: 93%;
         overflow: scroll;
-       	-ms-overflow-style: none; /* IE and Edge */
-   	 	scrollbar-width: none; /* Firefox */
+       	/*-ms-overflow-style: none; /* IE and Edge */
+   	 	/*scrollbar-width: none; /* Firefox */
+   	 	
    	 	border-bottom: 1px solid #eee;
     }
-    #side_three::-webkit-scrollbar{ display:none; }
+   	#side_three::-webkit-scrollbar{ display:none; }
 
 	#plan_table_one {
 	    border-radius: 3px;

@@ -224,7 +224,7 @@
 		}
 		
 		function plan_page(){
-			location.href="map.html";
+			location.href="N2_travelplan1.jsp";
 
 		}
 		
@@ -247,13 +247,16 @@
 		}
 		function favorites(map_name){
 			$.ajax({
-				url : "favoriteCon",
+				url : "favorite_insertCon",
 				type : "get",
 				data : {
 					"map_name":map_name
 				},
 				success : function(res) {
-					alert("잘들감");
+					if(res=='1'){
+						alert("즐겨찾기 성공!");
+					}
+					
 				},
 				error : function() {
 					alert("요청 실패!")

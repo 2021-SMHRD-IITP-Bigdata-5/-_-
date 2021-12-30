@@ -37,27 +37,16 @@
         <div id="side_three" style="height:25%;">
 			<table id="plan_table_one" align="center">
 				<caption><h3>여행지 즐겨찾기 목록</h3></caption>
-				<colgroup>
+				<colgroup >
 					<col style="width: 5%;">
 					<col style="width: 30%;">
 					<col style="width: 32.5%;">
 					<col style="width: 18.5%;">
 					<col style="width: 14%;">
 				</colgroup>
-				<tr>
-					<td>1</td>
-					<td>map_name</td>
-					<td>map_addr</td>
-					<td><button>계획에 넣기</button></td>
-					<td><button>삭제하기</button></td>
-				</tr>
-				<tr>
-					<td>2</td>
-				</tr>
-				<tr>
-					<td>3</td>
-				</tr>
+				<tbody id="after"></tbody>
 			</table>
+			
 
         </div>
         <div id="day_add" align = "center" style="margin:10px;">
@@ -71,8 +60,8 @@
 					<col style="width: 150px;">
 					<col style="width: 62.5px;">
 					<col style="width: 62.5px;">
-					<col style="width: 70px;">
-					<col style="width: 70px;">
+					<col style="width: 80px;">
+					<col style="width: 60px;">
 				</colgroup>
 				<tr>
 					<th>순서</th>
@@ -81,21 +70,13 @@
 					<th>출발시간</th>
 					<th>메모</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>충장로구경</td>
-					<td>13:00</td>
-					<td>15:00</td>
-					<td id="memodo"><button onClick="memo()" >메모하기</button></td>
-					<td><button>삭제하기</button></td>
-				</tr>
-				<tr align="right">
-					<td colspan="6" id="textarea"></td>
-				</tr>
-				<tr>
-					<td colspan="6" id="plan_table_last" ><a href="#" onClick="temporary_storage()">임시저장</a></td>
-				</tr>
-				
+				<tbody id="plan_table">
+					
+					
+					<!--  <tr>
+						<td colspan="6" id="plan_table_last" ><a href="#" onClick="temporary_storage()">임시저장</a></td>
+					</tr>-->
+				</tbody>
 			
 			</table>
 		</div>
@@ -104,7 +85,7 @@
 		<div id="side_six" align="center" style="margin-top:20px;">
 				<button class="side_button" style="width:100px; margin-right:10px;"><a href="#">지도 미리보기</a></button>
 				<button class="side_button" style="width:100px; margin-right:10px;"><a href="#">경로 미리보기</a></button>
-				<button class="side_button" style="width:100px;"><a href="#">계획 만들기</a></button>
+				<button class="side_button" style="width:100px;"><a href="#">계획 미리보기</a></button>
 		</div>
    	</div>
 	
@@ -113,14 +94,120 @@
 	
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
+	
+	<script type="text/javascript">	
+		//메모기능 파트
 		function memo(){
-			$('#textarea').html("<textarea style=\"width:400px;\"></textarea>");
+			$('#textarea').html("<textarea id=\"text\" style=\" width:400px;\"></textarea>");
 			$('#memodo').html("<button onClick=\"close_memo()\" >메모닫기</button>")
 		}
 		function close_memo(){
+			$('#text').hide();
+			$('#memodo').html("<button onClick=\"memo2()\" >메모하기</button>")
+		}
+		function memo2(){
+			$('#text').show();
+			$('#memodo').html("<button onClick=\"close_memo()\" >메모닫기</button>")
+		}
+		function remove_memo(){
 			
 		}
+	</script>
+	<script type="text/javascript">
+		//여행지 즐겨찾기 목록 파트
+		
+		$.ajax({
+				url : "favorite_bringCon",
+				type : "get",
+				data : {
+				},
+				dataType : "json",
+				success : function(res){ 
+					//console.log(res)
+					
+					let add_tag ="";
+					for(let i = 0; i < res.length ; i++){
+						add_tag += "<tr><td>"+(i+1)+"</td>";
+						add_tag += "<td id=\"removedata\">"+res[i].map_name+"</td>";
+						add_tag += "<td>"+res[i].map_addr+"</td>";
+						add_tag += "<td><button onClick=\"add_plan(\'"+res[i].map_name+"\')\">계획에 넣기</button></td>";
+						add_tag += "<td><button onClick=\"favorite_remove()\">삭제하기</button></td></tr>";
+					}
+					$('#after').append(add_tag);
+					
+				},
+				error : function(){
+					alert("요청 실패!")
+				}
+			
+			})
+		function favorite_remove(){
+			$.ajax({
+				url : "favorite_removeCon",	//맵핑
+				type : "get",
+				data : {
+					map_name:$('#removedata').text()
+				},
+				dataType:"json",
+				success : function(res){ 
+					
+					//console.log(res)
+					$('#after').html('');
+					add_tag ="";
+					for(let i = 0; i < res.length ; i++){
+						add_tag += "<tr><td>"+(i+1)+"</td>";
+						add_tag += "<td class=\"removedata\">"+res[i].map_name+"</td>";
+						add_tag += "<td>"+res[i].map_addr+"</td>";
+						add_tag += "<td><button onClick=\"add_plan(\'"+res[i].map_name+"\')\">계획에 넣기</button></td>";
+						add_tag += "<td><button onClick=\"favorite_remove()\">삭제하기</button></td></tr>";
+					}	
+					$('#after').append(add_tag);
+					
+				},
+				error : function(){
+					alert("요청 실패!")
+				}
+			
+			})
+		}
+	</script>
+	<script>
+		// 계획에 넣기 파트
+		
+		let plan_list=[];
+		function add_plan(map_name){
+			$.ajax({
+				url : "add_Plan",	
+				type : "get",
+				data : {
+					"map_name":map_name
+				},
+				//dataType : "json",
+				success : function(res){ 
+					plan_list.push(res);
+					console.log(plan_list);
+					$('#plan_table').html('');
+					let add_tag2 = "";
+					for(let i = 0; i<plan_list.length ; i++){
+						add_tag2+="<tr><td>"+(i+1)+"</td>";
+						add_tag2+="<td>"+plan_list[i]+"</td>";
+						add_tag2+="<td><input type=\"time\"></td>";
+						add_tag2+="<td><input type=\"time\"></td>";
+						add_tag2+="<td id=\"memodo\"><button onClick=\"memo()\" >메모하기</button></td>";
+						add_tag2+="<td><button onClick=\"remove_plan()\">삭제</button></td></tr>";
+						add_tag2+="<tr align=\"right\">";
+						add_tag2+="<td colspan=\"6\" id=\"textarea\"></td></tr>";
+					}
+					$('#plan_table').append(add_tag2)
+					
+				},
+				error : function(){
+					alert("요청 실패!")
+				}
+			
+			})
+		}
+	
 	</script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script type="text/javascript">
