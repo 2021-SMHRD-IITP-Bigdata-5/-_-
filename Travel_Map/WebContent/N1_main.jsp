@@ -30,15 +30,15 @@
                 <ul class="side_menu">
                 	<!-- onClick="window.location.reload()" -->
                     <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-					<%if (dto == null) {%>
+					<!-- <%//if (dto == null) {%>
 					<li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >My</a></button></li>
                     <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >SNS</a></button></li>
-					<%} else {%>
+					<%//} else {%> -->
                     <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
-                    <%} %>
+                    <%//} %>
                 </ul>
             </nav>
         </div>

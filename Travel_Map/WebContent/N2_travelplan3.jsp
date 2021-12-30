@@ -95,24 +95,6 @@
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	
-	<script type="text/javascript">	
-		//메모기능 파트
-		function memo(){
-			$('#textarea').html("<textarea id=\"text\" style=\" width:400px;\"></textarea>");
-			$('#memodo').html("<button onClick=\"close_memo()\" >메모닫기</button>")
-		}
-		function close_memo(){
-			$('#text').hide();
-			$('#memodo').html("<button onClick=\"memo2()\" >메모하기</button>")
-		}
-		function memo2(){
-			$('#text').show();
-			$('#memodo').html("<button onClick=\"close_memo()\" >메모닫기</button>")
-		}
-		function remove_memo(){
-			
-		}
-	</script>
 	<script type="text/javascript">
 		//여행지 즐겨찾기 목록 파트
 		
@@ -173,7 +155,6 @@
 	</script>
 	<script>
 		// 계획에 넣기 파트
-		
 		let plan_list=[];
 		function add_plan(map_name){
 			$.ajax({
@@ -182,21 +163,22 @@
 				data : {
 					"map_name":map_name
 				},
-				//dataType : "json",
+				dataType : "json",
 				success : function(res){ 
+					//console.log("res :",res)
 					plan_list.push(res);
-					console.log(plan_list);
+					//console.log(plan_list);
 					$('#plan_table').html('');
 					let add_tag2 = "";
 					for(let i = 0; i<plan_list.length ; i++){
 						add_tag2+="<tr><td>"+(i+1)+"</td>";
-						add_tag2+="<td>"+plan_list[i]+"</td>";
+						add_tag2+="<td>"+plan_list[i].map_name+"</td>";
 						add_tag2+="<td><input type=\"time\"></td>";
 						add_tag2+="<td><input type=\"time\"></td>";
-						add_tag2+="<td id=\"memodo\"><button onClick=\"memo()\" >메모하기</button></td>";
-						add_tag2+="<td><button onClick=\"remove_plan()\">삭제</button></td></tr>";
+						add_tag2+="<td class=\"memodo"+(i+1)+"\"><button onClick=\"memo("+(i+1)+")\" >메모하기</button></td>";
+						add_tag2+="<td><button onClick=\"remove_plan('"+plan_list[i].map_name+"')\">삭제</button></td></tr>";
 						add_tag2+="<tr align=\"right\">";
-						add_tag2+="<td colspan=\"6\" id=\"textarea\"></td></tr>";
+						add_tag2+="<td colspan=\"6\" class=\"textarea"+(i+1)+"\"></td></tr>";
 					}
 					$('#plan_table').append(add_tag2)
 					
@@ -209,6 +191,41 @@
 		}
 	
 	</script>
+	<script type="text/javascript">	
+		//메모기능 파트
+		function memo(i){
+			$('.textarea'+i+'').html("<textarea class=\"text"+i+"\" style=\" width:400px;\"></textarea>");
+			$('.memodo'+i+'').html("<button onClick=\"close_memo("+i+")\" >메모닫기</button>")
+		}
+		function close_memo(i){
+			$('.text'+i+'').hide();
+			$('.memodo'+i+'').html("<button onClick=\"memo2("+i+")\" >메모하기</button>")
+		}
+		function memo2(i){
+			$('.text'+i+'').show();
+			$('.memodo'+i+'').html("<button onClick=\"close_memo("+i+")\" >메모닫기</button>")
+		}
+		function remove_plan(map_name){
+			for(let i = 0; i < plan_list.length; i++) {
+			  if(plan_list[i].map_name === map_name)  {
+				    plan_list.splice(i, 1);
+			  }
+			}
+			$('#plan_table').html('');
+			let add_tag2 = "";
+			for(let i = 0; i<plan_list.length ; i++){
+				add_tag2+="<tr><td>"+(i+1)+"</td>";
+				add_tag2+="<td>"+plan_list[i].map_name+"</td>";
+				add_tag2+="<td><input type=\"time\"></td>";
+				add_tag2+="<td><input type=\"time\"></td>";
+				add_tag2+="<td class=\"memodo"+(i+1)+"\"><button onClick=\"memo("+(i+1)+")\" >메모하기</button></td>";
+				add_tag2+="<td><button onClick=\"remove_plan('"+plan_list[i].map_name+"')\">삭제</button></td></tr>";
+				add_tag2+="<tr align=\"right\">";
+				add_tag2+="<td colspan=\"6\" class=\"textarea"+(i+1)+"\"></td></tr>";
+			}
+			$('#plan_table').append(add_tag2)
+		}
+	</script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
@@ -220,6 +237,24 @@
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 		
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		
+		for (var i = 0; i < positions.length; i ++) {
+		    
+		    // 마커 이미지의 이미지 크기 입니다
+		    var imageSize = new kakao.maps.Size(24, 35); 
+		    
+		    // 마커 이미지를 생성합니다    
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		    
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng, // 마커를 표시할 위치
+		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		        image : markerImage // 마커 이미지 
+		    });
 	</script>
 
 </body>

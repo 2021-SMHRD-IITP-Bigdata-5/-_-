@@ -86,6 +86,36 @@ public class MapDAO {
 		}
 		return arr;
 	}
+	
+	public MapDTO MapData2(String map_name) {
+		MapDTO dto = null;
+		try {
+			getConn();
+			String sql = "select * from t_map where map_name =?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, map_name);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				String map_seq = rs.getString(1);
+				String map_name2 = rs.getString(2);
+				String map_latitude = rs.getString(3);
+				String map_longtitude = rs.getString(4);
+				String map_type = rs.getString(5);
+				String map_stars = rs.getString(6);
+				String map_info = rs.getString(7);
+				String map_addr = rs.getString(8);
+				String map_img = rs.getString(11);
+				dto = new MapDTO(map_seq, map_name2, map_latitude, map_longtitude, map_type, map_stars, map_info, map_addr, map_img);
+				
+			}
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return dto;
+	}
 
 	public MapDTO bring_map(String map_name) {
 		MapDTO dto = null;
