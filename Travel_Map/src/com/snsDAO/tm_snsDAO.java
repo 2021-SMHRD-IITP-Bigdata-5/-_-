@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.memberDTO.tm_memberDTO;
 import com.snsDTO.tm_snsDTO;
 
 public class tm_snsDAO {
@@ -15,6 +16,8 @@ public class tm_snsDAO {
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	tm_snsDTO dto = null;
+
+	tm_memberDTO memberdto = null;
 
 	int cnt = 0;
 
@@ -207,11 +210,73 @@ public class tm_snsDAO {
 
 	}
 
-	public void selectMember(String mb_id) {
+	public tm_memberDTO selectMember(String f_id) {
 
 		getConn();
-		
-		close();
 
+		try {
+			if (conn != null) {
+				
+			} else {
+			}
+
+			String sql = "SELECT * FROM t_member WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, f_id);
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+
+				String mb_img = rs.getString("mb_img");
+				String mb_nickname = rs.getString("mb_nickname");
+				int mb_follow = rs.getInt("mb_follow");
+				int mb_follower = rs.getInt("mb_follower");
+
+				memberdto = new tm_memberDTO(f_id, mb_img, mb_nickname, mb_follow, mb_follower);
+			} // 선택 상대 mb_id
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return memberdto;
+
+	}
+
+	public ArrayList<tm_snsDTO> searchMy(String mb_id) {
+
+		getConn();
+
+		ArrayList<tm_snsDTO> list = new ArrayList<tm_snsDTO>();
+
+		try {
+			if (conn != null) {
+			} else {
+			}
+
+			String sql = "SELECT * FROM t_travel_board WHERE mb_id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+
+				String tb_file = rs.getString("tb_file");
+				String tb_open = rs.getString("tb_open");
+				int travel_seq = rs.getInt("travel_seq");
+
+				dto = new tm_snsDTO(mb_id, tb_file, tb_open, travel_seq);
+				list.add(dto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 }

@@ -33,7 +33,6 @@ public class tm_followDAO {
 
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 			if (conn != null) {
-				System.out.println("접속 성공");
 			} else {
 			}
 		} catch (Exception e) {
@@ -74,18 +73,19 @@ public class tm_followDAO {
 
 	}
 
-	public int follow(tm_followDTO dto) {
+	public int follow(tm_followDTO follow_dto) {
 
 		getConn();
 
 		try {
 			String sql = "INSERT INTO t_follow(f_id,f_date,mb_id) VALUES(?,sysdate,?) ";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getF_id());
-			psmt.setString(2, dto.getMb_id());
-
+			psmt.setString(1, follow_dto.getF_id());
+			psmt.setString(2, follow_dto.getMb_id());
 			rs = psmt.executeQuery();
+
 			if (rs.next()) {
+				cnt = 1;
 			} else {
 			}
 
@@ -96,20 +96,20 @@ public class tm_followDAO {
 		return cnt;
 	}
 
-	public ArrayList<tm_memberDTO> searchMember(String search_id) {
+	public tm_memberDTO searchMember(String search_id) {
 
 		getConn();
 
-		ArrayList<tm_memberDTO> arr = new ArrayList<tm_memberDTO>();
+		tm_memberDTO dto = null;
 
 		try {
 			if (conn != null) {
 			} else {
 			}
 
-			String sql = "SELECT * FROM t_member WHERE mb_id like ? ";
+			String sql = "SELECT * FROM t_member WHERE mb_id = ? ";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, "%" + search_id + "%");
+			psmt.setString(1, search_id);
 
 			rs = psmt.executeQuery();
 
@@ -119,7 +119,6 @@ public class tm_followDAO {
 				int mb_follower = Integer.parseInt(rs.getString("mb_follower"));
 
 				dto = new tm_memberDTO(mb_id, mb_follow, mb_follower);
-				arr.add(dto);
 
 			}
 		} catch (Exception e) {
@@ -128,7 +127,7 @@ public class tm_followDAO {
 			close();
 		}
 
-		return arr;
+		return dto;
 
 	}
 
@@ -150,5 +149,60 @@ public class tm_followDAO {
 
 		return cnt;
 
+	}
+
+	public boolean checkFollow(tm_followDTO follow_dto) {
+
+		getConn();
+		try {
+
+			String sql = "SELECT * FROM t_follow WHERE f_id = ? and mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, follow_dto.getF_id());
+			psmt.setString(2, follow_dto.getMb_id());
+
+			rs = psmt.executeQuery();
+
+			// rs.next() true >>> 언팔버튼으로 바꾸기
+
+			if (rs.next() == true) {
+
+				// 데이터 이미 존재 >> 언팔로 바뀌어야함
+
+			} else {
+				check = true;
+				// check = true 일 때 , 팔로우 가능
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return check;
+	}
+
+	public int unFollow(tm_followDTO follow_dto) {
+
+		getConn();
+
+		try {
+			String sql = "DELETE FROM t_follow WHERE f_id = ? and mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, follow_dto.getF_id());
+			psmt.setString(2, follow_dto.getMb_id());
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				cnt = 1;
+			} else {
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return cnt;
 	}
 }

@@ -5,7 +5,7 @@ public class tm_memberDTO {
 	private String mb_id;
 	private String mb_pw;
 	private String mb_name;
-	private int mb_age;
+	private String mb_age;
 	private String mb_gender;
 	private String mb_email;
 	private String mb_addr;
@@ -40,11 +40,11 @@ public class tm_memberDTO {
 		this.mb_name = mb_name;
 	}
 
-	public int getMb_age() {
+	public String getMb_age() {
 		return mb_age;
 	}
 
-	public void setMb_age(int mb_age) {
+	public void setMb_age(String mb_age) {
 		this.mb_age = mb_age;
 	}
 
@@ -120,7 +120,7 @@ public class tm_memberDTO {
 		this.admin_yn = admin_yn;
 	}
 
-	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, int mb_age, String mb_gender, String mb_email,
+	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, String mb_age, String mb_gender, String mb_email,
 			String mb_addr, String mb_img, String mb_nickname, int mb_follow, int mb_follower, String mb_joindate,
 			String admin_yn) {
 		this.mb_id = mb_id;
@@ -138,7 +138,7 @@ public class tm_memberDTO {
 		this.admin_yn = admin_yn;
 	}
 
-	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, int mb_age, String mb_gender, String mb_email,
+	public tm_memberDTO(String mb_id, String mb_pw, String mb_name, String mb_age, String mb_gender, String mb_email,
 			String mb_addr, String mb_img, String mb_nickname, int mb_follow, int mb_follower, String admin_yn) {
 		this.mb_id = mb_id;
 		this.mb_pw = mb_pw;
@@ -160,10 +160,37 @@ public class tm_memberDTO {
 	}
 
 	public tm_memberDTO(String mb_id, int mb_follow, int mb_follower) {
+
 		this.mb_id = mb_id;
 		this.mb_follow = mb_follow;
 		this.mb_follower = mb_follower;
 	}
 
+	public tm_memberDTO(String mb_id, String mb_img, String mb_nickname) {
+		this.mb_id = mb_id;
+		this.mb_img = mb_img;
+		this.mb_nickname = mb_nickname;
+	}
+
+	public tm_memberDTO(String mb_id, String mb_img, String mb_nickname, int mb_follow, int mb_follower) {
+		this.mb_id = mb_id;
+		this.mb_img = mb_img;
+		this.mb_nickname = mb_nickname;
+		this.mb_follow = mb_follow;
+		this.mb_follower = mb_follower;
+	}
+
+	public tm_memberDTO(String mb_id, String mb_nickname, int mb_follow, int mb_follower) {
+		this.mb_id = mb_id;
+		this.mb_nickname = mb_nickname;
+		this.mb_follow = mb_follow;
+		this.mb_follower = mb_follower;
+	}
+
+	public tm_memberDTO(int mb_follow, int mb_follower) {
+		this.mb_follow = mb_follow;
+		this.mb_follower = mb_follower;
+	}
 	
+
 }
