@@ -36,7 +36,7 @@ public class tm_LoginCon extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("dto", sessiondto);
 			response.sendRedirect("tm_Main.jsp");
-			System.out.println(sessiondto.getMb_id() + "로그인성공");
+			System.out.println(sessiondto.getMb_id() + "로그인성공1");
 		} else {
 			response.sendRedirect("tm_Login.jsp");
 		}

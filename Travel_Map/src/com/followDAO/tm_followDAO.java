@@ -164,7 +164,7 @@ public class tm_followDAO {
 
 			rs = psmt.executeQuery();
 
-			// rs.next() true >>> 언팔버튼으로 바꾸기
+			// rs.next() true >>> 언팔버튼으로 바꾸기1
 
 			if (rs.next() == true) {
 
