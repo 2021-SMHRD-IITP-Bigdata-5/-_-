@@ -27,7 +27,7 @@ public class tm_snsCon extends HttpServlet {
 		ServletContext context = getServletContext();
 		HttpSession session = request.getSession();
 		tm_memberDTO sessiondto = (tm_memberDTO) session.getAttribute("dto");
-		String saveDir = context.getRealPath("tm_upload");
+		String saveDir = context.getRealPath("");
 		String url = "";
 		int maxSize = 50 * 1024 * 1024;
 
@@ -46,15 +46,15 @@ public class tm_snsCon extends HttpServlet {
 			String mb_id = sessiondto.getMb_id();
 			dto = new tm_snsDTO(tb_title, tb_content, tb_file, mb_id);
 
-			System.out.println(tb_file + "눈 컨");
+			System.out.println(tb_file + "�늿 而�");
 
 			try {
 				int result = dao.uploadFile(dto);
 				if (result > 0) {
-					System.out.println("저장완료");
+					System.out.println("���옣�셿猷�");
 					url = "tm_imgSelect";
 				} else {
-					System.out.println("저장실패");
+					System.out.println("���옣�떎�뙣");
 					url = "tm_UploadMain.jsp";
 				}
 				response.sendRedirect(url);
