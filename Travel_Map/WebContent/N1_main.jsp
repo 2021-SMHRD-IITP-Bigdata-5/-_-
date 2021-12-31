@@ -21,7 +21,7 @@
 		if (dto == null) {%>
 		<button onClick="location.href='Login.jsp'">로그인</button>
 		<%} else { %>
-		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
+		<button onClick="location.href='tm_ㄴLogoutCon'">로그아웃</button>
 		<%} %>
 	</div> 
     <div id="side_all">
