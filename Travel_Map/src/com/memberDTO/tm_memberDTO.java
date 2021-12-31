@@ -191,6 +191,5 @@ public class tm_memberDTO {
 		this.mb_follow = mb_follow;
 		this.mb_follower = mb_follower;
 	}
-	
 
 }

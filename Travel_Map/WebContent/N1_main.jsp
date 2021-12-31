@@ -73,8 +73,6 @@
 	<script type="text/javascript">
     	function MapSearch() {
     		
-    		$('#side_four').html('');
-    		
     		$.ajax({
 				url : 'MapSearchCon',
 				type : 'get',
@@ -86,15 +84,27 @@
 					
 					console.log(res)
 					
-					let table = "";
-					
-					for(let i = 0; i < res.length; i++) {
+					if (res == null) {
 						
+						alert('검색어를 입력하세요.');
+						
+					} else {
+
+						$('#side_four').html('');	
+						
+						let table = "";
+						
+						for(let i = 0; i < res.length; i++) {
+							
 						table += '<ul class="tour_list">';
 						table += '<table width="400" height="100" align="left">';
 						table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
 						+ res[i].map_name + '</a></h3></td>';
-						table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
+						if (res[i].map_img == "null" || res[i].map_img == null) {
+							table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right" style="border:1px solid #c8c8c8;"></th></tr>';
+						} else {
+							table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
+						}
 						table += '<tr><td><div class="map_name style="display:none;"">'
 							+ res[i].map_name + '</div></td></tr>';
 						if (res[i].map_stars == 0) {
@@ -105,16 +115,21 @@
 						}
 						table += '<tr><td><div class="map_addr">'
 							+ res[i].map_addr + '</div></td></tr>';
-						table += '<div class ="map_img" style="display:none;">'
+						if (res[i].map_img == "null") {
+							table += '<div class ="map_img" style="display:none;">./phm_img/No_Image.png</div>';
+						} else {
+							table += '<div class ="map_img" style="display:none;">'
 								+ res[i].map_img + '</div>';
+						}
 						table += '<div class ="map_latitude" style="display:none;">'
-								+ res[i].map_latitude + '</div>';
+									+ res[i].map_latitude + '</div>';
 						table += '<div class ="map_longtitude" style="display:none;">'
 								+ res[i].map_longtitude + '</div>';
-						table += '<hr width="400" align="left">';
 						table += '</ul>';
-					}
-					$('#side_four').append(table);
+						table += '<hr width="400" align="left">';
+						}
+						$('#side_four').append(table);
+						}
 				},
 				error : function() {
 					alert('검색실패');

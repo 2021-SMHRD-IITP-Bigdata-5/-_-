@@ -279,4 +279,74 @@ public class tm_snsDAO {
 		}
 		return list;
 	}
+	
+public ArrayList<tm_snsDTO> TitleSearch(String keyword) {
+		
+		ArrayList<tm_snsDTO> TitleArr = new ArrayList<tm_snsDTO>();
+		
+		if (keyword=="") {
+			
+			return null;
+			
+		} else {
+		
+		try {
+			
+			getConn();
+			
+			String sql = "select * from t_travel_board where tb_title like ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%" + keyword + "%");
+			rs = psmt.executeQuery();
+			
+			while (rs.next() == true) {
+				String tb_title = rs.getString(2);
+				String tb_file = rs.getString(4);
+				int tb_cnt = rs.getInt(5);
+				int tb_likes = rs.getInt(7);
+				dto = new tm_snsDTO(tb_title, tb_file, tb_cnt, tb_likes);
+				TitleArr.add(dto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		}
+		return TitleArr;
+	}
+	
+	public ArrayList<tm_snsDTO> snsDetail(String user_id) {
+		
+		ArrayList<tm_snsDTO> DetailArr = new ArrayList<tm_snsDTO>();
+		
+		try {
+			
+			getConn();
+			
+			String sql = "select * from t_travel_board where mb_id = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			rs = psmt.executeQuery();
+			
+			while (rs.next() == true) {
+				
+				String tb_file = rs.getString(4);
+				dto = new tm_snsDTO(tb_file);
+				DetailArr.add(dto);
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return DetailArr;
+	}
 }

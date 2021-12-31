@@ -127,7 +127,14 @@ public class tm_snsDTO {
 		this.tb_file = tb_file;
 		this.mb_id = mb_id;
 	}
-
+	
+	public tm_snsDTO(String tb_title, String tb_file, int tb_cnt, int tb_likes) {
+		this.tb_title = tb_title;
+		this.tb_file = tb_file;
+		this.tb_cnt = tb_cnt;
+		this.tb_likes = tb_likes;
+	}
+	
 	public tm_snsDTO(int tb_seq, String tb_file, String tb_open, String mb_id, int travel_seq) {
 		this.tb_seq = tb_seq;
 		this.tb_file = tb_file;
