@@ -29,25 +29,27 @@
                 </ul>
             </nav>
         </div>
-        <div id="side_two" style="display: flex; align-items: center; justify-content: center;">
-			<p>여행 제목 : <input type="text" name="#"><p>
-        </div>
-        <div id="side_three">
-			<br><br>
-			<button id="side_two_header" style="margin:0px;">가는날 / 오는날 선택</button><br><br>	
-			가는 날 : <input type="date" name="#"><br><br>	
-			오는 날 : <input type="date" name="#"><br><br>	
-			
-        </div>
-        <div id="side_four">
-			인원 수 : <input type="number" min="0" max="10"><b>명</b>
-		</div>
-		<div id="side_five">
-			<ul>
-				<li><button class = "side_button"><a href="#" onClick="window.location.reload()">초기화</a></button></li>
-				<li><button class = "side_button"><a href="N2_travelplan3.jsp">다음으로</a></button></li>
-			</ul>
-		</div>
+        <form action="travelplan2Con" method="get">
+	        <div id="side_two" style="display: flex; align-items: center; justify-content: center;">
+				<p>여행 제목 : <input type="text" name="travel_title"><p>
+	        </div>
+	        <div id="side_three">
+				<br><br>
+				<button id="side_two_header" style="margin:0px;">가는날 / 오는날 선택</button><br><br>	
+				가는 날 : <input type="date" name="start_date"><br><br>	
+				오는 날 : <input type="date" name="end_date"><br><br>	
+				
+	        </div>
+	        <div id="side_four">
+				인원 수 : <input type="number" min="0" max="10" name="people"><b>명</b>
+			</div>
+			<div id="side_five">
+				<ul>
+					<li><button class = "side_button"><a href="#" onClick="window.location.reload()">초기화</a></button></li>
+					<li><button class = "side_button" type="submit">다음으로</button></li>
+				</ul>
+			</div>
+		</form>
 		<div id="side_six"></div>
     </div>
 
