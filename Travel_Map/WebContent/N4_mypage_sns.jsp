@@ -30,8 +30,12 @@
             </nav>
         </div>
         <div id="side_two">
-            <input type="text" id="search_keyword_query" placeholder=" 검색어 입력">
-            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
+        	<select id="type" style="width:90px; height:47px; float:left; margin-left:10px; margin-right:-10px; border: 1px solid #52C999; border-radius: 3px;" >
+        		<option value="title">제목</option>
+        		<option value="user">사용자</option>
+        	</select>
+            <input type="text" id="search_keyword_query" placeholder=" 검색어 입력" style="width:300px; height:36px;">
+            <button id="search_keyword_query_button" onClick='snsSearch()'><img src="./img/search.png"></button>
         </div>
         <div id="side_three">
         </div>

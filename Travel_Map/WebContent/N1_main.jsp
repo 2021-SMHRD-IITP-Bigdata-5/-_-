@@ -69,7 +69,7 @@
         <div id="side_four">
         </div>
     </div>
-    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
     	function MapSearch() {
     		
@@ -162,8 +162,8 @@
 								table += '<table width="400" height="100" align="left">';
 								table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
 								+ res[i].map_name + '</a></h3></td>';
-								if (res[i].map_img == "null") {
-									table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right"></th></tr>';
+								if (res[i].map_img == "null" || res[i].map_img == null) {
+									table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right" style="border:1px solid #c8c8c8;"></th></tr>';
 								} else {
 									table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
 								}
@@ -187,8 +187,8 @@
 										+ res[i].map_latitude + '</div>';
 								table += '<div class ="map_longtitude" style="display:none;">'
 										+ res[i].map_longtitude + '</div>';
-								table += '<hr width="400" align="left">';
 								table += '</ul>';
+								table += '<hr width="400" align="left">';
 							}
 							$('#side_four').append(table)
 
