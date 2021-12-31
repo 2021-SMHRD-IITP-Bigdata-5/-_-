@@ -32,13 +32,11 @@ public class tm_LoginCon extends HttpServlet {
 
 		tm_memberDTO sessiondto = dao.Login(dto);
 
-		if (dto != null) {
+		if (sessiondto != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("dto", sessiondto);
 			response.sendRedirect("tm_Main.jsp");
 			System.out.println(sessiondto.getMb_id() + "로그인성공");
-			System.out.println(sessiondto.getMb_follow() + "팔로우");
-			System.out.println(sessiondto.getMb_follower() + "팔로워");
 		} else {
 			response.sendRedirect("tm_Login.jsp");
 		}

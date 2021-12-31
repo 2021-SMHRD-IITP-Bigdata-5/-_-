@@ -43,14 +43,14 @@
 <body>
 
 	<%
-		tm_snsDAO dao = new tm_snsDAO();
+	tm_snsDAO dao = new tm_snsDAO();
 	ArrayList<tm_snsDTO> list = dao.selectAll();
 	request.setAttribute("list", list);
 	%>
 
 	<div class="container">
 		<c:forEach items="${requestScope.list}" var="i">
-			<div>
+			<div> 
 				<a href="tm_selectMember?mb_id=${i.mb_id}">${i.mb_id}</a>
 				<div>${i.tb_likes }</div>
 				<a href="tm_SelectOne?tb_seq=${i.tb_seq}"> <img class="item"

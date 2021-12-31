@@ -32,7 +32,6 @@ public class tm_memberDAO {
 
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 			if (conn != null) {
-				System.out.println("접속 성공");
 			} else {
 			}
 		} catch (Exception e) {
@@ -67,7 +66,7 @@ public class tm_memberDAO {
 			psmt.setString(1, dto.getMb_id());
 			psmt.setString(2, dto.getMb_pw());
 			psmt.setString(3, dto.getMb_name());
-			psmt.setInt(4, dto.getMb_age());
+			psmt.setString(4, dto.getMb_age());
 			psmt.setString(5, dto.getMb_gender());
 			psmt.setString(6, dto.getMb_email());
 			psmt.setString(7, dto.getMb_addr());
@@ -85,7 +84,6 @@ public class tm_memberDAO {
 		}
 		close();
 		return cnt;
-
 	}
 
 	public tm_memberDTO Login(tm_memberDTO dto) {
@@ -105,7 +103,7 @@ public class tm_memberDAO {
 				String session_id = rs.getString("mb_id");
 				String session_pw = rs.getString("mb_pw");
 				String session_name = rs.getString("mb_name");
-				int session_age = rs.getInt("mb_age");
+				String session_age = rs.getString("mb_age");
 				String session_gender = rs.getString("mb_gender");
 				String session_email = rs.getString("mb_email");
 				String session_addr = rs.getString("mb_addr");
@@ -149,6 +147,7 @@ public class tm_memberDAO {
 		}
 		return check;
 	}
+
 	public void followIncrease(String mb_id) {
 
 		getConn();
@@ -187,6 +186,70 @@ public class tm_memberDAO {
 
 		close();
 
+	}
+
+	public void followDecrease(String mb_id) {
+
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_follow = mb_follow-1 WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+
+	}
+
+	public void followerDecrease(String f_id) {
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_follower = mb_follower-1 WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, f_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+
+	}
+
+	public tm_memberDTO countFollow(String mb_id) {
+		getConn();
+
+		try {
+			String sql = "SELECT mb_follow,mb_follower FROM t_member WHERE mb_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int mb_follow = rs.getInt("mb_follow");
+				int mb_follower = rs.getInt("mb_follower");
+				dto = new tm_memberDTO(mb_follow, mb_follower);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		close();
+		return dto;
 	}
 
 }

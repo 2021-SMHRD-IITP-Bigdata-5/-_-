@@ -13,6 +13,9 @@ public class tm_snsDTO {
 	private String mb_id;
 	private int travel_seq;
 
+	private boolean check;
+	private int follow;
+
 	public int getTb_seq() {
 		return tb_seq;
 	}
@@ -123,6 +126,43 @@ public class tm_snsDTO {
 		this.tb_content = tb_content;
 		this.tb_file = tb_file;
 		this.mb_id = mb_id;
+	}
+
+	public tm_snsDTO(int tb_seq, String tb_file, String tb_open, String mb_id, int travel_seq) {
+		this.tb_seq = tb_seq;
+		this.tb_file = tb_file;
+		this.tb_open = tb_open;
+		this.mb_id = mb_id;
+		this.travel_seq = travel_seq;
+	}
+
+	public tm_snsDTO(String mb_id, String tb_file, String tb_open, int travel_seq) {
+
+		this.mb_id = mb_id;
+		this.tb_file = tb_file;
+		this.tb_open = tb_open;
+		this.travel_seq = travel_seq;
+	}
+
+	public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
+	public int getFollow() {
+		return follow;
+	}
+
+	public void setFollow(int follow) {
+		this.follow = follow;
+	}
+
+	public void follower(boolean check, int follow) {
+		this.check = check;
+		this.follow = follow;
 	}
 
 }
