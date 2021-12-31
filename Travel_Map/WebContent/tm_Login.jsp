@@ -5,18 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./assets/css/Login.css">
 </head>
 <body>
 
-	로그인 페이지
+<div class="title">
+    <span>지도에서 계획을 세우다.</span>    
+    <br>
+    <b>My Real Travel In GwangJu</b>
+    <form action="tm_LoginCon" method="post">
+    <div class="user_id"><input type="text" name="id" placeholder="아이디"></div>
+    <div class="user_pw"><input type="password" name="pw" placeholder="비밀번호"></div>
+    <div class="user_login"><button>로그인</button></div>
+    <div class="user_join"><a href = "./Join.jsp">회원가입</a></div>
+    </form>
+</div>
 	
-	<form action="tm_LoginCon" method="post">
-		ID :<input type="text" name="id"><br> 
-		PW :<input type="password" name="pw"><br> 
-			<input type="submit"name="전송">
-	</form>
-	
-	<a href = "tm_Join.jsp">회원가입 페이지로 이동</a>
 
 
 </body>
