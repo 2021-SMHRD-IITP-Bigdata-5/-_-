@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/N5_sns.css" />
-    <title>N5_mypage_sns</title>
+    <title>N5_sns</title>
 </head>
 
 <body>
@@ -35,57 +35,63 @@
         <div class="side_three">
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/sns6.jpg"></a>
 				<a href="#" class="user_nick">user_nick</a>
 				<a href="#" class="travel_plan">travel_plan</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel1.JPG"></a></div>
-			<div class="trvel_writing"><p>광주에 가면 꼭 들리는 곳! 김밥이 엄청 맛있다.</p></div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>광주에 가면 꼭 들르는 곳! 김밥이 엄청 맛있다✨</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/모래사장.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/Sand_beach.jpg"></a>
 				<a href="#" class="user_nick">user_nick2</a>
 				<a href="#" class="travel_plan">travel_plan2</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel2_mzof.JPG"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>동명동 MZRN☕</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/sns6.jpg"></a>
 				<a href="#" class="user_nick">user_nick3</a>
 				<a href="#" class="travel_plan">travel_plan3</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel3_mzof.JPG"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>매저린 오피스👏</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/sns6.jpg"></a>
 				<a href="#" class="user_nick">user_nick4</a>
 				<a href="#" class="travel_plan">travel_plan4</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel4_leeleenam.JPG"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>이이남미술관 구경👀</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/sns6.jpg"></a>
 				<a href="#" class="user_nick">user_nick5</a>
 				<a href="#" class="travel_plan">travel_plan5</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel5_leeleenamroof.JPG"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>누가 광주에 볼 곳이 없다고 했던가 ..!</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
-				<a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
+				<a href="#" clase="profile_img"><img src="./img/sns6.jpg"></a>
 				<a href="#" class="user_nick">user_nick6</a>
 				<a href="#" class="travel_plan">travel_plan6</a>
 			</div>
-			<div class="trvel_pictures"><a href="#"><img src="img/sns21.jpg"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="trvel_pictures"><a href="#"><img src="./img/sns21.jpg"></a></div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>🍞</p></div>
 		</div>
 		<div class="sns_feed">
 			<div class="profile">
@@ -94,7 +100,8 @@
 				<a href="#" class="travel_plan">travel_plan7</a>
 			</div>
 			<div class="trvel_pictures"><a href="#"><img src="./img/travel6_cufcuf.JPG"></a></div>
-			<div class="trvel_writing">123123</div>
+			<div class="mini"><button><img src="./img/heart_tung.png"></button><a href="#"><img src="./img/details.png"></a></div>
+			<div class="trvel_writing"><p>수완지구 coffcoff_house🥨</p></div>
 		</div>
         </div>
     </div>
