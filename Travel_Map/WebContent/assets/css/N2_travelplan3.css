@@ -158,7 +158,7 @@
     }
    	#side_three::-webkit-scrollbar{ display:none; }
 
-	#plan_table_one {
+	.plan_table_one {
 	    border-radius: 3px;
 	    border-spacing: 20px;
 	    margin: 0 auto;
