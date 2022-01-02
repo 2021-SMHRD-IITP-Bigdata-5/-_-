@@ -21,6 +21,7 @@
 </head>
 
 <body>
+<form action="plan_save">
 	<%
 		PHM_travel_mapDTO travelplan2 = (PHM_travel_mapDTO)session.getAttribute("travelplan2");
 		int start_date = Integer.parseInt(travelplan2.getStart_date().substring(8));
@@ -31,28 +32,28 @@
 	<div id="day_location" style="display:none;"></div>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button type="button" onClick="location.href='Join.jsp'">회원가입</button>
+		<button type="button" onClick="location.href='Login.jsp'">로그인</button>
 	</div> 
     <div id="side_all">
         <div id="side_one">
             <nav>
                 <ul class="side_menu">
                     <!-- onClick="window.location.reload()" -->
-                    <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
+                    <li><button type="button" class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
+                    <li><button type="button" class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
+                    <li><button type="button" class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
+                    <li><button type="button" class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
         <div id="side_two" style="height:10%;">
         	
         	<input type="text" id="search_keyword_query" placeholder="검색어 입력">
-            <button id="search_keyword_query_button"><img src="./img/search.png"></button>
+            <button type="button" id="search_keyword_query_button"><img src="./img/search.png"></button>
         </div>
         <div id="side_three" style="height:25%;">
-			<table id="plan_table_one" align="center">
+			<table class="plan_table_one" align="center">
 				<caption><h3>여행지 즐겨찾기 목록</h3></caption>
 				<colgroup >
 					<col style="width: 5%;">
@@ -68,11 +69,42 @@
         </div>
         <div id="day_add" align = "center" style="margin:10px;">
         	<%for(int i=0; i<total_date; i++) {%>
-			 	<button class="side_button" onClick="day_plan(<%=total_date %>,<%=i+1%>)"><%=i+1%>일차</button>
+			 	<button type="button" class="side_button" onClick="day_plan(<%=total_date %>,<%=i+1%>)"><%=i+1%>일차</button>
         	<%}%>
         </div>
+        
         <div id="side_four" style="height:42%;">
-			<table id="plan_table_one">
+        
+        <%for(int j = 0; j<total_date; j++) { 
+        	if(j==0){%>
+			<table class="plan_table_one" id="plan1" style="display:inline;">
+				<colgroup>
+					<col style="width: 40px;">
+					<col style="width: 150px;">
+					<col style="width: 62.5px;">
+					<col style="width: 62.5px;">
+					<col style="width: 100px;">
+					<col style="width: 40px;">
+				</colgroup>
+				<thead>
+				<tr>
+					<td>순서</td>
+					<td>여행지명</td>
+					<td>도착시간</td>
+					<td>출발시간</td>
+					<td>메모</td>
+				</tr>
+				</thead>
+				<!--  <tbody id="plan_table1">
+					<tr><td>1</td></tr>
+				</tbody>
+				
+					<form action=".do"></form>-->
+				<tbody id="table_add_1" >
+				</tbody>
+			</table>
+			<%} else{%>
+			<table class="plan_table_one" id="plan<%=j+1 %>" style="display:none;">
 				<colgroup>
 					<col style="width: 40px;">
 					<col style="width: 150px;">
@@ -90,24 +122,25 @@
 					<td>메모</td>
 				</tr>
 				</thead>
-				<tbody id="plan_table1">
+				<!--  <tbody id="plan_table1">
 					<tr><td>1</td></tr>
-					<!--  <tr>
-						<td colspan="6" id="plan_table_last" ><a href="#" onClick="temporary_storage()">임시저장</a></td>
-					</tr>-->
 				</tbody>
-				<%for(int j = 0; j<total_date-1; j++) { %>
-					<tbody id="plan_table<%=j+2%>" style="display:none;">
-					</tbody>
-				<%} %>
+				
+					<form action=".do"></form>-->
+				<tbody id="table_add_<%=j+1 %>" >
+				</tbody>
 			</table>
+				<%}
+			}%>
 		</div>
+		
+		
 		<div id="side_five" align="center">
 		</div>
 		<div id="side_six" align="center" style="margin-top:20px;">
-				<button class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;"><a href="#">지도 미리보기</a></button>
-				<button class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;"><a href="#">경로 미리보기</a></button>
-				<button class="side_button" style="width:100px;"><a href="#">계획 세우기</a></button>
+				<button	type="button" class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;"><a href="#">지도 미리보기</a></button>
+				<button type="button" class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;"><a href="#">경로 미리보기</a></button>
+				<button type="submit" class="side_button" onClick="send_plan()" style="width:100px;"><a href="#">계획 세우기</a></button>
 		</div>
    	</div>
 	
@@ -127,18 +160,18 @@
 				data : {
 				},
 				dataType : "json",
-				success : function(res){ 
+				success : function(res1){ 
 					//console.log(res)
 					
-					let add_tag ="";
-					for(let i = 0; i < res.length ; i++){
-						add_tag += "<tr><td>"+(i+1)+"</td>";
-						add_tag += "<td id=\"removedata\">"+res[i].map_name+"</td>";
-						add_tag += "<td>"+res[i].map_addr+"</td>";
-						add_tag += "<td><button onClick=\"add_plan(\'"+res[i].map_name+"\')\">계획에 넣기</button></td>";
-						add_tag += "<td><button onClick=\"favorite_remove()\">삭제하기</button></td></tr>";
+					let add_tag1 ="";
+					for(let a = 0; a < res1.length ; a++){
+						add_tag1 += "<tr><td>"+(a+1)+"</td>";
+						add_tag1 += "<td>"+res1[a].map_name+"</td>";
+						add_tag1 += "<td>"+res1[a].map_addr+"</td>";
+						add_tag1 += "<td><button type='button' onClick=\"add_plan(\'"+res1[a].map_name+"\')\">계획에 넣기</button></td>";
+						add_tag1 += "<td><button type='button' onClick=\"favorite_remove(\'"+res1[a].map_name+"\')\">삭제하기</button></td></tr>";
 					}
-					$('#after').append(add_tag);
+					$('#after').append(add_tag1);
 					
 				},
 				error : function(){
@@ -146,27 +179,27 @@
 				}
 			
 			})
-		function favorite_remove(){
+		function favorite_remove(map_name1){
 			$.ajax({
-				url : "favorite_removeCon",	//맵핑
+				url : "favorite_removeCon",	
 				type : "get",
 				data : {
-					map_name:$('#removedata').text()
+					"map_name" : map_name1
 				},
 				dataType:"json",
-				success : function(res){ 
+				success : function(res2){ 
 					
 					//console.log(res)
 					$('#after').html('');
-					add_tag ="";
-					for(let i = 0; i < res.length ; i++){
-						add_tag += "<tr><td>"+(i+1)+"</td>";
-						add_tag += "<td class=\"removedata\">"+res[i].map_name+"</td>";
-						add_tag += "<td>"+res[i].map_addr+"</td>";
-						add_tag += "<td><button onClick=\"add_plan(\'"+res[i].map_name+"\')\">계획에 넣기</button></td>";
-						add_tag += "<td><button onClick=\"favorite_remove()\">삭제하기</button></td></tr>";
+					add_tag2 ="";
+					for(let b = 0; b < res2.length ; b++){
+						add_tag2 += "<tr><td>"+(b+1)+"</td>";
+						add_tag2 += "<td>"+res2[b].map_name+"</td>";
+						add_tag2 += "<td>"+res2[b].map_addr+"</td>";
+						add_tag2 += "<td><button type='button' onClick=\"add_plan(\'"+res2[b].map_name+"\')\">계획에 넣기</button></td>";
+						add_tag2 += "<td><button type='button' onClick=\"favorite_remove(\'"+res2[b].map_name+"\')\">삭제하기</button></td></tr>";
 					}	
-					$('#after').append(add_tag);
+					$('#after').append(add_tag2);
 					
 				},
 				error : function(){
@@ -182,55 +215,107 @@
 		/*for(let i=0; i<location.length ; i++){
 			let plan_list=[];
 		}*/
-		var cnt=0;
-		let plan_list=[];
-		let plan_data=[];
-		var positions=[];
+		//var cnt=0;
+		//let plan_list=[];
+		//let day_schedule=[];
+		//var positions=[];
 		let plan_list_position=[];
 		let latitude = "";
 		let longtitude = "";
-		function add_plan(map_name){
-			$.ajax({
+		
+		var plan_list1=[];
+		var plan_list2=[];
+		var plan_list3=[];
+		var plan_list4=[];
+		var plan_list5=[];
+		var plan_list6=[];
+		var positions1=[];
+		var positions2=[];
+		var positions3=[];
+		var positions4=[];
+		var positions5=[];
+		var positions6=[];
+		
+		function add_plan(map_name2){
+			$.ajax({ 
 				url : "add_Plan",	
 				type : "get",
 				data : {
-					"map_name":map_name
+					"map_name":map_name2
 				},
 				dataType : "json",
-				success : function(res){ 
-					cnt++;
-					console.log("res :",res);
+				success : function(res3){ 
+					//console.log("res :",res);
+					if(day==1){
+						plan_list1.push(res3);
+						positions1.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list1);
+						panTo();
+						displayMarker(positions1,day);
+					}else if(day==2){
+						plan_list2.push(res3);
+						positions2.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list2);
+						panTo();
+						displayMarker(positions2,day);
+					}else if(day==3){
+						plan_list3.push(res3);
+						positions3.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list3);
+						panTo();
+						displayMarker(positions3,day);
+					}else if(day==4){
+						plan_list4.push(res3);
+						positions4.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list4);
+						panTo();
+						displayMarker(positions4,day);
+					}else if(day==5){
+						plan_list5.push(res3);
+						positions5.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list5);
+						panTo();
+						displayMarker(positions5,day);
+					}else if(day==6){
+						plan_list6.push(res3);
+						positions6.push({title: res3.map_name, 
+					        latlng: new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude)});
+						latitude = res3.map_latitude;
+						longtitude = res3.map_longtitude;
+						print_plan(plan_list6);
+						panTo();
+						displayMarker(positions6,day);
+					}
 					
-					plan_list.push({day:day , 
-									data:res,
-									cnt:cnt});
-					console.log(plan_list)
-					positions.push({title: res.map_name, 
+					
+					/*positions.push({title: res.map_name, 
 				        latlng: new kakao.maps.LatLng(res.map_latitude, res.map_longtitude)});
 					
 					latitude = res.map_latitude;
 					longtitude = res.map_longtitude;
-					console.log("latitude: ",latitude);
-					console.log("longtitude: ",longtitude);
-				    console.log(positions);
+					//console.log("latitude: ",latitude);
+					//console.log("longtitude: ",longtitude);
+				    //console.log(positions);
 					//console.log(plan_list);
-					$('#plan_table'+day+'').html('');
-					let add_tag2 = "";
-					for(let i = 0; i<plan_list.length ; i++){
-						add_tag2+="<tr width='100%'><td class='plan'>"+(i+1)+"</td>";
-						add_tag2+="<td class='plan'>"+plan_list[i].data.map_name+"</td>";
-						add_tag2+="<td class='plan'><input type=\"time\"></td>";
-						add_tag2+="<td class='plan'><input type=\"time\"></td>";
-						add_tag2+="<td class=\"memodo"+(i+1)+" plan\"><button onClick=\"memo("+(i+1)+")\" >메모하기</button></td>";
-						add_tag2+="<td class='plan'><button onClick=\"remove_plan('"+plan_list[i].map_name+"')\">삭제</button></td></tr>";
-						add_tag2+="<tr align=\"right\">";
-						add_tag2+="<td colspan=\"6\" class=\"textarea"+(i+1)+"\"></td></tr>";
-						
-					}
-					$('#plan_table'+day+'').append(add_tag2);
+					
 					
 					panTo();
-					displayMarker(positions);
+					displayMarker(positions);*/
 					
 				},
 				error : function(){
@@ -239,65 +324,215 @@
 			
 			})
 		}
+		
+		function print_plan(plan_list_a){
+			$('#table_add_'+day+'').html('');
+			let add_tag3 = "";
+			for(let c = 0; c<plan_list_a.length ; c++){
+					var j = day-1;
+					//
+					add_tag3+="<tr><td class='plan'>"+(c+1)+"</td>";
+					add_tag3+="<td class='plan'>"+plan_list_a[c].map_name+"</td>";
+					add_tag3+="<td class='plan'><input type='time'></td>";
+					add_tag3+="<td class='plan'><input type='time'></td>";
+					add_tag3+="<td class='memodo"+(c+1)+" plan'><button type='button' onClick='memo2("+(c+1)+")' style='font-size:12px;'>메모하기</button></td>";
+					add_tag3+="<td class='plan'><button type='button' onClick='remove_plan(\""+plan_list_a[c].map_name+"\","+day+")'>삭제</button></td></tr>";
+					add_tag3+="<tr align='right'>";
+					add_tag3+="<td colspan='6' class='textarea"+(c+1)+"'><textarea class='text"+(c+1)+"' style='display:none; width:400px;'></textarea></td></tr>";
+			}
+			$('#table_add_'+day+'').append(add_tag3);
+		}
 	
 	</script>
 	<script type="text/javascript">
 	 	
 		// 일차별로 계획 만들기 파트
-		function day_plan(total_length, i){
-			console.log('#plan_table'+i+'')
+		function day_plan(total_length_a, d){
 			
-			for(let j=1; j<total_length+1 ; j++){
-				if(j==i){
-					$('#plan_table'+i+'').css('display','inline');
+			for(let e=1; e<total_length_a +1 ; e++){
+				if(e==d){
+					$('#plan'+d+'').css('display','inline');
 				}else{
-					$('#plan_table'+j+'').css('display','none');
+					$('#plan'+e+'').css('display','none');
 				}
 			}
-			//$('#day_location').text(i); 
-			day=i;
+			day=d;
+			if(d==1){
+				displayMarker(positions1);
+				marker_allClose(markers2,2);
+				marker_allClose(markers3,3);
+				marker_allClose(markers4,4);
+				marker_allClose(markers5,5);
+				marker_allClose(markers6,6);
+			}else if(d==2){
+				displayMarker(positions2);
+				marker_allClose(markers1,1);
+				marker_allClose(markers3,3);
+				marker_allClose(markers4,4);
+				marker_allClose(markers5,5);
+				marker_allClose(markers6,6);
+				
+			}else if(d==3){
+				displayMarker(positions3);
+				marker_allClose(markers1,1);
+				marker_allClose(markers2,2);
+				marker_allClose(markers4,4);
+				marker_allClose(markers5,5);
+				marker_allClose(markers6,6);
+			}else if(d==4){
+				displayMarker(positions4);
+				marker_allClose(markers1,1);
+				marker_allClose(markers2,2);
+				marker_allClose(markers3,3);
+				marker_allClose(markers5,5);
+				marker_allClose(markers6,6);
+			}else if(d==5){
+				displayMarker(positions5);
+				marker_allClose(markers1,1);
+				marker_allClose(markers2,2);
+				marker_allClose(markers3,3);
+				marker_allClose(markers4,4);
+				marker_allClose(markers6,6);
+			}else if(d==6){
+				displayMarker(positions6);
+				marker_allClose(markers1,1);
+				marker_allClose(markers2,2);
+				marker_allClose(markers3,3);
+				marker_allClose(markers4,4);
+				marker_allClose(markers5,5);
+			}
 		}
 	
 	</script>
 	<script type="text/javascript">	
 		//메모기능 파트
-		function memo(i){
-			$('.textarea'+i+'').html("<textarea class=\"text"+i+"\" style=\" width:400px;\"></textarea>");
-			$('.memodo'+i+'').html("<button onClick=\"close_memo("+i+")\" >메모닫기</button>")
+		function close_memo(g){
+			$('.text'+g+'').hide();
+			$('.memodo'+g+'').html("<button type='button' onClick='memo2("+g+")' style='font-size:12px;'>메모하기</button>")
 		}
-		function close_memo(i){
-			$('.text'+i+'').hide();
-			$('.memodo'+i+'').html("<button onClick=\"memo2("+i+")\" >메모하기</button>")
+		function memo2(h){
+			$('.text'+h+'').show();
+			$('.memodo'+h+'').html("<button type='button' onClick='close_memo("+h+")' style='font-size:12px;'>메모닫기</button>")
 		}
-		function memo2(i){
-			$('.text'+i+'').show();
-			$('.memodo'+i+'').html("<button onClick=\"close_memo("+i+")\" >메모닫기</button>")
-		}
-		function remove_plan(map_name){
-			for(let i = 0; i < plan_list.length; i++) {
-			  if(plan_list[i].map_name === map_name)  {
-				    plan_list.splice(i, 1);
-			  }
+		
+		
+		
+		function remove_plan(map_name2,k){
+			console.log(1)
+			if(k==1){
+				for(let i = 0; i < plan_list1.length; i++) {
+				  if(plan_list1[i].map_name === map_name2)  {
+					    plan_list1.splice(i, 1);
+				  }
+				}
+				for(let i = 0; i < positions1.length; i++) 	{
+					  if(positions1[i].title === map_name2){
+						  	marker_close(i,markers1);
+						   	positions1.splice(i, 1);
+						   	
+					  }
+					}
+				//remove_plan2(plan_list1);
+				print_plan(plan_list1);
 			}
-			for(let i = 0; i < positions.length; i++) 	{
+			else if(k==2){
+				for(let i = 0; i < plan_list2.length; i++) {
+				  if(plan_list2[i].map_name === map_name2)  {
+					    plan_list2.splice(i, 1);
+				  }
+				  for(let i = 0; i < positions2.length; i++) 	{
+					  if(positions2[i].title === map_name2){
+						  	marker_close(i,markers2);
+						   	positions2.splice(i, 1);
+					  }
+					}
+				  //remove_plan2(plan_list2);
+				  print_plan(plan_list2);
+				}
+			}else if(k==3){
+				for(let i = 0; i < plan_list3.length; i++) {
+					if(plan_list3[i].map_name === map_name2)  {
+						    plan_list3.splice(i, 1);
+					  }
+					}
+				for(let i = 0; i < positions3.length; i++) 	{
+					  if(positions3[i].title === map_name2){
+							marker_close(i,markers3);
+						   	positions3.splice(i, 1);
+					  }
+					}
+				  //remove_plan2(plan_list3);
+					print_plan(plan_list3);
+				}
+			else if(k==4){
+				for(let i = 0; i < plan_list4.length; i++) {
+					  if(plan_list4[i].map_name === map_name2)  {
+						    plan_list4.splice(i, 1);
+					  }
+					}
+				for(let i = 0; i < positions4.length; i++) 	{
+					  if(positions4[i].title === map_name2){
+							marker_close(i,markers4);
+						   	positions4.splice(i, 1);
+					  }
+					}
+				//remove_plan2(plan_list4);
+				print_plan(plan_list4);
+				}
+			else if(k==5){
+				for(let i = 0; i < plan_list5.length; i++) {
+					  if(plan_list5[i].map_name === map_name2)  {
+						    plan_list5.splice(i, 1);
+					  }
+					}
+				for(let i = 0; i < positions5.length; i++) 	{
+					  if(positions5[i].title === map_name2){
+							marker_close(i,markers5);
+						   	positions5.splice(i, 1);
+					  }
+					}
+				//remove_plan2(plan_list5);
+				print_plan(plan_list5);
+				}
+			else if(k==6){
+				for(let i = 0; i < plan_list6.length; i++) {
+					  if(plan_list6[i].map_name === map_name2)  {
+						    plan_list6.splice(i, 1);
+					  }
+					}
+				for(let i = 0; i < positions6.length; i++) 	{
+					  if(positions6[i].title === map_name2){
+							marker_close(i,markers6);
+						   	positions6.splice(i, 1);
+					  }
+					}
+				//remove_plan2(plan_list6);
+				print_plan(plan_list6);
+				}
+			/*for(let i = 0; i < positions.length; i++) 	{
 			  if(positions[i].map_name === map_name){
 				   	posiotions.splice(i, 1);
 			  }
-			}
-			$('#plan_table').html('');
+			}*/
+			
+		}
+		function remove_plan2(plan_list){
+			$('#table_add_'+day+'').html('');
 			let add_tag2 = "";
 			for(let i = 0; i<plan_list.length ; i++){
 				add_tag2+="<tr><td>"+(i+1)+"</td>";
 				add_tag2+="<td>"+plan_list[i].map_name+"</td>";
-				add_tag2+="<td><input type=\"time\"></td>";
-				add_tag2+="<td><input type=\"time\"></td>";
-				add_tag2+="<td class=\"memodo"+(i+1)+"\"><button onClick=\"memo("+(i+1)+")\" >메모하기</button></td>";
-				add_tag2+="<td><button onClick=\"remove_plan('"+plan_list[i].map_name+"')\">삭제</button></td></tr>";
-				add_tag2+="<tr align=\"right\">";
-				add_tag2+="<td colspan=\"6\" class=\"textarea"+(i+1)+"\"></td></tr>";
+				add_tag2+="<td><input type='time'></td>";
+				add_tag2+="<td><input type='time'></td>";
+				add_tag2+="<td class='memodo"+(i+1)+"'><button type='button' onClick='memo("+(i+1)+")' style='font-size:12px; >메모하기</button></td>";
+				add_tag2+="<td><button type='button' onClick='remove_plan('"+plan_list[i].map_name+"' ,"+day+")'>삭제</button></td></tr>";
+				add_tag2+="<tr align='right'>";
+				add_tag2+="<td colspan='6' class='textarea"+(i+1)+"'><textarea class='text"+(i+1)+"' style='display:none; width:400px;'></textarea></td></tr>";
 			}
-			$('#plan_table').append(add_tag2)
+			$('#table_add_'+day+'').append(add_tag2)
 		}
+		
+		
 	</script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script type="text/javascript">
@@ -322,8 +557,15 @@
 		
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		var markers = [];
+		var markers1 = [];
+		var markers2 = [];
+		var markers3 = [];
+		var markers4 = [];
+		var markers5 = [];
+		var markers6 = [];
 		
-		function displayMarker(positions) {
+		function displayMarker(positions,day) {
 			for (var i = 0; i < positions.length; i ++) {
 			    
 			    // 마커 이미지의 이미지 크기 입니다
@@ -340,8 +582,61 @@
 			        image : markerImage, // 마커 이미지 
 			        level:3
 			    });
+			   
+			    
 			}
+			 if(day==1){
+			    	markers1.push(marker);
+			    }else if(day==2){
+			    	markers2.push(marker);
+			    }else if(day==3){
+			    	markers3.push(marker);
+			    }else if(day==4){
+			    	markers4.push(marker);
+			    }else if(day==5){
+			    	markers5.push(marker);
+			    }else if(day==6){
+			    	markers6.push(marker);
+			    }
 		}
+		function marker_allClose(marker_del,del){
+			//console.log(markers)
+			//console.log("포지션 길이 : ",positions.length)
+			//console.log("포지션 : ",positions)
+			
+			for(let i =0; i<marker_del.length; i++){
+				marker_del[i].setMap(null);
+				console.log(i,marker_del[i])
+			}
+			console.log("마커 : ",marker_del)
+			if(del==1){
+		    	markers1=[];
+		    }else if(del==2){
+		    	markers2=[];
+		    }else if(del==3){
+		    	markers3=[];
+		    }else if(del==4){
+		    	markers4=[];
+		    }else if(del==5){
+		    	markers5=[];
+		    }else if(del==6){
+		    	markers6=[];
+		    }
+						
+			
+		}
+		function marker_close(del2,marker_del2){
+			//console.log("i",i)
+			//console.log("markers1",markers);
+			marker_del2[del2].setMap(null);
+			
+			marker_del2.splice(del2, 1);
+			//console.log("markers2",markers);
+			console.log("positions1",positions1)
+			
+			
+		}
+		
 	</script>
 	
 	<script type="text/javascript">
@@ -353,6 +648,20 @@
 			var linePath;
 			var lineLine = new kakao.maps.Polyline();
 			var distance;
+			if(day==1){
+				positions = positions1;
+			}else if(day==2){
+				positions = positions2;
+			}else if(day==3){
+				positions = positions3;
+			}else if(day==4){
+				positions = positions4;
+			}else if(day==5){
+				positions = positions5;
+			}else if(day==6){
+				positions = positions6;
+			}
+			
 			for(var i = 0; i<positions.length; i++){
 				if(i!=0){
 					linePath = [positions[i-1].latlng, positions[i].latlng]
@@ -398,6 +707,20 @@
 	<script>
 		// 지도 경로미리보기 파트(티맵)
 		function tmap_route(){
+			if(day==1){
+				plan_list=plan_list1;
+			}else if(day==2){
+				plan_list = plan_list2;
+			}else if(day==3){
+				plan_list = plan_list3;
+			}else if(day==4){
+				plan_list = plan_list4;
+			}else if(day==5){
+				plan_list = plan_list5;
+			}else if(day==6){
+				plan_list = plan_list6;
+			}
+			
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
 			// 1. 지도 띄우기
@@ -603,7 +926,37 @@
 			});
 		}
 	</script>
-
+	<script type="text/javascript">
+		//데이터 전송 파트
+		function send_plan(){
+			$.ajax({
+				url : "ex01sum",	
+				type : "get",
+				data : {
+					"date": total_date,
+					"day1": {
+						
+					},
+					"day2": {},
+					"day3": {},
+					"day4": {},
+					"day5": {},
+					"day6": {},
+					
+				},
+				success : function(res){ 
+					console.log(res)
+					
+				},
+				error : function(){
+					alert("요청 실패!")
+				}
+			
+			})
+		}
+	
+	</script>
+</form>
 </body>
 
 </html>
