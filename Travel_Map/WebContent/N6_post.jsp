@@ -24,7 +24,7 @@
         <div class="item2">
             <div class="item3">
                 <a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
-				<a href="#" class="user_nick"><%=dto.getMb_id() %></a>
+				<a href="tm_selectMember?mb_id=<%=dto.getMb_id()%>" class="user_nick"><%=dto.getMb_id() %></a>
 				<a href="#" class="travel_plan"><%=dto.getTb_title() %></a>
             </div>
             <div class="item4"><%=dto.getTb_content() %></p></div>
