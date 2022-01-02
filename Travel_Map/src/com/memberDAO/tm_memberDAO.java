@@ -252,44 +252,73 @@ public class tm_memberDAO {
 		close();
 		return dto;
 	}
-	
-public ArrayList<tm_memberDTO> UserSearch(String keyword) {
-		
+
+	public ArrayList<tm_memberDTO> UserSearch(String keyword) {
+
 		ArrayList<tm_memberDTO> UserArr = new ArrayList<tm_memberDTO>();
-		
-		if (keyword=="") {
-			
+
+		if (keyword == "") {
+
 			return null;
-			
+
 		} else {
-			
-		try {
-			getConn();
-			
-			String sql = "select * from t_member where mb_nickname like ?";
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, "%" + keyword + "%");
-			rs = psmt.executeQuery();
-			
-			while (rs.next() == true) {
-				String mb_id = rs.getString(1);
-				String mb_img = rs.getString(8);
-				String mb_nickname = rs.getString(9);
-				int mb_follow = rs.getInt(10);
-				int mb_follower = rs.getInt(11);
-				dto = new tm_memberDTO(mb_id, mb_img, mb_nickname, mb_follow, mb_follower);
-				UserArr.add(dto);
+
+			try {
+				getConn();
+
+				String sql = "select * from t_member where mb_nickname like ?";
+
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, "%" + keyword + "%");
+				rs = psmt.executeQuery();
+
+				while (rs.next() == true) {
+					String mb_id = rs.getString(1);
+					String mb_img = rs.getString(8);
+					String mb_nickname = rs.getString(9);
+					int mb_follow = rs.getInt(10);
+					int mb_follower = rs.getInt(11);
+					dto = new tm_memberDTO(mb_id, mb_img, mb_nickname, mb_follow, mb_follower);
+					UserArr.add(dto);
+				}
+
+			} catch (Exception e) {
+				System.out.println("클래스파일 로딩실패");
+				e.printStackTrace();
+			} finally {
+				close();
 			}
-			
+		}
+		return UserArr;
+	}
+
+	public String imgMemberSelect(String mb_id) {
+
+		getConn();
+
+		String mb_img = "";
+
+		try {
+
+			String sql = "select mb_img from t_member where mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				mb_img = rs.getString(1);
+			}
+
 		} catch (Exception e) {
 			System.out.println("클래스파일 로딩실패");
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		}
-		return UserArr;
+
+		return mb_img;
+
 	}
 
 }

@@ -192,4 +192,8 @@ public class tm_memberDTO {
 		this.mb_follower = mb_follower;
 	}
 
+	public tm_memberDTO(String mb_img) {
+		this.mb_img = mb_img;
+	}
+
 }
