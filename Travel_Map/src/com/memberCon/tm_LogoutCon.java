@@ -21,7 +21,7 @@ public class tm_LogoutCon extends HttpServlet {
 
 		session.removeAttribute("dto");
 
-		response.sendRedirect("tm_Main.jsp");
+		response.sendRedirect("N1_main.jsp");
 	}
 
 }
