@@ -66,7 +66,7 @@ public class travelplan3Con_send_data extends HttpServlet {
 			int suc1 = dao.insert_planData1(title,startDate,endDate,people,id);
 			dao.insert_planData2(arr,id,title);
 	
-			response.sendRedirect("");
+			response.sendRedirect("N3_mypage_login_1bookmark1.jsp");
 	
 	
 	}

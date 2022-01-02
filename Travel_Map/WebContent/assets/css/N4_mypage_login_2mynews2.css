@@ -125,7 +125,7 @@
     height: 88%;
     background-color: #fff;
     text-align: center;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 .news_feed {
     display: flex; 
