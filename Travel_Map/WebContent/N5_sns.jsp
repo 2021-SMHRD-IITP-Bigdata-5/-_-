@@ -269,7 +269,7 @@
 						table += '<tr>';
 						max+=3;
 					}
-					table += '<td><img src="' + res[i].mb_id + '" width="130" height="130"></td>';
+					table += '<td><a href="tm_SelectOne?tb_seq=' + res[i].tb_seq + '"><img src="' + res[i].mb_id + '" width="130" height="130"></a></td>';
 					if (cnt == max) {
 						table += '</tr>';
 					}
@@ -289,22 +289,6 @@
 		});
 	}
 	
-	function snsPost() {
-		$.ajax({
-			url : 'snsPostCon',
-			type : 'get',
-			data : {
-				
-			},
-			dataType : 'json',
-			success : function(res) {
-				
-			},
-			error : function() {
-				alert('진입실패');
-			}
-		});
-	}
 	</script>
 	<!-- ---------------------------------------- -->
 
