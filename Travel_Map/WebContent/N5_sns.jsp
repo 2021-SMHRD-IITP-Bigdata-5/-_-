@@ -31,16 +31,33 @@
 		<div class="side_one">
 			<nav>
 				<ul class="side_menu">
-					<li><button class="side_button">검색</button></li>
-					<li><button class="side_button">여행계획</button></li>
-					<li><button class="side_button">My</button></li>
-					<li><button class="side_button">SNS</button></li>
+					<!-- onClick="window.location.reload()" -->
+					<li><button class="side_button"
+							onClick="location.href='N1_main.jsp'">
+							<a href="#">검색</a>
+						</button></li>
+					<li><button class="side_button"
+							onClick="location.href='N2_travelplan1.jsp'">
+							<a href="#">여행계획</a>
+						</button></li>
+					<li><button class="side_button"
+							onClick="location.href='N3_mypage_login_1bookmark1.jsp'">
+							<a href="#">My</a>
+						</button></li>
+					<li><button class="side_button"
+							onClick="location.href='N4_mypage_sns.jsp'">
+							<a href="#">SNS</a>
+						</button></li>
 				</ul>
 			</nav>
 		</div>
-		<div class="side_two">
-			<input type="text" id="search_keyword_query" placeholder=" 검색어 입력">
-			<button id="search_keyword_query_button">
+		<div class="side_two" style="display: inline-flex">
+
+			<select id="type" style="height: 36px">
+				<option value="title">제목</option>
+				<option value="user">사용자</option>
+			</select> <input type="text" id="search_keyword_query" placeholder=" 검색어 입력" style= "margin-left: 0px">
+			<button id="search_keyword_query_button" onClick='snsSearch()'>
 				<img src="./img/search.png">
 			</button>
 		</div>
@@ -51,8 +68,7 @@
 			<div class="sns_feed">
 				<div class="profile">
 					<a href="#" class="profile_img"><img src="./img/details.png>"></a>
-					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>"
-						class="user_nick"><%=i.getMb_id()%></a>
+					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=i.getMb_id()%></a>
 				</div>
 				<div class="trvel_pictures">
 					<a href="tm_SelectOne?tb_seq=<%=i.getTb_seq()%>"> <img
