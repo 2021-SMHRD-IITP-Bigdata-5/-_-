@@ -335,9 +335,9 @@ public ArrayList<tm_snsDTO> TitleSearch(String keyword) {
 			rs = psmt.executeQuery();
 			
 			while (rs.next() == true) {
-				
+				int tb_seq = rs.getInt(1);
 				String tb_file = rs.getString(4);
-				dto = new tm_snsDTO(tb_file);
+				dto = new tm_snsDTO(tb_seq, tb_file);
 				DetailArr.add(dto);
 				
 			}

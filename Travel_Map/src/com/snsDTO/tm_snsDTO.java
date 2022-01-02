@@ -180,5 +180,10 @@ public class tm_snsDTO {
 		this.tb_cnt = tb_cnt;
 		this.tb_likes = tb_likes;
 	}
+	
+	public tm_snsDTO(int tb_seq, String tb_file) {
+		this.tb_seq = tb_seq;
+		this.tb_file = tb_file;
+	}
 
 }
