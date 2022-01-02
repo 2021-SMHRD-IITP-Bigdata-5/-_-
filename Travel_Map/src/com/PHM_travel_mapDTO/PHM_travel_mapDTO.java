@@ -5,6 +5,34 @@ public class PHM_travel_mapDTO {
 	String start_date;
 	String end_date;
 	String people;
+	String createDate;
+	String mb_id;
+	
+	
+	
+	
+	public PHM_travel_mapDTO(String title, String start_date, String end_date, String people, String createDate,
+			String mb_id) {
+		super();
+		this.title = title;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.people = people;
+		this.createDate = createDate;
+		this.mb_id = mb_id;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getMb_id() {
+		return mb_id;
+	}
+	public void setMb_id(String mb_id) {
+		this.mb_id = mb_id;
+	}
 	public PHM_travel_mapDTO(String title, String start_date, String end_date, String people) {
 		super();
 		this.title = title;

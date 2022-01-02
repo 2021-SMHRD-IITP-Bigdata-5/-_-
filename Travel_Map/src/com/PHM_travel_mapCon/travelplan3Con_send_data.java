@@ -63,9 +63,13 @@ public class travelplan3Con_send_data extends HttpServlet {
 	
 			
 			PHM_travel_planDAO dao = new PHM_travel_planDAO();
-			int suc1 = dao.insert_planData1(title,startDate,endDate,people,id);
+			dao.insert_planData1(title,startDate,endDate,people,id);
 			dao.insert_planData2(arr,id,title);
-	
+			ArrayList<PHM_travel_mapDTO> arr1 = dao.bring_planData1();
+			
+			
+			session.removeAttribute("travelplan2");
+			session.setAttribute("plan1", arr1);
 			response.sendRedirect("N3_mypage_login_1bookmark1.jsp");
 	
 	

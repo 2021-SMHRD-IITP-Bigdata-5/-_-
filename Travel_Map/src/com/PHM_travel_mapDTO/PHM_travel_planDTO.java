@@ -7,6 +7,36 @@ public class PHM_travel_planDTO {
 	String startTime;
 	String endTime;
 	String memo;
+	String mb_id;
+	String t_title;
+	
+	
+	
+	
+	public String getMb_id() {
+		return mb_id;
+	}
+	public void setMb_id(String mb_id) {
+		this.mb_id = mb_id;
+	}
+	public String getT_title() {
+		return t_title;
+	}
+	public void setT_title(String t_title) {
+		this.t_title = t_title;
+	}
+	public PHM_travel_planDTO(String day, String cnt, String map_name, String startTime, String endTime, String memo,
+			String mb_id, String t_title) {
+		super();
+		this.day = day;
+		this.cnt = cnt;
+		this.map_name = map_name;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.memo = memo;
+		this.mb_id = mb_id;
+		this.t_title = t_title;
+	}
 	public PHM_travel_planDTO(String day, String cnt, String map_name, String startTime, String endTime, String memo) {
 		super();
 		this.day = day;
