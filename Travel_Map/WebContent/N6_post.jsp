@@ -1,3 +1,5 @@
+<%@page import="com.snsDTO.tm_snsDTO"%>
+<%@page import="com.snsDAO.tm_snsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,17 +12,22 @@
     <link rel="stylesheet" href="./assets/css/N6_post.css">
 </head>
 <body>
-    <div class="container">
-        <div class="item1">
-            <div><img src="img/sns38.jpg"></div>
+	<%
+		tm_snsDAO dao = new tm_snsDAO();
+	tm_snsDTO dto = new tm_snsDTO();
+	dto = (tm_snsDTO) request.getAttribute("dto");
+	%>
+	<div class="container">       	
+		<div class="item1">
+            <div><img src="tm_upload/<%=dto.getTb_file()%>"></div>
         </div>
         <div class="item2">
             <div class="item3">
                 <a href="#" clase="profile_img"><img src="img/sns6.jpg"></a>
-				<a href="#" class="user_nick">user_nick</a>
-				<a href="#" class="travel_plan">travel_plan</a>
+				<a href="#" class="user_nick"><%=dto.getMb_id() %></a>
+				<a href="#" class="travel_plan"><%=dto.getTb_title() %></a>
             </div>
-            <div class="item4">백패킹 좋아하는 사람🌤</p></div>
+            <div class="item4"><%=dto.getTb_content() %></p></div>
             <div class="item5">
                 <div><a href="#">user_nick</a> : 오</div><br>
                 <div><a href="#">user_nick2</a> : 오2 </div><br>
@@ -38,7 +45,8 @@
                 <div><a href="#">user_nick14</a> : 오14 </div><br>
             </div>
             <div class="item6">
-                <button><img src="img/heart_tung.png"></button>
+                <button id="likesButton" onclick="likes()"><img src="img/heart_tung.png"></button>
+                <div id ="likes" style="align-self: center"></div>
                 <button><img src="img/share.png"></button>
             </div>
             <div class="item7">
@@ -47,5 +55,25 @@
             </div>
         </div>
     </div>
+    
+    	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		function likes() {
+			$.ajax({
+				url : "likesCon",
+				type : "post",
+				data : {
+					"tb_seq" : <%=dto.getTb_seq()%>
+				},
+				success : function(res) {
+					console.log(res);
+					$('#likes').text(res);
+				},
+				error : function() {
+					alert("요청 실패 !");
+				},
+			})
+		}
+	</script>
 </body>
 </html>

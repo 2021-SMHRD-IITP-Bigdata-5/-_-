@@ -301,11 +301,12 @@ public ArrayList<tm_snsDTO> TitleSearch(String keyword) {
 			rs = psmt.executeQuery();
 			
 			while (rs.next() == true) {
+				int tb_seq =rs.getInt("tb_seq");
 				String tb_title = rs.getString(2);
 				String tb_file = rs.getString(4);
 				int tb_cnt = rs.getInt(5);
 				int tb_likes = rs.getInt(7);
-				dto = new tm_snsDTO(tb_title, tb_file, tb_cnt, tb_likes);
+				dto = new tm_snsDTO(tb_seq,tb_title, tb_file, tb_cnt, tb_likes);
 				TitleArr.add(dto);
 			}
 			
