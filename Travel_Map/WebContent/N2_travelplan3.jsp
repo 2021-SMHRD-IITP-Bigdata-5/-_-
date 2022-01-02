@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<form action="plan_save">
+
 	<%
 		PHM_travel_mapDTO travelplan2 = (PHM_travel_mapDTO)session.getAttribute("travelplan2");
 		int start_date = Integer.parseInt(travelplan2.getStart_date().substring(8));
@@ -73,8 +73,9 @@
         	<%}%>
         </div>
         
-        <div id="side_four" style="height:42%;">
         
+        <form action="travelplan3Con_send_data">
+        <div id="side_four" style="height:42%;">
         <%for(int j = 0; j<total_date; j++) { 
         	if(j==0){%>
 			<table class="plan_table_one" id="plan1" style="display:inline;">
@@ -95,11 +96,6 @@
 					<td>메모</td>
 				</tr>
 				</thead>
-				<!--  <tbody id="plan_table1">
-					<tr><td>1</td></tr>
-				</tbody>
-				
-					<form action=".do"></form>-->
 				<tbody id="table_add_1" >
 				</tbody>
 			</table>
@@ -122,11 +118,6 @@
 					<td>메모</td>
 				</tr>
 				</thead>
-				<!--  <tbody id="plan_table1">
-					<tr><td>1</td></tr>
-				</tbody>
-				
-					<form action=".do"></form>-->
 				<tbody id="table_add_<%=j+1 %>" >
 				</tbody>
 			</table>
@@ -140,8 +131,9 @@
 		<div id="side_six" align="center" style="margin-top:20px;">
 				<button	type="button" class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;"><a href="#">지도 미리보기</a></button>
 				<button type="button" class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;"><a href="#">경로 미리보기</a></button>
-				<button type="submit" class="side_button" onClick="send_plan()" style="width:100px;"><a href="#">계획 세우기</a></button>
+				<button type="submit" class="side_button" style="width:100px;"><a href="#">계획 세우기</a></button>
 		</div>
+		</form>
    	</div>
 	
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
@@ -329,16 +321,23 @@
 			$('#table_add_'+day+'').html('');
 			let add_tag3 = "";
 			for(let c = 0; c<plan_list_a.length ; c++){
-					var j = day-1;
-					//
-					add_tag3+="<tr><td class='plan'>"+(c+1)+"</td>";
-					add_tag3+="<td class='plan'>"+plan_list_a[c].map_name+"</td>";
-					add_tag3+="<td class='plan'><input type='time'></td>";
-					add_tag3+="<td class='plan'><input type='time'></td>";
+					
+					add_tag3+="<tr><td>"+(c+1)+"</td>";
+					add_tag3+="<td>"+plan_list_a[c].map_name+"</td>";
+					add_tag3+="<td><input name='"+day+"_"+(c+1)+"_startTime' type='time'></td>";
+					add_tag3+="<td class='plan'><input name='"+day+"_"+(c+1)+"_endTime' type='time'></td>";
 					add_tag3+="<td class='memodo"+(c+1)+" plan'><button type='button' onClick='memo2("+(c+1)+")' style='font-size:12px;'>메모하기</button></td>";
 					add_tag3+="<td class='plan'><button type='button' onClick='remove_plan(\""+plan_list_a[c].map_name+"\","+day+")'>삭제</button></td></tr>";
 					add_tag3+="<tr align='right'>";
-					add_tag3+="<td colspan='6' class='textarea"+(c+1)+"'><textarea class='text"+(c+1)+"' style='display:none; width:400px;'></textarea></td></tr>";
+					add_tag3+="<td colspan='6' class='textarea"+(c+1)+"'><textarea name='"+day+"_"+(c+1)+"_memo' class='text"+(c+1)+"' style='display:none; width:400px;'></textarea></td></tr>";
+					
+					add_tag3+="<tr><td colspan='6' style='display:none;'><input name='"+day+"_"+(c+1)+"_day' type='text' value='"+day+"'	style='display:noen;'>";
+					add_tag3+="<input name='"+day+"_"+(c+1)+"_cnt' type='text' value='"+(c+1)+"' style='display:noen;'>";
+					add_tag3+="<input name='"+day+"_"+(c+1)+"_map_name' type='text' value='"+plan_list_a[c].map_name+"' style='display:noen;'></td></tr>";
+			
+			
+			
+			
 			}
 			$('#table_add_'+day+'').append(add_tag3);
 		}
@@ -516,7 +515,8 @@
 			}*/
 			
 		}
-		function remove_plan2(plan_list){
+		
+		/*function remove_plan2(plan_list){
 			$('#table_add_'+day+'').html('');
 			let add_tag2 = "";
 			for(let i = 0; i<plan_list.length ; i++){
@@ -530,7 +530,7 @@
 				add_tag2+="<td colspan='6' class='textarea"+(i+1)+"'><textarea class='text"+(i+1)+"' style='display:none; width:400px;'></textarea></td></tr>";
 			}
 			$('#table_add_'+day+'').append(add_tag2)
-		}
+		}*/
 		
 		
 	</script>
@@ -707,6 +707,7 @@
 	<script>
 		// 지도 경로미리보기 파트(티맵)
 		function tmap_route(){
+			
 			if(day==1){
 				plan_list=plan_list1;
 			}else if(day==2){
