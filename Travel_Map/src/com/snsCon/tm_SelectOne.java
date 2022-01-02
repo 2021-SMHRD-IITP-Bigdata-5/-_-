@@ -30,7 +30,7 @@ public class tm_SelectOne extends HttpServlet {
 		} else {
 			System.out.println("조회실패..");
 		}
-		RequestDispatcher dis = request.getRequestDispatcher("tm_View.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("N6_post.jsp");
 		dis.forward(request, response);
 
 	}
