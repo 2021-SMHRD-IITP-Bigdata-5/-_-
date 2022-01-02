@@ -27,7 +27,7 @@ public class tm_snsCon extends HttpServlet {
 		ServletContext context = getServletContext();
 		HttpSession session = request.getSession();
 		tm_memberDTO sessiondto = (tm_memberDTO) session.getAttribute("dto");
-		String saveDir = context.getRealPath("");
+		String saveDir = context.getRealPath("tm_upload");
 		String url = "";
 		int maxSize = 50 * 1024 * 1024;
 

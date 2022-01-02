@@ -60,7 +60,7 @@ public class tm_JoinCon extends HttpServlet {
 
 		if (member_cnt > 0 && follow_cnt > 0) {
 			System.out.println("가입성공");
-			response.sendRedirect("tm_Main.jsp");
+			response.sendRedirect("JoinComplete.jsp");
 		} else {
 			System.out.println("가입실패");
 
