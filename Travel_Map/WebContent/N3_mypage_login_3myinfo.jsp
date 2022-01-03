@@ -69,7 +69,8 @@
 				</div>
 				<form action="imgChangeCon" method="post"
 					enctype="multipart/form-data">
-					<input type="file" name="imgChange">
+					<label> <input type="file" name="imgChange">
+					</label>
 					<button type="submit">프로필 사진 변경</button>
 				</form>
 			</div>
