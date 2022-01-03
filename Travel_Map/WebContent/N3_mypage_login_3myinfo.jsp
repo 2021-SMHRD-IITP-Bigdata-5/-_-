@@ -42,7 +42,7 @@
 							<a href="#">My</a>
 						</button></li>
 					<li><button class="side_button"
-							onClick="location.href='N4_mypage_sns.jsp'">
+							onClick="location.href='N5_sns.jsp'">
 							<a href="#">SNS</a>
 						</button></li>
 				</ul>
