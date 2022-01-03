@@ -36,6 +36,7 @@ public class tm_boardDAO {
 			e.printStackTrace();
 		} finally {
 		}
+		
 	}
 
 	public void close() {

@@ -1,3 +1,4 @@
+<%@page import="com.PHM_travel_mapDAO.PHM_travel_planDAO"%>
 <%@page import="com.PHM_travel_mapDTO.PHM_travel_mapDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,7 +16,9 @@
 
 <body>
 	<%
-		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
+		PHM_travel_planDAO dao = new PHM_travel_planDAO();
+		ArrayList<PHM_travel_mapDTO> arr1 = dao.bring_planData1();
+		//ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
 		int end_date = 0;
 		int start_date = 0;
 		int total_date = 0;
