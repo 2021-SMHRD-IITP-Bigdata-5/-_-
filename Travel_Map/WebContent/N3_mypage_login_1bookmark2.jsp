@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./assets/css/N4_mypage_login_1bookmark1.css" />
+	<link rel="stylesheet" href="./assets/css/N4_mypage_login_1bookmark2.css" />
 	<title>N4_mypage_login_1bookmark1</title>
 </head>
 
@@ -50,10 +50,7 @@
 		<div id="side_three">
 			<%for(int i =0; i<total ;i++) {%>
 				<table id="plan_table_one">
-					<caption><%=i+1 %>일차
-						<button onClick = "kakao(<%=i+1%>)">카카오</button>
-						<button onClick = "tmap(<%=i+1%>)">티맵</button>
-					</caption>
+					<caption><%=i+1 %>일차</caption>
 					<colgroup>
 						<col style="width: 10%;">
 						<col style="width: 40%;">
@@ -61,7 +58,6 @@
 						<col style="width: 25%;">
 					</colgroup>
 					<% 
-					
 					for(int j =0; j<arr2.size() ; j++){ 
 						if(Integer.valueOf(arr2.get(j).getDay())==(i+1)){
 					%>
@@ -71,27 +67,32 @@
 							<td><%=arr2.get(j).getStartTime() %></td>
 							<td><%=arr2.get(j).getEndTime() %></td>
 						</tr>
-						<tr><td><%=arr2.get(j).getMemo() %></td></tr>
+						<tr>
+							<td>메모</td>
+							<td><%=arr2.get(j).getMemo() %></td>
+						</tr>
+						<tr>
+							<td colspan="4" id="plan_table_last">
+								<button onClick = "kakao(<%=i+1%>)">거리보기</button>
+								<button onClick = "tmap(<%=i+1%>)">경로보기</button>
+							</td>
+						</tr>
 					<%}
 					}
 				 %>
 				</table>
 			<%} %>
 		</div>
-		<form action="boardInsert" method="post" enctype="multipart/form-data"> 
+		
 		<div id="side_four">
-			글 제목 : <input name="tb_title" type="text"><br>
-			글 내용 : <textarea name="tb_content"></textarea> <br>
-			첨부파일 : <input type="file" name="tb_file" accept=".jpg, .jpeg, .png" multiple><br>
-			공개여부 :  공개<input type="radio" name="tb_open" value="y" style="width:1.4vw; height:1.3vh;">
-         			비공개<input type="radio" name="tb_open" value="n" style="width:1.4vw; height:1.3vh;">
-		</div>
-		<div id="side_five">
 			<ul>
-				<li><button type="submit" class="side_button" >만들기</button></li>
+				<li><button class="side_button" onClick="location.href='N3_mypage_login_1bookmark3.jsp'">다음으로</button></li>
 			</ul>
 		</div>
-		</form>
+		<div id="side_five">
+			
+		</div>
+		
 	</div>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    

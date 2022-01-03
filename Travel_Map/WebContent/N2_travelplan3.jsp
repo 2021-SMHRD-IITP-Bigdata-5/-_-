@@ -222,6 +222,7 @@
 		var plan_list4=[];
 		var plan_list5=[];
 		var plan_list6=[];
+		// 카카오맵 관련
 		var positions=[];
 		var positions1=[];
 		var positions2=[];
@@ -248,7 +249,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list1);
 						panTo();
-						displayMarker(positions1,day);
+						//displayMarker(positions1,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}else if(day==2){
 						plan_list2.push(res3);
 						positions2.push({title: res3.map_name, 
@@ -257,7 +259,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list2);
 						panTo();
-						displayMarker(positions2,day);
+						//displayMarker(positions2,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}else if(day==3){
 						plan_list3.push(res3);
 						positions3.push({title: res3.map_name, 
@@ -266,7 +269,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list3);
 						panTo();
-						displayMarker(positions3,day);
+						//displayMarker(positions3,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}else if(day==4){
 						plan_list4.push(res3);
 						positions4.push({title: res3.map_name, 
@@ -275,7 +279,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list4);
 						panTo();
-						displayMarker(positions4,day);
+						//displayMarker(positions4,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}else if(day==5){
 						plan_list5.push(res3);
 						positions5.push({title: res3.map_name, 
@@ -284,7 +289,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list5);
 						panTo();
-						displayMarker(positions5,day);
+						//displayMarker(positions5,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}else if(day==6){
 						plan_list6.push(res3);
 						positions6.push({title: res3.map_name, 
@@ -293,7 +299,8 @@
 						longtitude = res3.map_longtitude;
 						print_plan(plan_list6);
 						panTo();
-						displayMarker(positions6,day);
+						//displayMarker(positions6,day);
+						displayMarker(res3.map_name, new kakao.maps.LatLng(res3.map_latitude, res3.map_longtitude), day);
 					}
 					
 					
@@ -359,14 +366,14 @@
 			}
 			day=d;
 			if(d==1){
-				displayMarker(positions1);
+				displayMarker2(positions1,d);
 				marker_allClose(markers2,2);
 				marker_allClose(markers3,3);
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
 			}else if(d==2){
-				displayMarker(positions2);
+				displayMarker2(positions2,d);
 				marker_allClose(markers1,1);
 				marker_allClose(markers3,3);
 				marker_allClose(markers4,4);
@@ -374,28 +381,28 @@
 				marker_allClose(markers6,6);
 				
 			}else if(d==3){
-				displayMarker(positions3);
+				displayMarker2(positions3,d);
 				marker_allClose(markers1,1);
 				marker_allClose(markers2,2);
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
 			}else if(d==4){
-				displayMarker(positions4);
+				displayMarker2(positions4,d);
 				marker_allClose(markers1,1);
 				marker_allClose(markers2,2);
 				marker_allClose(markers3,3);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
 			}else if(d==5){
-				displayMarker(positions5);
+				displayMarker2(positions5,d);
 				marker_allClose(markers1,1);
 				marker_allClose(markers2,2);
 				marker_allClose(markers3,3);
 				marker_allClose(markers4,4);
 				marker_allClose(markers6,6);
 			}else if(d==6){
-				displayMarker(positions6);
+				displayMarker2(positions6,d);
 				marker_allClose(markers1,1);
 				marker_allClose(markers2,2);
 				marker_allClose(markers3,3);
@@ -567,7 +574,43 @@
 		var markers5 = [];
 		var markers6 = [];
 		
-		function displayMarker(positions,day) {
+		function displayMarker(title, positions, day) {
+			//for (var i = 0; i < positions.length; i ++) {
+			    
+			    // 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions, // 마커를 표시할 위치
+			        title : title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage, // 마커 이미지 
+			        level:3
+			    });
+			   
+			    
+			//}
+			 if(day==1){
+			    	markers1.push(marker);
+			    }else if(day==2){
+			    	markers2.push(marker);
+			    }else if(day==3){
+			    	markers3.push(marker);
+			    }else if(day==4){
+			    	markers4.push(marker);
+			    }else if(day==5){
+			    	markers5.push(marker);
+			    }else if(day==6){
+			    	markers6.push(marker);
+			    }
+		}
+		
+
+		function displayMarker2(positions,day) {
 			for (var i = 0; i < positions.length; i ++) {
 			    
 			    // 마커 이미지의 이미지 크기 입니다
@@ -585,9 +628,7 @@
 			        level:3
 			    });
 			   
-			    
-			}
-			 if(day==1){
+			    if(day==1){
 			    	markers1.push(marker);
 			    }else if(day==2){
 			    	markers2.push(marker);
@@ -600,7 +641,11 @@
 			    }else if(day==6){
 			    	markers6.push(marker);
 			    }
+			    
+			}
 		}
+		
+		
 		function marker_allClose(marker_del,del){
 			//console.log(markers)
 			//console.log("포지션 길이 : ",positions.length)
@@ -608,7 +653,7 @@
 			
 			for(let i =0; i<marker_del.length; i++){
 				marker_del[i].setMap(null);
-				console.log(i,marker_del[i])
+				console.log(i,marker_del[i]);
 			}
 			console.log("마커 : ",marker_del)
 			if(del==1){

@@ -32,8 +32,7 @@
         </div>
         <div class="side_three">
 			<table id="plan_table_one">
-				<button>거리보기</button>
-				<button>경로보기</button>
+				
 				<caption>1일차</caption>
 				<colgroup>
 					<col style="width: 10%;">
@@ -60,9 +59,11 @@
 					<td>19:30</td>
 				</tr>
 				<tr>
-					<td colspan="4" id="plan_table_last">+</td>
+					<td colspan="4" id="plan_table_last"><button>거리보기</button>
+			<button>경로보기</button></td>
 				</tr>
 			</table>
+			
 
 			<table id="plan_table_two">
 				<caption>2일차</caption>
@@ -91,9 +92,11 @@
 					<td>19:30</td>
 				</tr>
 				<tr>
-					<td colspan="4" id="plan_table_last">+</td>
+					<td colspan="4" id="plan_table_last"><button>거리보기</button>
+			<button>경로보기</button></td>
 				</tr>
 			</table>
+			
 
 			<table id="plan_table_three">
 				<caption>3일차</caption>
@@ -122,9 +125,11 @@
 					<td>19:30</td>
 				</tr>
 				<tr>
-					<td colspan="4" id="plan_table_last">+</td>
+					<td colspan="4" id="plan_table_last"><button>거리보기</button>
+			<button>경로보기</button></td>
 				</tr>
 			</table>
+			
         </div>
         <div class="side_four">
 			<ul>

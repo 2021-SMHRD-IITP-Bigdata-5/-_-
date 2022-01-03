@@ -186,7 +186,7 @@ ul {
     border-bottom: 1px solid #00A7B1;
     padding: 5px;
 }
-/*#plan_table_one caption {
+#plan_table_one caption {
     border: 1px solid #52C999;
     background-color: #52C999;
     border-radius: 3px;
@@ -226,4 +226,4 @@ li button {
 }
 #side_four ul {
     margin-top: 0px;
-}*/
+}

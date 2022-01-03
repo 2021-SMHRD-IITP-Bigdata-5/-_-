@@ -55,9 +55,9 @@
 					start_date = Integer.parseInt(arr1.get(i).getStart_date().substring(8));
 					total_date = end_date - start_date+1;
 				
-					out.print("<li><button class='travel_plan' onClick='location.href=\"my_bookmarkMove?t_title="+arr1.get(i).getTitle()+"&total_date="+total_date+"\"'>");
-					out.print("여행 제목 : "+arr1.get(i).getTitle());
-					out.print("<br>"+arr1.get(i).getStart_date()+"~"+arr1.get(i).getEnd_date());
+					out.print("<li style='margin-top:0px;'><button class='travel_plan' onClick='location.href=\"my_bookmarkMove?t_title="+arr1.get(i).getTitle()+"&total_date="+total_date+"\"'>");
+					out.print("<h3>"+arr1.get(i).getTitle()+"</h3>");
+					out.print(arr1.get(i).getStart_date()+"~"+arr1.get(i).getEnd_date()+"</li>");
 				}%>
 			
 				</button></li>
