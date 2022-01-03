@@ -48,7 +48,9 @@
 			</ul>
 		</div>
 		<div id="side_three">
-			<%for(int i =0; i<total ;i++) {%>
+			<% 
+			int a = 1;
+			for(int i =0; i<total ;i++) {%>
 				<table id="plan_table_one">
 					<caption><%=i+1 %>일차</caption>
 					<colgroup>
@@ -60,26 +62,29 @@
 					<% 
 					for(int j =0; j<arr2.size() ; j++){ 
 						if(Integer.valueOf(arr2.get(j).getDay())==(i+1)){
+							
 					%>
 						<tr>
 							<td><%=arr2.get(j).getCnt() %></td>
-							<td><%=arr2.get(j).getMap_name() %></td>
+							<td class='map_name<%=arr2.get(j).getDay() %>_<%=arr2.get(j).getCnt() %>'><%=arr2.get(j).getMap_name() %></td>
 							<td><%=arr2.get(j).getStartTime() %></td>
 							<td><%=arr2.get(j).getEndTime() %></td>
 						</tr>
 						<tr>
-							<td>메모</td>
+							<td>메모 : </td>
 							<td><%=arr2.get(j).getMemo() %></td>
 						</tr>
-						<tr>
-							<td colspan="4" id="plan_table_last">
-								<button onClick = "kakao(<%=i+1%>)">거리보기</button>
-								<button onClick = "tmap(<%=i+1%>)">경로보기</button>
+						
+					<%}%>
+						
+					<%}
+				 %>
+						 <tr>
+							<td colspan="4" id="plan_table_last" >
+								<button onClick = "kakao(<%=i+1%>)" >거리보기</button>
+								<button onClick = "tmap(<%=i+1%>)" >경로보기</button>
 							</td>
 						</tr>
-					<%}
-					}
-				 %>
 				</table>
 			<%} %>
 		</div>
@@ -121,11 +126,17 @@
 		var positions5=[];
 		var positions6=[];
 		
+		
+		
+		
+		
+		
 		function kakao(day){
 			$.ajax({
 				url : "my_bookmarkMap",	
 				type : "get",
 				data : {
+					
 					"map_name1" : "송정떡갈비 1호점",
 					"map_name2" : "화정떡갈비",
 					"map_name3" : "나주 곰탕 하얀집", 
