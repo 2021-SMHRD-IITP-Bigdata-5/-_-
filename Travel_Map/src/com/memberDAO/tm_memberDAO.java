@@ -321,4 +321,23 @@ public class tm_memberDAO {
 
 	}
 
+	public void memberImgChange(String mb_id, String mb_img) {
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_img = ? WHERE mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_img);
+			psmt.setString(2, mb_id);
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
 }
