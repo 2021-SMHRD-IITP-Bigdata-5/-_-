@@ -47,9 +47,6 @@
 
 	<%
 		tm_memberDTO opdto = (tm_memberDTO) session.getAttribute("opdto");
-	System.out.println(opdto.getMb_id() + "팔로우컨");
-	System.out.println(opdto.getMb_follow());
-	System.out.println(opdto.getMb_follower());
 	tm_memberDTO dto = (tm_memberDTO) session.getAttribute("dto");
 
 	tm_snsDAO dao = new tm_snsDAO();
@@ -97,9 +94,6 @@
 		<hr>
 		<c:forEach items="${requestScope.list}" var="i">
 			<tr>
-				<td>${i.tb_file }</td>
-				<td>${i.tb_open }</td>
-				<td>${i.travel_seq }</td>
 				<td><a href="tm_SelectOne?tb_seq=${i.tb_seq}"> <img
 						class="info" src="tm_upload/${i.tb_file}" alt="Not Found">
 				</a></td>

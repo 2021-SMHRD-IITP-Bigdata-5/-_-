@@ -264,11 +264,10 @@ public class tm_snsDAO {
 
 			while (rs.next() == true) {
 
+				int tb_seq = rs.getInt("tb_seq");
 				String tb_file = rs.getString("tb_file");
-				String tb_open = rs.getString("tb_open");
-				String t_title = rs.getString("t_title");
 
-				dto = new tm_snsDTO(mb_id, tb_file, tb_open, t_title);
+				dto = new tm_snsDTO(tb_seq, tb_file, mb_id);
 				list.add(dto);
 			}
 

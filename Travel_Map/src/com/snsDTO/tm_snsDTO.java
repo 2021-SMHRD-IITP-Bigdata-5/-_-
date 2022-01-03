@@ -170,4 +170,12 @@ public class tm_snsDTO {
 		this.tb_file = tb_file;
 	}
 
+	public tm_snsDTO(int tb_seq, String tb_file, String mb_id) {
+		this.tb_seq = tb_seq;
+		this.tb_file = tb_file;
+		this.mb_id = mb_id;
+	}
+	
+	
+
 }
