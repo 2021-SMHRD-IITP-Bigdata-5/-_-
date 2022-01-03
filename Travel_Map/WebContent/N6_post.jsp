@@ -103,7 +103,7 @@
 				<div id="likes" style="align-self: center">
 					<%=dto.getTb_likes()%></div>
 				<button>
-					<img src="img/share.png">
+					<img src="img/details.png">
 				</button>
 			</div>
 			<div class="item7">
