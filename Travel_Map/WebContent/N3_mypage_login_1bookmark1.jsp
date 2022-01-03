@@ -1,3 +1,5 @@
+<%@page import="com.PHM_travel_mapDTO.PHM_travel_mapDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +14,14 @@
 </head>
 
 <body>
+	<%
+		/*ArrayList<PHM_travel_mapDTO> arr = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
+		for(int i =0; i<arr.size(); i++){
+			int end_date = Integer.parseInt(arr.get(i).getEnd_date().substring(8));
+			int start_date = Integer.parseInt(arr.get(i).getStart_date().substring(8));
+			int total_date = end_date - start_date+1;
+		}*/
+	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
 		<button onClick="location.href='Join.jsp'">회원가입</button>
@@ -38,6 +48,13 @@
 			</ul>
 		</div>
 		<div id="side_three">
+			<ul>
+				<%//for(int i = 0 ; i<arr.size() ; i++) {%>
+					<!-- <li><button class="travel_plan"><a href="#"><%//arr.get(i).getTitle() %></a></button></li> -->
+				<%//}%>
+				<li><button class="travel_plan"  onClick="location.href='my_bookmarkMove?t_title=phm'">여행 제목 : phm<br> 2021.01.02~2021.01.03
+				</button></li>
+			</ul> 
 		</div>
 		<div id="side_four">
 		</div>

@@ -208,19 +208,21 @@
 			let plan_list=[];
 		}*/
 		//var cnt=0;
-		//let plan_list=[];
+		
 		//let day_schedule=[];
-		//var positions=[];
+		
 		let plan_list_position=[];
 		let latitude = "";
 		let longtitude = "";
 		
+		var plan_list=[];
 		var plan_list1=[];
 		var plan_list2=[];
 		var plan_list3=[];
 		var plan_list4=[];
 		var plan_list5=[];
 		var plan_list6=[];
+		var positions=[];
 		var positions1=[];
 		var positions2=[];
 		var positions3=[];
