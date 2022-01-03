@@ -29,7 +29,6 @@ public class tm_myTravelDAO {
 
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 			if (conn != null) {
-				System.out.println("접속 성공");
 			} else {
 			}
 		} catch (Exception e) {
