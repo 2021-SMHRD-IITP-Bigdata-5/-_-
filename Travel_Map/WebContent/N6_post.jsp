@@ -29,7 +29,7 @@
 		</div>
 		<div class="item2">
 			<div class="item3">
-				<a href="#" clase="profile_img"><img
+				<a href="#" class="profile_img"><img
 					src="tm_upload/<%=memberdao.imgMemberSelect(dto.getMb_id())%>"></a>
 				<a href="tm_selectMember?mb_id=<%=dto.getMb_id()%>"
 					class="user_nick"><%=dto.getMb_id()%></a> <a href="#"
@@ -99,7 +99,9 @@
 				<button id="likesButton" onclick="likes()">
 					<img src="img/heart_tung.png">
 				</button>
-				<div id="likes" style="align-self: center"></div>
+
+				<div id="likes" style="align-self: center">
+					<%=dto.getTb_likes()%></div>
 				<button>
 					<img src="img/share.png">
 				</button>

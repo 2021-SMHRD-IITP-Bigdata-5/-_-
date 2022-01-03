@@ -30,7 +30,6 @@ public class tm_boardDAO {
 
 			conn = DriverManager.getConnection(url, dbid, dbpw);
 			if (conn != null) {
-				System.out.println("접속 성공");
 			} else {
 			}
 		} catch (Exception e) {
@@ -66,7 +65,7 @@ public class tm_boardDAO {
 			} else {
 			}
 
-			String sql = "SELECT * FROM t_travel_board ORDER BY tb_seq DESC";
+			String sql = "SELECT * FROM phm_travel_board ORDER BY tb_seq DESC";
 			psmt = conn.prepareStatement(sql);
 
 			rs = psmt.executeQuery();
@@ -82,10 +81,10 @@ public class tm_boardDAO {
 				int tb_total = rs.getInt("tb_total");
 				String tb_open = rs.getString("tb_open");
 				String mb_id = rs.getString("mb_id");
-				int travel_seq = rs.getInt("travel_seq");
+				int t_title = rs.getInt("t_title");
 
 				dto = new tm_boardDTO(tb_seq, tb_title, tb_content, tb_file, tb_cnt, //
-						tb_likes, tb_total, tb_open, mb_id, travel_seq);
+						tb_likes, tb_total, tb_open, mb_id, t_title);
 				list.add(dto);
 			}
 
@@ -102,13 +101,13 @@ public class tm_boardDAO {
 		getConn();
 
 		try {
-			String sql = "UPDATE t_travel_board SET tb_cnt = tb_cnt + 1 WHERE tb_seq = ? ";
+			String sql = "UPDATE phm_travel_board SET tb_cnt = tb_cnt + 1 WHERE tb_seq = ? ";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, tb_seq);
 
 			psmt.executeUpdate();
 
-			sql = "SELECT * FROM t_travel_board WHERE tb_seq = ?";
+			sql = "SELECT * FROM phm_travel_board WHERE tb_seq = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, tb_seq);
 			rs = psmt.executeQuery();
@@ -124,10 +123,10 @@ public class tm_boardDAO {
 			int tb_total = rs.getInt("tb_total");
 			String tb_open = rs.getString("tb_open");
 			String mb_id = rs.getString("mb_id");
-			int travel_seq = rs.getInt("travel_seq");
+			int t_title = rs.getInt("t_title");
 
 			dto = new tm_boardDTO(tb_seq1, tb_title, tb_content, tb_file, tb_cnt, //
-					tb_date, tb_likes, tb_total, tb_open, mb_id, travel_seq);
+					tb_date, tb_likes, tb_total, tb_open, mb_id, t_title);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,16 +142,15 @@ public class tm_boardDAO {
 		getConn();
 		System.out.println(dto.getTb_content() + "DAO 보드 인서트");
 		try {
-			String sql = "INSERT INTO t_travel_board" //
-					+ "(tb_seq,tb_title,tb_content,tb_cnt,tb_date,mb_id,travel_seq)" //
-					+ "VALUES(t_travel_board_seq.NEXTVAL,?,?,?,sysdate,?,my_travel_map_seq.CURRVAL)";
+			String sql = "INSERT INTO phm_travel_board" //
+					+ "(tb_seq,tb_title,tb_content,tb_cnt,tb_date,mb_id)" //
+					+ "VALUES(t_travel_board_seq.NEXTVAL,?,?,?,sysdate,?)";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getTb_title());
 			psmt.setString(2, dto.getTb_content());
 			psmt.setInt(3, dto.getTb_cnt());
 			psmt.setString(4, dto.getMb_id());
-			
 
 			psmt.executeUpdate();
 

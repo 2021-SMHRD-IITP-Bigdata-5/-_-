@@ -69,7 +69,12 @@ public class MapDAO {
 				String map_stars = rs.getString(6);
 				String map_info = rs.getString(7);
 				String map_addr = rs.getString(8);
-				String map_img = rs.getString(11);
+				String map_img ="";
+				if (division.equals("숙박시설")) {
+					map_img = null;
+				} else {
+					map_img = rs.getString(11);
+				}
 				dto = new MapDTO(map_seq, map_name, map_latitude, map_longtitude, map_type, map_stars, map_info, map_addr, map_img);
 				arr.add(dto);
 				cnt++;

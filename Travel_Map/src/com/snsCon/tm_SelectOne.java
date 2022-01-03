@@ -18,7 +18,6 @@ public class tm_SelectOne extends HttpServlet {
 			throws ServletException, IOException {
 
 		int tb_seq = Integer.parseInt(request.getParameter("tb_seq"));
-
 		tm_snsDAO dao = new tm_snsDAO();
 		tm_snsDTO dto = new tm_snsDTO(tb_seq);
 

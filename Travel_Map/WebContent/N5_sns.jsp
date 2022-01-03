@@ -170,7 +170,7 @@
 										if (res[i].mb_img == null) {
 											table += '<a id="user_image" style="display:none;"><img src="./phm_img/No_Image.png" width="100", height="100" align="left" style="border:1px solid #c8c8c8;"></a">';
 										} else {
-											table += '<a id="user_image" style="display:none;"><img src="' + res[i].mb_img + '" width="100", height="100" align="left"></a>';
+											table += '<a id="user_image" style="display:none;"><img src="tm_upload/' + res[i].mb_img + '" width="100", height="100" align="left"></a>';
 										}
 
 									}
@@ -301,7 +301,7 @@
 									}
 									table += '<td><a href="tm_SelectOne?tb_seq='
 											+ res[i].tb_seq
-											+ '"><img src="' + res[i].mb_id + '" width="130" height="130"></a></td>';
+											+ '"><img src="tm_upload/' + res[i].tb_file+ '" width="130" height="130"></a></td>';
 									if (cnt == max) {
 										table += '</tr>';
 									}
