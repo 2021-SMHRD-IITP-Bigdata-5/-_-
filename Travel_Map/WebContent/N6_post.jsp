@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>N6_post</title>
 <link rel="stylesheet" href="./assets/css/N6_post.css">
 </head>
 <body>
@@ -24,6 +24,7 @@
 	snsdto = (tm_snsDTO) request.getAttribute("dto");
 	tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
 	commentDAO commentdao = new commentDAO();
+	//ArrayList<commentDTO> list = commentdao.allComment();
 	%>
 	<div class="container">
 		<div class="item1">
@@ -42,42 +43,7 @@
 			<div class="item4"><%=snsdto.getTb_content()%>
 			</div>
 			<div class="item5">
-				<div>
-					<a href="#">user_nick</a> : 오
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick2</a> : 오2
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick3</a> : 오3
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick4</a> : 오4
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick5</a> : 오5
-				</div>
-
-
-
-
-
-				<!-- 클릭한 게시글 번호   tb_seq -->
-				<input id="commContent" type="textarea">
-				<button id="sendTail" onclick="sendTail()">작성</button>
-				<div id="mb_id"><%=memberdto.getMb_id()%></div>
-				<hr>
 				<div id="tailList"></div>
-
-
-
-
-
-				<br>
 			</div>
 			<div class="item6">
 				<button id="likesButton" onclick="likes()">
@@ -91,8 +57,8 @@
 				</button>
 			</div>
 			<div class="item7">
-				<input type="text">
-				<button>댓글달기</button>
+				<input id="commContent" type="text">
+				<button id="sendTail" onclick="sendTail()">댓글달기</button>
 			</div>
 		</div>
 	</div>
@@ -129,16 +95,18 @@
 				type : "get",
 				data : {
 					"commContent" : $('#commContent').val(),
-					"mb_id" : $('#mb_id').text(),
-					"tb_seq" : <%=snsdto.getTb_seq()%>
-				},
+					"mb_id" : $('.user_nick').text(),
+					"tb_seq" :
+	<%=snsdto.getTb_seq()%>
+		},
 				dataType : 'json',
 				success : function(res) {
 					console.log(res);
 					console.log(res[0].mb_id);
 					console.log(res[0].comm_content);
-					$('#mb_id').html(res[0].mb_id);
-					$('#tailList').html(res[0].comm_content);
+					$('#tailList').append(res[0].mb_id + '  :  ');
+					$('#tailList').append(res[0].comm_content);
+					$('#tailList').append('<b>');
 
 				},
 				error : function() {

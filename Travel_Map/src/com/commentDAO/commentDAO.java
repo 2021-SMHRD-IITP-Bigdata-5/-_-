@@ -93,18 +93,16 @@ public class commentDAO {
 		return list;
 	}
 
-	public void addComment(int tb_seq, String commContent, String mb_id) {
+	public int addComment(int tb_seq, String commContent, String mb_id) {
 
 		getConn();
 
 		try {
-			String sql = "INSERT INTO t_travel_comment(comm_content,comm_likes,mb_id)" //
-					+ "VALUES(?,0,?) WHERE tb_seq = ?";
+			String sql = "INSERT INTO t_travel_comment(tb_seq,comm_content,mb_id) VALUES(?,?,?)";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, commContent);
-			psmt.setInt(2, tb_seq);
+			psmt.setInt(1, tb_seq);
+			psmt.setString(2, commContent);
 			psmt.setString(3, mb_id);
-
 			cnt = psmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -113,6 +111,7 @@ public class commentDAO {
 			close();
 		}
 
+		return cnt;
 	}
 
 }
