@@ -19,12 +19,17 @@ public class my_bookmarkMove extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String t_title = request.getParameter("t_title");
-		System.out.println(t_title);
+		int total_date = Integer.parseInt(request.getParameter("total_date"));
+		
+		
+		
 		
 		PHM_travel_planDAO dao = new PHM_travel_planDAO();
 		ArrayList<PHM_travel_planDTO> arr = dao.bring_planData2(t_title);
 		
+		session.setAttribute("t_title", t_title);
 		session.setAttribute("plan2", arr);
+		session.setAttribute("total_date", total_date);
 		response.sendRedirect("N3_mypage_login_1bookmark2.jsp");
 	}
 

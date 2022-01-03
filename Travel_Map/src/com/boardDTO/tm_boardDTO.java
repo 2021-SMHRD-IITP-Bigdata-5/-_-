@@ -15,8 +15,30 @@ public class tm_boardDTO {
 	private String tb_open;
 	private String mb_id;
 	private int travel_seq;
+	String t_title;
+	
+	
 
-	public tm_boardDTO() {
+	public String getT_title() {
+		return t_title;
+	}
+
+	public void setT_title(String t_title) {
+		this.t_title = t_title;
+	}
+
+	public tm_boardDTO(String tb_title, String tb_content, String tb_file, int tb_cnt, int tb_likes, int tb_total,
+			String tb_open, String mb_id, String t_title) {
+		super();
+		this.tb_title = tb_title;
+		this.tb_content = tb_content;
+		this.tb_file = tb_file;
+		this.tb_cnt = tb_cnt;
+		this.tb_likes = tb_likes;
+		this.tb_total = tb_total;
+		this.tb_open = tb_open;
+		this.mb_id = mb_id;
+		this.t_title = t_title;
 	}
 
 	public tm_boardDTO(int tb_seq, String tb_title, String tb_content, String tb_file, int tb_cnt, String tb_date,

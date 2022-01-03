@@ -11,7 +11,7 @@ public class tm_snsDTO {
 	private int tb_total;
 	private String tb_open;
 	private String mb_id;
-	private int travel_seq;
+	private String t_title;
 
 	private boolean check;
 	private int follow;
@@ -88,16 +88,8 @@ public class tm_snsDTO {
 		this.mb_id = mb_id;
 	}
 
-	public int getTravel_seq() {
-		return travel_seq;
-	}
-
-	public void setTravel_seq(int travel_seq) {
-		this.travel_seq = travel_seq;
-	}
-
 	public tm_snsDTO(int tb_seq, String tb_title, String tb_content, String tb_file, int tb_cnt, int tb_likes,
-			int tb_total, String tb_open, String mb_id, int travel_seq) {
+			int tb_total, String tb_open, String mb_id, String t_title) {
 		this.tb_seq = tb_seq;
 		this.tb_title = tb_title;
 		this.tb_content = tb_content;
@@ -107,7 +99,7 @@ public class tm_snsDTO {
 		this.tb_total = tb_total;
 		this.tb_open = tb_open;
 		this.mb_id = mb_id;
-		this.travel_seq = travel_seq;
+		this.t_title = t_title;
 	}
 
 	public tm_snsDTO(String mb_id) {
@@ -135,20 +127,12 @@ public class tm_snsDTO {
 		this.tb_likes = tb_likes;
 	}
 
-	public tm_snsDTO(int tb_seq, String tb_file, String tb_open, String mb_id, int travel_seq) {
+	public tm_snsDTO(int tb_seq, String tb_file, String tb_open, String mb_id, String t_title) {
 		this.tb_seq = tb_seq;
 		this.tb_file = tb_file;
 		this.tb_open = tb_open;
 		this.mb_id = mb_id;
-		this.travel_seq = travel_seq;
-	}
-
-	public tm_snsDTO(String mb_id, String tb_file, String tb_open, int travel_seq) {
-
-		this.mb_id = mb_id;
-		this.tb_file = tb_file;
-		this.tb_open = tb_open;
-		this.travel_seq = travel_seq;
+		this.t_title = t_title;
 	}
 
 	public boolean isCheck() {
@@ -180,10 +164,18 @@ public class tm_snsDTO {
 		this.tb_cnt = tb_cnt;
 		this.tb_likes = tb_likes;
 	}
-	
+
 	public tm_snsDTO(int tb_seq, String tb_file) {
 		this.tb_seq = tb_seq;
 		this.tb_file = tb_file;
 	}
+
+	public tm_snsDTO(int tb_seq, String tb_file, String mb_id) {
+		this.tb_seq = tb_seq;
+		this.tb_file = tb_file;
+		this.mb_id = mb_id;
+	}
+	
+	
 
 }

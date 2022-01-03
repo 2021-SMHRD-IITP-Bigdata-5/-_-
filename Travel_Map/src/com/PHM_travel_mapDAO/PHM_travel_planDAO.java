@@ -167,4 +167,32 @@ public class PHM_travel_planDAO {
 		return arr;
 	}
 
+
+
+	public String bring_people(String t_title) {
+		String people = null;
+		try {
+			getConn();
+			
+			String sql = "select * from phm_travel_plan where t_title=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, t_title);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				people = rs.getString(4);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+
+		}
+		return people;
+	}
+
+
+
+
 }

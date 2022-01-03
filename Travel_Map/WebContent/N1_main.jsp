@@ -37,7 +37,7 @@
 					<%//} else {%> -->
                     <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
-                    <li><button class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
+                    <li><button class = "side_button" onClick="location.href='N5_sns.jsp'"><a href="#" >SNS</a></button></li>
                     <%//} %>
                 </ul>
             </nav>
@@ -95,41 +95,45 @@
 						let table = "";
 						
 						for(let i = 0; i < res.length; i++) {
-							
-						table += '<ul class="tour_list">';
-						table += '<table width="400" height="100" align="left">';
-						table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
-						+ res[i].map_name + '</a></h3></td>';
-						if (res[i].map_img == "null" || res[i].map_img == null) {
-							table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right" style="border:1px solid #c8c8c8;"></th></tr>';
-						} else {
-							table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
-						}
-						table += '<tr><td><div class="map_name style="display:none;"">'
-							+ res[i].map_name + '</div></td></tr>';
-						if (res[i].map_stars == 0) {
-							table += '<tr><td>★ : <a class="map_stars">평가중</div></td></tr>';
-						} else {
-							table += '<tr><td>★ : <a class="map_stars">'
-								+ res[i].map_stars + '</div></td></tr>';
-						}
-						table += '<tr><td><div class="map_addr">'
-							+ res[i].map_addr + '</div></td></tr>';
-						if (res[i].map_img == "null") {
-							table += '<div class ="map_img" style="display:none;">./phm_img/No_Image.png</div>';
-						} else {
-							table += '<div class ="map_img" style="display:none;">'
-								+ res[i].map_img + '</div>';
-						}
-						table += '<div class ="map_latitude" style="display:none;">'
-									+ res[i].map_latitude + '</div>';
-						table += '<div class ="map_longtitude" style="display:none;">'
-								+ res[i].map_longtitude + '</div>';
-						table += '</ul>';
-						table += '<hr width="400" align="left">';
-						}
-						$('#side_four').append(table);
-						}
+						
+							if (res[i].map_type == "숙박시설") {
+								res[i].map_img = null;
+							}	
+						
+							table += '<ul class="tour_list">';
+							table += '<table width="400" height="100" align="left">';
+							table += '<tr><td><h3><a href="#" class ="local_find" value = '+i+'>'
+							+ res[i].map_name + '</a></h3></td>';
+							if (res[i].map_img == "null" || res[i].map_img == null) {
+								table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="right" style="border:1px solid #c8c8c8;"></th></tr>';
+							} else {
+								table += '<th rowspan="4"><img src="' + res[i].map_img + '" width="100", height="100" align="right"></th></tr>';
+							}
+							table += '<tr><td><div class="map_name style="display:none;"">'
+								+ res[i].map_name + '</div></td></tr>';
+							if (res[i].map_stars == 0) {
+								table += '<tr><td>★ : <a class="map_stars">평가중</div></td></tr>';
+							} else {
+								table += '<tr><td>★ : <a class="map_stars">'
+									+ res[i].map_stars + '</div></td></tr>';
+							}
+							table += '<tr><td><div class="map_addr">'
+								+ res[i].map_addr + '</div></td></tr>';
+							if (res[i].map_img == "null") {
+								table += '<div class ="map_img" style="display:none;">./phm_img/No_Image.png</div>';
+							} else {
+								table += '<div class ="map_img" style="display:none;">'
+									+ res[i].map_img + '</div>';
+							}
+							table += '<div class ="map_latitude" style="display:none;">'
+										+ res[i].map_latitude + '</div>';
+							table += '<div class ="map_longtitude" style="display:none;">'
+									+ res[i].map_longtitude + '</div>';
+							table += '</ul>';
+							table += '<hr width="400" align="left">';
+							}
+							$('#side_four').append(table);
+							}
 				},
 				error : function() {
 					alert('검색실패');

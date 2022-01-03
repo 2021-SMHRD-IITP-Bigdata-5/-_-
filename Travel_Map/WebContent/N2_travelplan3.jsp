@@ -43,7 +43,7 @@
                     <li><button type="button" class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
                     <li><button type="button" class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button type="button" class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
-                    <li><button type="button" class = "side_button" onClick="location.href='N4_mypage_sns.jsp'"><a href="#" >SNS</a></button></li>
+                    <li><button type="button" class = "side_button" onClick="location.href='N5_sns.jsp'"><a href="#" >SNS</a></button></li>
                 </ul>
             </nav>
         </div>
@@ -129,9 +129,9 @@
 		<div id="side_five" align="center">
 		</div>
 		<div id="side_six" align="center" style="margin-top:20px;">
-				<button	type="button" class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;"><a href="#">지도 미리보기</a></button>
-				<button type="button" class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;"><a href="#">경로 미리보기</a></button>
-				<button type="submit" class="side_button" style="width:100px;"><a href="#">계획 세우기</a></button>
+				<button	type="button" class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;">지도 미리보기</button>
+				<button type="button" class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;">경로 미리보기</button>
+				<button type="submit" class="side_button" style="width:100px;">계획 세우기</button>
 		</div>
 		</form>
    	</div>
