@@ -29,6 +29,10 @@
 		tm_snsDAO dao = new tm_snsDAO();
 	tm_memberDAO memberdao = new tm_memberDAO();
 	ArrayList<tm_snsDTO> list = dao.selectAll();
+	System.out.println("2 : " + list);
+	System.out.println("3 : " + list.get(0).getTb_seq());
+	System.out.println("4 : " + list.get(0).getTb_title());
+	System.out.println("5 : " + list.get(0).getTb_open());
 	tm_memberDTO memberdto = null;
 	ArrayList<String> imgList = new ArrayList<String>();
 	request.setAttribute("list", list);
