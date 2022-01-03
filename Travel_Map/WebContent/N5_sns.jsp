@@ -134,7 +134,7 @@
 										table += '<br>'
 										table += '<table width="300" height="100" align="center">';
 										if (res[i].mb_img == null) {
-											table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="left" onClick='
+											table += '<th rowspan="4"><img src="./phm_img/default_profile.png" width="100", height="100" align="left" onClick='
 													+ "'snsDetail()'"
 													+ ' style="cursor:pointer; border:1px solid #c8c8c8;"></th>';
 										} else {

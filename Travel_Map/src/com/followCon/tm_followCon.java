@@ -52,10 +52,11 @@ public class tm_followCon extends HttpServlet {
 
 			if (follow_cnt > 0) {
 
+				String conID = (String) session.getAttribute("conID");
+				
 				// 멤버 테이블 카운트
-
 				dao.followIncrease(mb_id);
-				dao.followerIncrease(f_id);
+				dao.followerIncrease(f_id, conID);
 
 			}
 		} // check = false 로 넘어올 때 , 언팔

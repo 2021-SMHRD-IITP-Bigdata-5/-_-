@@ -15,6 +15,33 @@ public class tm_snsDTO {
 
 	private boolean check;
 	private int follow;
+	private String log_type;
+	private String mb_nickname;
+	private String mb_img;
+
+	public String getLog_type() {
+		return log_type;
+	}
+
+	public void setLog_type(String log_type) {
+		this.log_type = log_type;
+	}
+
+	public String getMb_nickname() {
+		return mb_nickname;
+	}
+
+	public void setMb_nickname(String mb_nickname) {
+		this.mb_nickname = mb_nickname;
+	}
+
+	public String getMb_img() {
+		return mb_img;
+	}
+
+	public void setMb_img(String mb_img) {
+		this.mb_img = mb_img;
+	}
 
 	public int getTb_seq() {
 		return tb_seq;
@@ -174,6 +201,14 @@ public class tm_snsDTO {
 		this.tb_seq = tb_seq;
 		this.tb_file = tb_file;
 		this.mb_id = mb_id;
+	}
+
+	public tm_snsDTO(String mb_id, String log_type, int tb_seq, String mb_nickname, String mb_img) {
+		this.mb_id = mb_id;
+		this.log_type = log_type;
+		this.tb_seq = tb_seq;
+		this.mb_nickname = mb_nickname;
+		this.mb_img = mb_img;
 	}
 	
 	
