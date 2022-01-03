@@ -64,7 +64,18 @@ public class PHM_travel_planDAO {
 			psmt.setString(5, id);
 
 			cnt = psmt.executeUpdate();
-
+			
+			
+			sql = "insert into t_event_log values(?,?,?,?,?)";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, "insert");
+			psmt.setString(3, null);
+			psmt.setString(4, null);
+			psmt.setString(5, null);
+			psmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

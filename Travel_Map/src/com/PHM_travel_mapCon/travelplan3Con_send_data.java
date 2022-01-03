@@ -20,7 +20,7 @@ public class travelplan3Con_send_data extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			HttpSession session = request.getSession();
 			PHM_travel_mapDTO travelplan2 = (PHM_travel_mapDTO)session.getAttribute("travelplan2");
-			String id = "admin";
+			String id = (String) session.getAttribute("conID");
 			String title = travelplan2.getTitle();
 			String people = travelplan2.getPeople();
 			String startDate = travelplan2.getStart_date();
