@@ -196,4 +196,9 @@ public class tm_memberDTO {
 		this.mb_img = mb_img;
 	}
 
+	public void put(String mg_img, String mb_img2) {
+		this.mb_img = mb_img2;
+
+	}
+
 }

@@ -85,8 +85,7 @@
 					<button>
 						<img src="./img/heart_tung.png">
 					</button>
-					<div><%=i.getTb_likes()%></div>
-					<a href="#"><img src="./img/details.png"></a>
+					<h4><%=i.getTb_likes()%></h4>
 				</div>
 				<div class="trvel_writing">
 					<p><%=i.getTb_content()%></p>
@@ -134,7 +133,7 @@
 										table += '<br>'
 										table += '<table width="300" height="100" align="center">';
 										if (res[i].mb_img == null) {
-											table += '<th rowspan="4"><img src="./phm_img/No_Image.png" width="100", height="100" align="left" onClick='
+											table += '<th rowspan="4"><img src="./phm_img/default_profile.png" width="100", height="100" align="left" onClick='
 													+ "'snsDetail()'"
 													+ ' style="cursor:pointer; border:1px solid #c8c8c8;"></th>';
 										} else {

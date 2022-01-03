@@ -1,3 +1,4 @@
+<%@page import="com.memberDAO.tm_memberDAO"%>
 <%@page import="com.snsDAO.tm_snsDAO"%>
 <%@page import="com.memberDTO.tm_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,7 +17,9 @@
 <body>
 	<%
 		tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
+	tm_memberDAO memberdao = new tm_memberDAO();
 	tm_snsDAO dao = new tm_snsDAO();
+
 	int snsCount = dao.snsCount(memberdto.getMb_id());
 	%>
 	<div id="side_bar">
@@ -61,9 +64,14 @@
 		<div id="side_three">
 			<div id="profile_img">
 				<div>
-					<img src="./img/aron_ch.PNG">
+					<img src="tm_upload/<%=memberdto.getMb_img()%>"
+						onerror="this.src=/tm_upload/4949.jpg">
 				</div>
-				<a href="#">프로필 이미지 변경</a>
+				<form action="imgChangeCon" method="post"
+					enctype="multipart/form-data">
+					<input type="file" name="imgChange">
+					<button type="submit">프로필 사진 변경</button>
+				</form>
 			</div>
 			<div id="profile_info">
 				<table>

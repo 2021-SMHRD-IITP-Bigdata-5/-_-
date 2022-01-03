@@ -169,8 +169,11 @@ public class tm_memberDAO {
 
 	}
 
-	public void followerIncrease(String f_id) {
-
+public void followerIncrease(String f_id, String conID) {
+		
+		String mb_img = "";
+		String mb_nickname = "";
+		
 		getConn();
 
 		try {
@@ -179,7 +182,27 @@ public class tm_memberDAO {
 			psmt.setString(1, f_id);
 
 			cnt = psmt.executeUpdate();
-
+			
+			sql = "select * from t_member where mb_id = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, conID);
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				mb_nickname = rs.getString("mb_nickname");
+				mb_img = rs.getString("mb_img");
+			}
+			
+			sql = "insert into t_event_log values(?,?,?,?,?)";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, f_id);
+			psmt.setString(2, "follower");
+			psmt.setInt(3, (Integer) null);
+			psmt.setString(4, mb_nickname);
+			psmt.setString(5, mb_img);
+			psmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -319,6 +342,25 @@ public class tm_memberDAO {
 
 		return mb_img;
 
+	}
+
+	public void memberImgChange(String mb_id, String mb_img) {
+		getConn();
+
+		try {
+			String sql = "UPDATE t_member SET mb_img = ? WHERE mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_img);
+			psmt.setString(2, mb_id);
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 	}
 
 }
