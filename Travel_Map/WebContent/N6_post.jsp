@@ -15,27 +15,27 @@
 </head>
 <body>
 	<%
-		tm_snsDAO dao = new tm_snsDAO();
-		tm_snsDTO dto = new tm_snsDTO();
-		tm_memberDAO memberdao = new tm_memberDAO();
-		ArrayList<String> imgList = new ArrayList<String>();
-		dto = (tm_snsDTO) request.getAttribute("dto");
+		tm_snsDAO snsdao = new tm_snsDAO();
+	tm_snsDTO snsdto = new tm_snsDTO();
+	tm_memberDAO memberdao = new tm_memberDAO();
+	ArrayList<String> imgList = new ArrayList<String>();
+	snsdto = (tm_snsDTO) request.getAttribute("dto");
 	%>
 	<div class="container">
 		<div class="item1">
 			<div>
-				<img src="tm_upload/<%=dto.getTb_file()%>">
+				<img src="tm_upload/<%=snsdto.getTb_file()%>">
 			</div>
 		</div>
 		<div class="item2">
 			<div class="item3">
 				<a href="#" class="profile_img"><img
-					src="board_upload/<%=memberdao.imgMemberSelect(dto.getMb_id())%>"></a>
-				<a href="tm_selectMember?mb_id=<%=dto.getMb_id()%>"
-					class="user_nick"><%=dto.getMb_id()%></a> <a href="#"
-					class="travel_plan"><%=dto.getTb_title()%></a>
+					src="tm_upload/<%=memberdao.imgMemberSelect(snsdto.getMb_id())%>"></a>
+				<a href="tm_selectMember?mb_id=<%=snsdto.getMb_id()%>"
+					class="user_nick"><%=snsdto.getMb_id()%></a> <a href="#"
+					class="travel_plan"><%=snsdto.getTb_title()%></a>
 			</div>
-			<div class="item4"><%=dto.getTb_content()%></p>
+			<div class="item4"><%=snsdto.getTb_content()%>
 			</div>
 			<div class="item5">
 				<div>
@@ -101,7 +101,7 @@
 				</button>
 
 				<div id="likes" style="align-self: center">
-					<%=dto.getTb_likes()%></div>
+					<%=snsdto.getTb_likes()%></div>
 				<button>
 					<img src="img/details.png">
 				</button>
@@ -121,7 +121,7 @@
 				type : "post",
 				data : {
 					"tb_seq" :
-	<%=dto.getTb_seq()%>
+	<%=snsdto.getTb_seq()%>
 		},
 				success : function(res) {
 					console.log(res);
