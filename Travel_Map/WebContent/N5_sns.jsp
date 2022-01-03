@@ -27,11 +27,11 @@
 
 	<%
 		tm_snsDAO dao = new tm_snsDAO();
-		tm_memberDAO memberdao = new tm_memberDAO();
-		ArrayList<tm_snsDTO> list = dao.selectAll();
-		tm_memberDTO memberdto = null;
-		ArrayList<String> imgList = new ArrayList<String>();
-		request.setAttribute("list", list);
+	tm_memberDAO memberdao = new tm_memberDAO();
+	ArrayList<tm_snsDTO> list = dao.selectAll();
+	tm_memberDTO memberdto = null;
+	ArrayList<String> imgList = new ArrayList<String>();
+	request.setAttribute("list", list);
 	%>
 	<div class="side_all">
 		<div class="side_one">
@@ -59,12 +59,15 @@
 		</div>
 		<div class="side_two">
 
-			<select id="type" style="width:90px; height:47px; float:left; margin-left:10px; margin-right:-10px; border: 1px solid #52C999; border-radius: 3px;" >
-        		<option value="title">제목</option>
-        		<option value="user">사용자</option>
-        	</select>
-            <input type="text" id="search_keyword_query" placeholder=" 검색어 입력" style="width:300px; height:36px;">
-            <button id="search_keyword_query_button" onClick='snsSearch()'><img src="./img/search.png"></button>
+			<select id="type"
+				style="width: 90px; height: 47px; float: left; margin-left: 10px; margin-right: -10px; border: 1px solid #52C999; border-radius: 3px;">
+				<option value="title">제목</option>
+				<option value="user">사용자</option>
+			</select> <input type="text" id="search_keyword_query" placeholder=" 검색어 입력"
+				style="width: 300px; height: 36px;">
+			<button id="search_keyword_query_button" onClick='snsSearch()'>
+				<img src="./img/search.png">
+			</button>
 		</div>
 		<div class="side_three">
 			<%
@@ -99,7 +102,7 @@
 	</div>
 	<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>
-	
+
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		function snsSearch() {
@@ -137,7 +140,7 @@
 													+ "'snsDetail()'"
 													+ ' style="cursor:pointer; border:1px solid #c8c8c8;"></th>';
 										} else {
-											table += '<th rowspan="4"><img src="board_upload/'
+											table += '<th rowspan="4"><img src="tm_upload/'
 													+ res[i].mb_img
 													+ '" width="100", height="100" align="left" onClick='
 													+ "'snsDetail()'"
@@ -320,20 +323,21 @@
 					});
 		}
 	</script>
-<!-- map--------------- ------------------------------------------------------------------------------------------------------------------------------------ -->
+	<!-- map--------------- ------------------------------------------------------------------------------------------------------------------------------------ -->
 
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=31e189d0d305a85663770a625b11688d&libraries=services"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(35.11070531999631,
 					126.87780481325912), // 지도의 중심좌표 - 스마트인재개발원
-			level : 3	// 지도의 확대 레벨
+			level : 3
+		// 지도의 확대 레벨
 		};
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
 	</script>
 
 
