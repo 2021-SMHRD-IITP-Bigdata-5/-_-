@@ -102,7 +102,7 @@
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="kakao_map" style="width: 73.3%; height: 100vh; float: right;"></div>
-	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; display:none;"></div>
+	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; "></div>
 	
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
@@ -176,6 +176,9 @@
 				},
 				dataType : "json",
 				success : function(res){ 
+					marker_allClose(markers);
+					drawLine_allClose(drawLine_list);
+					distanceOverlay_allClose(distanceOverlay_list);
 					var positions=[];
 					console.log(res);
 					for(let i =0; i<res.length; i++){
@@ -264,12 +267,6 @@
 		
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 		var markers = [];
-		var markers1 = [];
-		var markers2 = [];
-		var markers3 = [];
-		var markers4 = [];
-		var markers5 = [];
-		var markers6 = [];
 		
 		function displayMarker(positions) {
 			for (var i = 0; i < positions.length; i ++) {
@@ -294,43 +291,14 @@
 			}
 			
 		}
-		function marker_allClose(marker_del,del){
-			//console.log(markers)
-			//console.log("포지션 길이 : ",positions.length)
-			//console.log("포지션 : ",positions)
-			
+		function marker_allClose(marker_del){
 			for(let i =0; i<marker_del.length; i++){
 				marker_del[i].setMap(null);
 				console.log(i,marker_del[i])
 			}
-			console.log("마커 : ",marker_del)
-			if(del==1){
-		    	markers1=[];
-		    }else if(del==2){
-		    	markers2=[];
-		    }else if(del==3){
-		    	markers3=[];
-		    }else if(del==4){
-		    	markers4=[];
-		    }else if(del==5){
-		    	markers5=[];
-		    }else if(del==6){
-		    	markers6=[];
-		    }
-						
-			
+			markers=[];
 		}
-		function marker_close(del2,marker_del2){
-			//console.log("i",i)
-			//console.log("markers1",markers);
-			marker_del2[del2].setMap(null);
-			
-			marker_del2.splice(del2, 1);
-			//console.log("markers2",markers);
-			console.log("positions1",positions1)
-			
-			
-		}
+		
 	</script>
 
 
@@ -339,6 +307,18 @@
 <!--카카오 -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <script type="text/javascript">
 		// 지도 미리보기 파트(카카오맵) 
+		var drawLine_list = [];
+		var distanceOverlay_list = [];
+		function drawLine_allClose(drawLine_list){
+			for(let i =0; i<drawLine_list.length; i++){
+				drawLine_list[i].setMap(null);
+			}
+		}
+		function distanceOverlay_allClose(distanceOverlay_list){
+			for(let i =0; i<distanceOverlay_list.length; i++){
+				distanceOverlay_list[i].setMap(null);
+			}
+		}
 		function kakao_route(positions){
 			document.getElementById('kakao_map').style.display="block";
 			document.getElementById('tmap_map').style.display="none";
@@ -375,7 +355,7 @@
 					strokeOpacity : 1, 			// 선의 불투명도입니다. 0에서 1사이값이며 0에 가까울수록 투명합니다.
 					strokeStyle : 'solid'		// 선의 스타일입니다.
 				})
-				
+				drawLine_list.push(drawLine);
 				distance = Math.round(lineLine.getLength());
 				displayCircleDot(positions[i].latlng, distance);
 			}
@@ -392,6 +372,7 @@
 					})	;
 					
 					distanceOverlay.setMap(map);
+					distanceOverlay_list.push(distanceOverlay);
 				}
 			}
 			
@@ -405,36 +386,29 @@
 
 <!-- 티맵---------------------------------------------------------------------------------------------------------------------------------------------- -->
 <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxefc4aaf819ab46d09bfedeef6adff714"></script>
+	<script type="text/javascript">
+		map1 = new Tmapv2.Map("tmap_map", {
+			center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
+		});
+		map1.setZoom(14);
+	</script>
 	<script>
+	
+		var tmap_markers =[];
+		var new_polyLine = [];
 		// 지도 경로미리보기 파트(티맵)
 		function tmap_route(plan_list){
-			
-			/*if(day==1){
-				plan_list=plan_list1;
-			}else if(day==2){
-				plan_list = plan_list2;
-			}else if(day==3){
-				plan_list = plan_list3;
-			}else if(day==4){
-				plan_list = plan_list4;
-			}else if(day==5){
-				plan_list = plan_list5;
-			}else if(day==6){
-				plan_list = plan_list6;
-			}*/
+			tmap_allClose(tmap_markers);
+			tmap_poly_allClose(new_polyLine);
 			
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
-			// 1. 지도 띄우기
-			map1 = new Tmapv2.Map("tmap_map", {
-				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
-			});
-			map1.setZoom(14);
 			
-			var new_polyLine = [];
+			
 			var new_Click_polyLine = [];
 			
 			function drawData(data){
+				
 				// 지도위에 선은 다 지우기
 				routeData = data;
 				var resultStr = "";
@@ -626,6 +600,20 @@
 					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
+		}
+		function tmap_allClose(tmap_markers){
+			for(let i =0; i<tmap_markers.length; i++){
+				tmap_markers[i].setMap(null);
+			}
+			tmap_markers=[];
+		}
+		function tmap_poly_allClose(new_polyLine){
+			if(new_polyLine!=null){
+				for(let i =0; i<new_polyLine.length; i++){
+					new_polyLine[i].setMap(null);
+				}
+				new_polyLine=[];
+			}
 		}
 	</script>
 </body>

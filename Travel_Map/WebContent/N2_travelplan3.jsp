@@ -138,7 +138,7 @@
 	
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="kakao_map" style="width: 73.3%; height: 100vh; float: right;"></div>
-	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; display:none;"></div>
+	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; display:none; "></div>
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	
@@ -372,6 +372,10 @@
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list);
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 			}else if(d==2){
 				displayMarker2(positions2,d);
 				marker_allClose(markers1,1);
@@ -379,6 +383,10 @@
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list)
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 				
 			}else if(d==3){
 				displayMarker2(positions3,d);
@@ -387,6 +395,10 @@
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list);
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 			}else if(d==4){
 				displayMarker2(positions4,d);
 				marker_allClose(markers1,1);
@@ -394,6 +406,10 @@
 				marker_allClose(markers3,3);
 				marker_allClose(markers5,5);
 				marker_allClose(markers6,6);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list);
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 			}else if(d==5){
 				displayMarker2(positions5,d);
 				marker_allClose(markers1,1);
@@ -401,6 +417,10 @@
 				marker_allClose(markers3,3);
 				marker_allClose(markers4,4);
 				marker_allClose(markers6,6);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list);
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 			}else if(d==6){
 				displayMarker2(positions6,d);
 				marker_allClose(markers1,1);
@@ -408,6 +428,10 @@
 				marker_allClose(markers3,3);
 				marker_allClose(markers4,4);
 				marker_allClose(markers5,5);
+				drawLine_allClose(drawLine_list);
+				distanceOverlay_allClose(distanceOverlay_list);
+				tmap_allClose(tmap_markers);
+				tmap_poly_allClose(new_polyLine);
 			}
 		}
 	
@@ -688,7 +712,10 @@
 	
 	<script type="text/javascript">
 		// 지도 미리보기 파트(카카오맵) 
+		var drawLine_list = [];
+		var distanceOverlay_list = [];
 		function kakao_route(){
+			drawLine_allClose(drawLine_list);
 			document.getElementById('kakao_map').style.display="block";
 			document.getElementById('tmap_map').style.display="none";
 			var distanceOverlay;
@@ -724,7 +751,7 @@
 					strokeOpacity : 1, 			// 선의 불투명도입니다. 0에서 1사이값이며 0에 가까울수록 투명합니다.
 					strokeStyle : 'solid'		// 선의 스타일입니다.
 				})
-				
+				drawLine_list.push(drawLine);
 				distance = Math.round(lineLine.getLength());
 				displayCircleDot(positions[i].latlng, distance);
 			}
@@ -741,6 +768,7 @@
 					})	;
 					
 					distanceOverlay.setMap(map);
+					distanceOverlay_list.push(distanceOverlay);
 				}
 			}
 			
@@ -748,15 +776,36 @@
 			map.setLevel(7);
 			map.setCenter(moveLatLon);
 		}
+		
+		
+		function drawLine_allClose(drawLine_list){
+			for(let i =0; i<drawLine_list.length; i++){
+				drawLine_list[i].setMap(null);
+			}
+		}
+		function distanceOverlay_allClose(distanceOverlay_list){
+			for(let i =0; i<distanceOverlay_list.length; i++){
+				distanceOverlay_list[i].setMap(null);
+			}
+		}
 	</script>
 	
 	<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxefc4aaf819ab46d09bfedeef6adff714"></script>
+	<script type="text/javascript">
+		// 1. 지도 띄우기
+			map1 = new Tmapv2.Map("tmap_map", {
+				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
+			});
+			map1.setZoom(14);
+	</script>
 	<script>
 		// 지도 경로미리보기 파트(티맵)
+		var tmap_markers =[];
+		var new_polyLine = [];
+		
 		function tmap_route(){
-			
 			if(day==1){
-				plan_list=plan_list1;
+				plan_list = plan_list1;
 			}else if(day==2){
 				plan_list = plan_list2;
 			}else if(day==3){
@@ -768,16 +817,16 @@
 			}else if(day==6){
 				plan_list = plan_list6;
 			}
-			
+			console.log("plan_list",plan_list)
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
 			// 1. 지도 띄우기
-			map1 = new Tmapv2.Map("tmap_map", {
+			/*map1 = new Tmapv2.Map("tmap_map", {
 				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
 			});
-			map1.setZoom(14);
+			map1.setZoom(14);*/
 			
-			var new_polyLine = [];
+			
 			var new_Click_polyLine = [];
 			
 			function drawData(data){
@@ -875,6 +924,8 @@
 					icon: imgURL,
 					map: map1
 				});
+				
+				tmap_markers.push(marker);
 				// 마커 드래그 설정
 				marker.tag = tag;
 				marker.addListener("dragend", function (evt) {
@@ -890,6 +941,7 @@
 			// 3. 경유지 심볼 찍기
 			for(let i=1; i<plan_list.length-1; i++){
 				addMarker("llPass",plan_list[i].map_longtitude,plan_list[i].map_latitude,i+2);
+				
 			}
 			
 			// 4. 경로탐색 API 사용요청
@@ -973,38 +1025,23 @@
 				}
 			});
 		}
-	</script>
-	<script type="text/javascript">
-		//데이터 전송 파트
-		function send_plan(){
-			$.ajax({
-				url : "ex01sum",	
-				type : "get",
-				data : {
-					"date": total_date,
-					"day1": {
-						
-					},
-					"day2": {},
-					"day3": {},
-					"day4": {},
-					"day5": {},
-					"day6": {},
-					
-				},
-				success : function(res){ 
-					console.log(res)
-					
-				},
-				error : function(){
-					alert("요청 실패!")
-				}
-			
-			})
+		
+		function tmap_allClose(tmap_markers){
+			for(let i =0; i<tmap_markers.length; i++){
+				tmap_markers[i].setMap(null);
+			}
+			tmap_markers=[];
 		}
-	
+		function tmap_poly_allClose(new_polyLine){
+			for(let i =0; i<new_polyLine.length; i++){
+				new_polyLine[i].setMap(null);
+			}
+			new_polyLine=[];
+		}
+		
+		
 	</script>
-</form>
+
 </body>
 
 </html>
