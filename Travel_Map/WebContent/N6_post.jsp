@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>N6_post</title>
 <link rel="stylesheet" href="./assets/css/N6_post.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
 			<div class="item3">
 				<a href="#" class="profile_img"><img
 					src="tm_upload/<%=memberdao.imgMemberSelect(snsdto.getMb_id())%>"></a>
-				<a href="tm_selectMember?mb_id=<%=snsdto.getMb_id()%>"
+				<a href="N4_mypage_sns.jsp?mb_id=<%=snsdto.getMb_id()%>"
 					class="user_nick"><%=snsdto.getMb_id()%></a> <a href="#"
 					class="travel_plan"><%=snsdto.getTb_title()%></a>
 			</div>
