@@ -167,7 +167,7 @@
 										table += '<a id="user_id" style="display:none;">'
 												+ res[i].mb_id + '</a>';
 										if (res[i].mb_img == null) {
-											table += '<a id="user_image" style="display:none;"><img src="./phm_img/No_Image.png" width="100", height="100" align="left" style="border:1px solid #c8c8c8;"></a">';
+											table += '<a id="user_image" style="display:none;"><img src="./phm_img/default_profile.png" width="100", height="100" align="left" style="border:1px solid #c8c8c8;"></a">';
 										} else {
 											table += '<a id="user_image" style="display:none;"><img src="tm_upload/' + res[i].mb_img + '" width="100", height="100" align="left"></a>';
 										}
