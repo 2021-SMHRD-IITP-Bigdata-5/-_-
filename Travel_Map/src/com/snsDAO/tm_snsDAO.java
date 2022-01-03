@@ -202,9 +202,9 @@ public class tm_snsDAO {
 				tb_likes = rs.getInt("tb_likes");
 				mb_id = rs.getString("mb_id");
 			}
-			
+
 			sql = "select * from t_member where mb_id = ?";
-			
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, conID);
 			rs = psmt.executeQuery();
@@ -212,9 +212,9 @@ public class tm_snsDAO {
 				mb_nickname = rs.getString("mb_nickname");
 				mb_img = rs.getString("mb_img");
 			}
-			
+
 			sql = "insert into t_event_log values(?,?,?,?,?)";
-			
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, mb_id);
 			psmt.setString(2, "likes");
@@ -222,7 +222,7 @@ public class tm_snsDAO {
 			psmt.setString(4, mb_nickname);
 			psmt.setString(5, mb_img);
 			psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -399,21 +399,21 @@ public class tm_snsDAO {
 
 		return cnt;
 	}
-	
-public ArrayList<tm_snsDTO> eventLog(String conID) {
-		
+
+	public ArrayList<tm_snsDTO> eventLog(String conID) {
+
 		ArrayList<tm_snsDTO> logArr = new ArrayList<tm_snsDTO>();
-		
+
 		try {
-			
+
 			getConn();
-			
+
 			String sql = "select * from t_event_log where mb_id = ?";
-			
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, conID);
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next() == true) {
 				String mb_id = rs.getString(1);
 				String log_type = rs.getString(2);
@@ -423,14 +423,14 @@ public ArrayList<tm_snsDTO> eventLog(String conID) {
 				dto = new tm_snsDTO(mb_id, log_type, tb_seq, mb_nickname, mb_img);
 				logArr.add(dto);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("클래스파일 로딩실패");
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
+
 		return logArr;
 	}
 }

@@ -1,3 +1,5 @@
+<%@page import="com.snsDTO.tm_snsDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.memberDAO.tm_memberDAO"%>
 <%@page import="com.snsDAO.tm_snsDAO"%>
 <%@page import="com.memberDTO.tm_memberDTO"%>
@@ -18,9 +20,11 @@
 	<%
 		tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
 	tm_memberDAO memberdao = new tm_memberDAO();
-	tm_snsDAO dao = new tm_snsDAO();
+	tm_snsDAO snsdao = new tm_snsDAO();
+	ArrayList<tm_snsDTO> list = new ArrayList<tm_snsDTO>();
+	list = snsdao.searchMy(memberdto.getMb_id());
 
-	int snsCount = dao.snsCount(memberdto.getMb_id());
+	int snsCount = snsdao.snsCount(memberdto.getMb_id());
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
@@ -99,10 +103,20 @@
 			</div>
 
 		</div>
-		<div id="side_for"></div>
+		<div id="galley">
+			<%
+				for (tm_snsDTO i : list) {
+				System.out.println(i.getTb_file());
+			%>
+			<a><img src="tm_upload/<%=i.getTb_file()%>"></a>
+			<%
+				}
+			%>
+		</div>
 		<div id="side_five"></div>
-
 	</div>
+
+
 
 	<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>

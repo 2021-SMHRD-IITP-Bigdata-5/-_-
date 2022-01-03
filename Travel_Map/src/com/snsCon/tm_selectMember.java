@@ -33,7 +33,7 @@ public class tm_selectMember extends HttpServlet {
 		}
 
 		response.setCharacterEncoding("utf-8");
-		response.sendRedirect("selectMember.jsp");
+		response.sendRedirect("N4_mypage_sns.jsp");
 
 	}
 

@@ -1,3 +1,5 @@
+<%@page import="com.commentDAO.commentDAO"%>
+<%@page import="com.memberDTO.tm_memberDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.memberDAO.tm_memberDAO"%>
 <%@page import="com.snsDTO.tm_snsDTO"%>
@@ -20,6 +22,8 @@
 	tm_memberDAO memberdao = new tm_memberDAO();
 	ArrayList<String> imgList = new ArrayList<String>();
 	snsdto = (tm_snsDTO) request.getAttribute("dto");
+	tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
+	commentDAO commentdao = new commentDAO();
 	%>
 	<div class="container">
 		<div class="item1">
@@ -57,42 +61,22 @@
 				<div>
 					<a href="#">user_nick5</a> : 오5
 				</div>
-				<br>
-				<div>
-					<a href="#">user_nick6</a> : 오6
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick7</a> : 오7
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick8</a> : 오8
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick9</a> : 오9
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick10</a> : 오10
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick11</a> : 오11
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick12</a> : 오12
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick13</a> : 오13
-				</div>
-				<br>
-				<div>
-					<a href="#">user_nick14</a> : 오14
-				</div>
+
+
+
+
+
+				<!-- 클릭한 게시글 번호   tb_seq -->
+				<input id="commContent" type="textarea">
+				<button id="sendTail" onclick="sendTail()">작성</button>
+				<div id="mb_id"><%=memberdto.getMb_id()%></div>
+				<hr>
+				<div id="tailList"></div>
+
+
+
+
+
 				<br>
 			</div>
 			<div class="item6">
@@ -133,5 +117,38 @@
 			})
 		}
 	</script>
+
+
+
+	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		function sendTail() {
+			$.ajax({
+
+				url : "commentCon",
+				type : "get",
+				data : {
+					"commContent" : $('#commContent').val(),
+					"mb_id" : $('#mb_id').text(),
+					"tb_seq" : <%=snsdto.getTb_seq()%>
+				},
+				dataType : 'json',
+				success : function(res) {
+					console.log(res);
+					console.log(res[0].mb_id);
+					console.log(res[0].comm_content);
+					$('#mb_id').html(res[0].mb_id);
+					$('#tailList').html(res[0].comm_content);
+
+				},
+				error : function() {
+					alert("요청 실패!!!")
+
+				}
+
+			})
+		}
+	</script>
+
 </body>
 </html>

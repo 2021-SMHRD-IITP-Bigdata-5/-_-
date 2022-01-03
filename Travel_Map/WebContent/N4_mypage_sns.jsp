@@ -22,12 +22,12 @@
 	<%
 		tm_memberDTO opdto = (tm_memberDTO) session.getAttribute("opdto");
 	tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
-	tm_memberDAO memberdao = new tm_memberDAO();
 	tm_snsDAO snsdao = new tm_snsDAO();
+	tm_memberDAO memberdao = new tm_memberDAO();
 	ArrayList<tm_snsDTO> list = snsdao.searchMy(memberdto.getMb_id());
+	ArrayList<tm_snsDTO> followlist = snsdao.searchMy(opdto.getMb_id());
 	int snsCount = snsdao.snsCount(memberdto.getMb_id());
 	request.setAttribute("dto", memberdto);
-	ArrayList<tm_snsDTO> followlist = snsdao.searchMy(opdto.getMb_id());
 	request.setAttribute("list", list);
 
 	tm_followDTO follow_dto = new tm_followDTO(opdto.getMb_id(), memberdto.getMb_id());
