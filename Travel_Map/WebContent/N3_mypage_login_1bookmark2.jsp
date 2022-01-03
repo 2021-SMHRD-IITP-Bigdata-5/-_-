@@ -16,9 +16,9 @@
 
 <body>
 	<%
+		int total = (int)session.getAttribute("total_date");
 		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
 		ArrayList<PHM_travel_planDTO> arr2 = (ArrayList<PHM_travel_planDTO>)session.getAttribute("plan2");
-	
 	
 	
 	%>
@@ -48,55 +48,50 @@
 			</ul>
 		</div>
 		<div id="side_three">
-			<table id="plan_table_one">
-				<caption>1일차/ day
-					<button onClick = "kakao(1)">카카오</button>
-					<button onClick = "tmap(1)">티맵</button>
-				</caption>
-				<colgroup>
-					<col style="width: 10%;">
-					<col style="width: 40%;">
-					<col style="width: 25%;">
-					<col style="width: 25%;">
-				</colgroup>
-				<tr>
-					<td>1 / cnt</td>
-					<td>충장로구경 / map_name</td>
-					<td>13:00 /startTime</td>
-					<td>15:00 / endTime</td>
-				</tr>
-				<tr><td>memo</td></tr>
-				<tr>
-					<td>2</td>
-					<td>서프클럽로스터리</td>
-					<td>15:00</td>
-					<td>18:00</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>본디소</td>
-					<td>18:20</td>
+			<%for(int i =0; i<total ;i++) {%>
+				<table id="plan_table_one">
+					<caption><%=i+1 %>일차
+						<button onClick = "kakao(<%=i+1%>)">카카오</button>
+						<button onClick = "tmap(<%=i+1%>)">티맵</button>
+					</caption>
+					<colgroup>
+						<col style="width: 10%;">
+						<col style="width: 40%;">
+						<col style="width: 25%;">
+						<col style="width: 25%;">
+					</colgroup>
+					<% 
 					
-					<td>19:30</td>
-				</tr>
-				<tr>
-					<td colspan="4" id="plan_table_last"></td>
-				</tr>
-			</table>
+					for(int j =0; j<arr2.size() ; j++){ 
+						if(Integer.valueOf(arr2.get(j).getDay())==(i+1)){
+					%>
+						<tr>
+							<td><%=arr2.get(j).getCnt() %></td>
+							<td><%=arr2.get(j).getMap_name() %></td>
+							<td><%=arr2.get(j).getStartTime() %></td>
+							<td><%=arr2.get(j).getEndTime() %></td>
+						</tr>
+						<tr><td><%=arr2.get(j).getMemo() %></td></tr>
+					<%}
+					}
+				 %>
+				</table>
+			<%} %>
 		</div>
+		<form action="boardInsert"> 
 		<div id="side_four">
-			글 제목 : <input name="#" type="text"><br>
-			글 내용 : <textarea name="#"></textarea> <br>
-			첨부파일 : <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple><br>
-			공개여부 :  공개<input type="radio" name="gender" value="m" style="width:1.4vw; height:1.3vh;">
-         		비공개<input type="radio" name="gender" value="w" style="width:1.4vw; height:1.3vh;">
+			글 제목 : <input name="tb_title" type="text"><br>
+			글 내용 : <textarea name="tb_content"></textarea> <br>
+			첨부파일 : <input type="file" name="tb_file" accept=".jpg, .jpeg, .png" multiple><br>
+			공개여부 :  공개<input type="radio" name="tb_open" value="y" style="width:1.4vw; height:1.3vh;">
+         			비공개<input type="radio" name="tb_open" value="n" style="width:1.4vw; height:1.3vh;">
 		</div>
 		<div id="side_five">
 			<ul>
-				<li><button class="side_button" onClick="location.href='N3_mypage_login_3myinfo.jsp'">만들기</button></li>
+				<li><button type="submit" class="side_button" >만들기</button></li>
 			</ul>
 		</div>
-
+		</form>
 	</div>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    

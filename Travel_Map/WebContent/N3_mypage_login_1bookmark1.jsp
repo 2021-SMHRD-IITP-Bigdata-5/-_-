@@ -15,12 +15,10 @@
 
 <body>
 	<%
-		/*ArrayList<PHM_travel_mapDTO> arr = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
-		for(int i =0; i<arr.size(); i++){
-			int end_date = Integer.parseInt(arr.get(i).getEnd_date().substring(8));
-			int start_date = Integer.parseInt(arr.get(i).getStart_date().substring(8));
-			int total_date = end_date - start_date+1;
-		}*/
+		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
+		int end_date = 0;
+		int start_date = 0;
+		int total_date = 0;
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
@@ -49,10 +47,16 @@
 		</div>
 		<div id="side_three">
 			<ul>
-				<%//for(int i = 0 ; i<arr.size() ; i++) {%>
-					<!-- <li><button class="travel_plan"><a href="#"><%//arr.get(i).getTitle() %></a></button></li> -->
-				<%//}%>
-				<li><button class="travel_plan"  onClick="location.href='my_bookmarkMove?t_title=phm'">여행 제목 : phm<br> 2021.01.02~2021.01.03
+				<%for(int i = 0 ; i<arr1.size() ; i++) {
+					end_date = Integer.parseInt(arr1.get(i).getEnd_date().substring(8));
+					start_date = Integer.parseInt(arr1.get(i).getStart_date().substring(8));
+					total_date = end_date - start_date+1;
+				
+					out.print("<li><button class='travel_plan' onClick='location.href=\"my_bookmarkMove?t_title="+arr1.get(i).getTitle()+"&total_date="+total_date+"\"'>");
+					out.print("여행 제목 : "+arr1.get(i).getTitle());
+					out.print("<br>"+arr1.get(i).getStart_date()+"~"+arr1.get(i).getEnd_date());
+				}%>
+			
 				</button></li>
 			</ul> 
 		</div>
