@@ -26,6 +26,7 @@ public class tm_SelectOne extends HttpServlet {
 		if (dto != null) {
 			request.setAttribute("dto", dto);
 			System.out.println(" 셀렉트 원");
+			System.out.println(dto.getMb_id() + "셀렉트원 엠비아이딘");
 		} else {
 			System.out.println("조회실패..");
 		}

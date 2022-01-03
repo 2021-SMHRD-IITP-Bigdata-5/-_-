@@ -77,7 +77,7 @@
 				<div class="profile">
 					<a href="#" class="profile_img"><img
 						src="tm_upload/<%=memberdao.imgMemberSelect(i.getMb_id())%>"></a>
-					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=i.getMb_id()%></a>
+					<a href="N4_mypage_sns.jsp?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=i.getMb_id()%></a>
 				</div>
 				<div class="trvel_pictures">
 					<a href="tm_SelectOne?tb_seq=<%=i.getTb_seq()%>"> <img
