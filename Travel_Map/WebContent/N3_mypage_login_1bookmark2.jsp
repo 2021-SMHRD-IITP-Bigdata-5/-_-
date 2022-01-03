@@ -66,7 +66,7 @@
 					%>
 						<tr>
 							<td><%=arr2.get(j).getCnt() %></td>
-							<td class='map_name<%=arr2.get(j).getDay() %>_<%=arr2.get(j).getCnt() %>'><%=arr2.get(j).getMap_name() %></td>
+							<td id='map_name<%=arr2.get(j).getDay() %>_<%=arr2.get(j).getCnt() %>'><%=arr2.get(j).getMap_name() %></td>
 							<td><%=arr2.get(j).getStartTime() %></td>
 							<td><%=arr2.get(j).getEndTime() %></td>
 						</tr>
@@ -118,30 +118,61 @@
 		var plan_list5=[];
 		var plan_list6=[];
 		//카카오 용도
-		
 		var positions1=[];
 		var positions2=[];
 		var positions3=[];
 		var positions4=[];
 		var positions5=[];
 		var positions6=[];
-		
+		//데이터 전송용
+		var map_name1='';
+		var map_name2='';
+		var map_name3='';
+		var map_name4='';
+		var map_name5='';
 		
 		
 		
 		
 		
 		function kakao(day){
+			if(day==1){
+				map_name1 = $("#map_name1_1").text();
+				map_name2 = $("#map_name1_2").text();
+				map_name3 = $("#map_name1_3").text();
+				map_name4 = $("#map_name1_4").text();
+				map_name5 = $("#map_name1_5").text();
+			}else if(day==2){
+				map_name1 = $("#map_name2_1").text();
+				map_name2 = $("#map_name2_2").text();
+				map_name3 = $("#map_name2_3").text();
+				map_name4 = $("#map_name2_4").text();
+				map_name5 = $("#map_name2_5").text();
+
+			}else if(day==3){
+				map_name1 = $("#map_name3_1").text();
+				map_name2 = $("#map_name3_2").text();
+				map_name3 = $("#map_name3_3").text();
+				map_name4 = $("#map_name3_4").text();
+				map_name5 = $("#map_name3_5").text();
+
+			}else if(day==4){
+				map_name1 = $("#map_name4_1").text();
+				map_name2 = $("#map_name4_2").text();
+				map_name3 = $("#map_name4_3").text();
+				map_name4 = $("#map_name4_4").text();
+				map_name5 = $("#map_name4_5").text();
+			}
+			
 			$.ajax({
 				url : "my_bookmarkMap",	
 				type : "get",
 				data : {
-					
-					"map_name1" : "송정떡갈비 1호점",
-					"map_name2" : "화정떡갈비",
-					"map_name3" : "나주 곰탕 하얀집", 
-					"map_name4" : 1,
-					"map_name5" : 2
+					"map_name1" : map_name1,
+					"map_name2" : map_name2,
+					"map_name3" : map_name3,
+					"map_name4" : map_name4,
+					"map_name5" : map_name5
 				},
 				dataType : "json",
 				success : function(res){ 
@@ -163,15 +194,47 @@
 		}
 		
 		function tmap(day){
+			if(day==1){
+				map_name1 = $("#map_name1_1").text();
+				map_name2 = $("#map_name1_2").text();
+				map_name3 = $("#map_name1_3").text();
+				map_name4 = $("#map_name1_4").text();
+				map_name5 = $("#map_name1_5").text();
+			}else if(day==2){
+				map_name1 = $("#map_name2_1").text();
+				map_name2 = $("#map_name2_2").text();
+				map_name3 = $("#map_name2_3").text();
+				map_name4 = $("#map_name2_4").text();
+				map_name5 = $("#map_name2_5").text();
+
+			}else if(day==3){
+				map_name1 = $("#map_name3_1").text();
+				map_name2 = $("#map_name3_2").text();
+				map_name3 = $("#map_name3_3").text();
+				map_name4 = $("#map_name3_4").text();
+				map_name5 = $("#map_name3_5").text();
+
+			}else if(day==4){
+				map_name1 = $("#map_name4_1").text();
+				map_name2 = $("#map_name4_2").text();
+				map_name3 = $("#map_name4_3").text();
+				map_name4 = $("#map_name4_4").text();
+				map_name5 = $("#map_name4_5").text();
+			}
+			console.log("map_name1",map_name1);
+			console.log("map_name2",map_name2);
+			console.log("map_name3",map_name3);
+			console.log("map_name4",map_name4);
+			console.log("map_name5",map_name5);
 			$.ajax({
 				url : "my_bookmarkMap",	
 				type : "get",
 				data : {
-					"map_name1" : "송정떡갈비 1호점",
-					"map_name2" : "화정떡갈비",
-					"map_name3" : "나주 곰탕 하얀집", 
-					"map_name4" : 1,
-					"map_name5" : 2
+					"map_name1" : map_name1,
+					"map_name2" : map_name2,
+					"map_name3" : map_name3,
+					"map_name4" : map_name4,
+					"map_name5" : map_name5
 				},
 				dataType : "json",
 				success : function(res){ 
