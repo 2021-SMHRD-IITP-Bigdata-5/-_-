@@ -16,10 +16,10 @@
 <body>
 	<%
 		tm_snsDAO dao = new tm_snsDAO();
-	tm_snsDTO dto = new tm_snsDTO();
-	tm_memberDAO memberdao = new tm_memberDAO();
-	ArrayList<String> imgList = new ArrayList<String>();
-	dto = (tm_snsDTO) request.getAttribute("dto");
+		tm_snsDTO dto = new tm_snsDTO();
+		tm_memberDAO memberdao = new tm_memberDAO();
+		ArrayList<String> imgList = new ArrayList<String>();
+		dto = (tm_snsDTO) request.getAttribute("dto");
 	%>
 	<div class="container">
 		<div class="item1">
@@ -30,7 +30,7 @@
 		<div class="item2">
 			<div class="item3">
 				<a href="#" class="profile_img"><img
-					src="tm_upload/<%=memberdao.imgMemberSelect(dto.getMb_id())%>"></a>
+					src="board_upload/<%=memberdao.imgMemberSelect(dto.getMb_id())%>"></a>
 				<a href="tm_selectMember?mb_id=<%=dto.getMb_id()%>"
 					class="user_nick"><%=dto.getMb_id()%></a> <a href="#"
 					class="travel_plan"><%=dto.getTb_title()%></a>
