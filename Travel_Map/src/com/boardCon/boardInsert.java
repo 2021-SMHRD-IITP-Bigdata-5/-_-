@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.PHM_travel_mapDAO.PHM_travel_planDAO;
 import com.PHM_travel_mapDTO.PHM_travel_mapDTO;
 import com.PHM_travel_mapDTO.PHM_travel_planDTO;
+import com.boardDAO.tm_boardDAO;
+import com.boardDTO.tm_boardDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -29,7 +31,7 @@ public class boardInsert extends HttpServlet {
 		MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
 		
-		PHM_travel_planDAO dao = new PHM_travel_planDAO();
+		PHM_travel_planDAO dao1 = new PHM_travel_planDAO();
 		
 		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
 		ArrayList<PHM_travel_planDTO> arr2 = (ArrayList<PHM_travel_planDTO>)session.getAttribute("plan2");
@@ -43,12 +45,14 @@ public class boardInsert extends HttpServlet {
 		String tb_open = multi.getParameter("tb_open");
 		String mb_id = "admin"; 
 		String t_title = (String)session.getAttribute("t_title");
-		int people = Integer.parseInt(dao.bring_people(t_title));
+		int tb_total = Integer.parseInt(dao1.bring_people(t_title));
 		
+		tm_boardDTO dto = new tm_boardDTO(tb_title, tb_content, tb_file, tb_cnt, tb_likes, tb_total, tb_open, mb_id, t_title);
+		tm_boardDAO dao2 = new tm_boardDAO();
+		dao2.boardInsert(dto);
 	
-	
-	
-	
+		response.sendRedirect("N3_mypage_login_3myinfo.jsp");
+		
 	
 	
 	

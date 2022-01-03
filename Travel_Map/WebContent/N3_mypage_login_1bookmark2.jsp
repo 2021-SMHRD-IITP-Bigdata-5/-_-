@@ -78,7 +78,7 @@
 				</table>
 			<%} %>
 		</div>
-		<form action="boardInsert"> 
+		<form action="boardInsert" method="post" enctype="multipart/form-data"> 
 		<div id="side_four">
 			글 제목 : <input name="tb_title" type="text"><br>
 			글 내용 : <textarea name="tb_content"></textarea> <br>

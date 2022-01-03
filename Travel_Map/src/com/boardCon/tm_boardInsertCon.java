@@ -29,13 +29,13 @@ public class tm_boardInsertCon extends HttpServlet {
 		String tb_title = request.getParameter("tb_title");
 		String tb_content = request.getParameter("tb_content");
 
-		tm_boardDTO dto = new tm_boardDTO();
+		/*tm_boardDTO dto = null;
 		dto.setMb_id(mb_id);
 		dto.setTb_title(tb_title);
-		dto.setTb_content(tb_content);
+		dto.setTb_content(tb_content);*/
 
 		tm_boardDAO dao = new tm_boardDAO();
-		dao.boardInsert(dto);
+		//dao.boardInsert(dto);
 
 		response.sendRedirect("tm_BoardList.jsp");
 	}

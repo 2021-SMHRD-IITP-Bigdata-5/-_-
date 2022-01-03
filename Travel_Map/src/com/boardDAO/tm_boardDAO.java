@@ -140,17 +140,21 @@ public class tm_boardDAO {
 	public void boardInsert(tm_boardDTO dto) {
 
 		getConn();
-		System.out.println(dto.getTb_content() + "DAO 보드 인서트");
 		try {
-			String sql = "INSERT INTO phm_travel_board" //
-					+ "(tb_seq,tb_title,tb_content,tb_cnt,tb_date,mb_id)" //
-					+ "VALUES(t_travel_board_seq.NEXTVAL,?,?,?,sysdate,?)";
+			String sql = "INSERT INTO phm_travel_board VALUES(phm_travel_board_seq.NEXTVAL,?,?,?,?,sysdate,?,?,?,?,?)";
+					//+ "(tb_seq,tb_title,tb_content,tb_cnt,tb_date,mb_id)" 
+					//+ "VALUES(phm_travel_board_seq.NEXTVAL,?,?,?,?,sysdate,?,?,?,?,?)";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getTb_title());
 			psmt.setString(2, dto.getTb_content());
-			psmt.setInt(3, dto.getTb_cnt());
-			psmt.setString(4, dto.getMb_id());
+			psmt.setString(3, dto.getTb_file());
+			psmt.setInt(4, dto.getTb_cnt());
+			psmt.setInt(5, dto.getTb_likes());
+			psmt.setInt(6, dto.getTb_total());
+			psmt.setString(7, dto.getTb_open());
+			psmt.setString(8, dto.getMb_id());
+			psmt.setString(9, dto.getT_title());
 
 			psmt.executeUpdate();
 
