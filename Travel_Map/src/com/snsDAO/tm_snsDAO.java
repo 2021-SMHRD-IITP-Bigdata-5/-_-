@@ -349,4 +349,31 @@ public class tm_snsDAO {
 		}
 		return DetailArr;
 	}
+
+	public int snsCount(String mb_id) {
+
+		getConn();
+
+		try {
+
+			String sql = "select * from phm_travel_board where mb_id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+
+				cnt++;
+			}
+
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return cnt;
+	}
 }
