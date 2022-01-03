@@ -85,8 +85,7 @@
 					<button>
 						<img src="./img/heart_tung.png">
 					</button>
-					<div><%=i.getTb_likes()%></div>
-					<a href="#"><img src="./img/details.png"></a>
+					<h4><%=i.getTb_likes()%></h4>
 				</div>
 				<div class="trvel_writing">
 					<p><%=i.getTb_content()%></p>
