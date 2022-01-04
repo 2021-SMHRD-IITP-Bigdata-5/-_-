@@ -132,6 +132,9 @@
     background-color: #fff;
     text-align: center;
     border-bottom: 1px solid #eee;
+    overflow: scroll;
+    float: left;
+    width: 500px;
 }
 
 #side_three ul {

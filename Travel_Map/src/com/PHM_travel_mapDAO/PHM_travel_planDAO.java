@@ -151,7 +151,7 @@ public class PHM_travel_planDAO {
 		try {
 			getConn();
 			
-			String sql = "select * from phm_travel_plan2 where t_title=?";
+			String sql = "select * from phm_travel_plan2 where t_title=? ORDER BY t_day,days_cnt ASC";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, t_title);
 	
@@ -240,7 +240,7 @@ public class PHM_travel_planDAO {
 		try {
 			getConn();
 			
-			String sql = "select * from phm_travel_plan2 where mb_id=? and t_title=?";
+			String sql = "select * from phm_travel_plan2 where mb_id=? and t_title=? ORDER BY t_day,days_cnt ASC";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, mb_id);
 			psmt.setString(2, t_title);

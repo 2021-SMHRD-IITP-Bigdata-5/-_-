@@ -77,7 +77,7 @@
 						</tr>
 						<tr>
 							<td>메모 : </td>
-							<td><%=arr2.get(j).getMemo() %></td>
+							<td colspan="3"><%=arr2.get(j).getMemo() %></td>
 						</tr>
 						
 					<%}%>

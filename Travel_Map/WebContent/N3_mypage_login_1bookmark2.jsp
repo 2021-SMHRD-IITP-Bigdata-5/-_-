@@ -71,10 +71,15 @@
 						</tr>
 						<tr>
 							<td>메모 : </td>
-							<td><%=arr2.get(j).getMemo() %></td>
+							<%if(arr2.get(j).getMemo()==null){ %>
+								<td colspan="3">메모가 없습니다.</td>
+							<%} else{%>
+							<td colspan="3"><%=arr2.get(j).getMemo() %></td>
+							<%} %>
 						</tr>
 						
-					<%}%>
+					<%
+					}%>
 						
 					<%}
 				 %>

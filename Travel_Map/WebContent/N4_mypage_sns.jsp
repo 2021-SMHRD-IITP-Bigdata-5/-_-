@@ -55,20 +55,20 @@
 
 <body>
 	<%
-		tm_memberDTO opdto = (tm_memberDTO) session.getAttribute("opdto");
-	tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto");
-	tm_snsDAO snsdao = new tm_snsDAO();
-	tm_memberDAO memberdao = new tm_memberDAO();
-	ArrayList<tm_snsDTO> list = snsdao.searchMy(memberdto.getMb_id());
-	ArrayList<tm_snsDTO> followlist = snsdao.searchMy(opdto.getMb_id());
-	int snsCount = snsdao.snsCount(memberdto.getMb_id());
-	request.setAttribute("dto", memberdto);
-	request.setAttribute("list", list);
-
-	tm_followDTO follow_dto = new tm_followDTO(opdto.getMb_id(), memberdto.getMb_id());
-	tm_followDAO follow_dao = new tm_followDAO();
-
-	boolean check = follow_dao.checkFollow(follow_dto);
+		tm_memberDTO opdto = (tm_memberDTO) session.getAttribute("opdto");		// 클릭한 사람의 데이터
+		tm_memberDTO memberdto = (tm_memberDTO) session.getAttribute("dto"); 	// 로그인한 사람의 데이터
+		tm_snsDAO snsdao = new tm_snsDAO();
+		tm_memberDAO memberdao = new tm_memberDAO();
+		ArrayList<tm_snsDTO> list = snsdao.searchMy(opdto.getMb_id());
+		ArrayList<tm_snsDTO> followlist = snsdao.searchMy(opdto.getMb_id());
+		int snsCount = snsdao.snsCount(memberdto.getMb_id());
+		request.setAttribute("dto", memberdto);
+		request.setAttribute("list", list);
+	
+		tm_followDTO follow_dto = new tm_followDTO(opdto.getMb_id(), memberdto.getMb_id());
+		tm_followDAO follow_dao = new tm_followDAO();
+	
+		boolean check = follow_dao.checkFollow(follow_dto);
 	%>
 	<div class="header">
 		<b>My Real Travel in GwangJu </b>
@@ -93,7 +93,7 @@
 		<div class="side_three" style="height: 25%">
 			<div id="profile_img">
 				<div>
-					<img src="tm_upload/<%=memberdto.getMb_img()%>">
+					<img src="tm_upload/<%=opdto.getMb_img()%>">
 				</div>
 			</div>
 			<div style="align-self: center">
@@ -107,9 +107,8 @@
 				<div id="mb_follower">
 					팔로워 :
 					<%=opdto.getMb_follower()%></div>
-			</div>
-			<%
-				if (check == true) {
+					<%
+			if (check == true) {
 			%>
 			<div class="followbox" style="align-self: center">
 				<label id="followlabel" for="followButton">FOLLOW</label>
@@ -117,22 +116,24 @@
 					style="display: none"></button>
 			</div>
 			<%
-				}
+				}else{
 			%>
-			<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
-				style="align-self: center; height: 26px; width: 100px;">UNFOLLOW</button>
+			<!-- <button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
+				style="align-self: center; height: 26px; width: 100px;">UNFOLLOW</button> -->
 
 			<%
-				if (check == false) {
+				//if (check == false) {
 			%>
-			<div class="followbox" style="align-self: center">
+			 <div class="followbox" style="align-self: center">
 				<label id="followlabel" for="followButton">UNFOLLOW</label>
 				<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
 					style="display: none"></button>
-			</div>
+			</div> 
 			<%
 				}
 			%>
+			</div>
+			
 		</div>
 
 
@@ -151,6 +152,7 @@
 			%>
 		</div>
 	</div>
+	<div id="map" style="width: 73.3%; height: 100vh; float: right;"></div>
 
 	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
