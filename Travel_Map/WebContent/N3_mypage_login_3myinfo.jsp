@@ -14,6 +14,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./assets/css/N4_mypage_login_3myinfo.css" />
 <title>N4_mypage_login_3myinfo</title>
+
+<style>
+.filebox label {
+	display: inline-block;
+	padding-left: 6px;
+	padding-top: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	color: BLACK;
+	font-size: inherit;
+	font-family: 'NanumBarunGothic';
+	font-weight: bold;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #CDFBE4;
+	cursor: pointer;
+	border: 1px solid #fff;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+	padding-top: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	padding-bottom: 4px;
+}
+
+.filebox label:hover {
+	background-color: #6ed36e;
+}
+
+.filebox label:active {
+	background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+</style>
 </head>
 
 <body>
@@ -65,7 +112,7 @@
 						onClick="location.href='N3_mypage_login_3myinfo.jsp'">내정보</button></li>
 			</ul>
 		</div>
-		<div id="side_three">
+		<div id="side_three" style="height: 250px">
 			<div id="profile_img">
 				<div>
 					<img src="tm_upload/<%=memberdto.getMb_img()%>"
@@ -73,9 +120,12 @@
 				</div>
 				<form action="imgChangeCon" method="post"
 					enctype="multipart/form-data">
-					<label> <input type="file" name="imgChange">
-					</label>
-					<button type="submit">프로필 사진 변경</button>
+					<div class="filebox">
+						<label for="file">이미지 변경</label> <input type="file" id="file"
+							name="imgChange" accept="image/*" style="visibility:""hidden"}}>
+						<label for="btn">확인</label>
+						<button id="btn" type="submit" style="display: none"></button>
+					</div>
 				</form>
 			</div>
 			<div id="profile_info">
@@ -108,7 +158,9 @@
 				for (tm_snsDTO i : list) {
 				System.out.println(i.getTb_file());
 			%>
-			<a><img src="tm_upload/<%=i.getTb_file()%>"></a>
+			<a href="tm_SelectOne?tb_seq=<%=i.getTb_seq()%>"><img
+				src="tm_upload/<%=i.getTb_file()%>"
+				style="float: left; width: 150px; height: 150px; padding:5px"></a>
 			<%
 				}
 			%>

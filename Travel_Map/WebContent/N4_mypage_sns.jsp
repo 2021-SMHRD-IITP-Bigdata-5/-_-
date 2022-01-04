@@ -16,6 +16,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./assets/css/N4_mypage_login_3myinfo2.css" />
 <title>N4_mypage_login_3myinfo2</title>
+<style>
+.followbox label {
+	display: inline-block;
+	padding-left: 6px;
+	padding-top: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	color: BLACK;
+	font-size: inherit;
+	font-family: 'NanumBarunGothic';
+	font-weight: bold;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #CDFBE4;
+	cursor: pointer;
+	border: 1px solid #fff;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+	padding-top: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	padding-bottom: 4px;
+}
+
+.followbox label:hover {
+	background-color: #6ed36e;
+}
+
+.followbox label:active {
+	background-color: #367c36;
+}
+</style>
 </head>
 
 <body>
