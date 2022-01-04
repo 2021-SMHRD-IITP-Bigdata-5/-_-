@@ -24,8 +24,7 @@
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div> 
 	<div id="side_all">
 		<div id="side_one">
@@ -91,6 +90,7 @@
 		
 		<div id="side_four">
 			<ul>
+				<li><button class="side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'">뒤로가기</button></li>
 				<li><button class="side_button" onClick="location.href='N3_mypage_login_1bookmark3.jsp'">다음으로</button></li>
 			</ul>
 		</div>
@@ -398,8 +398,9 @@
 		var new_polyLine = [];
 		// 지도 경로미리보기 파트(티맵)
 		function tmap_route(plan_list){
-			tmap_allClose(tmap_markers);
-			tmap_poly_allClose(new_polyLine);
+			tmap_allClose();
+			//tmap_poly_allClose(new_polyLine);
+			tmap_poly_allClose();
 			
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
@@ -503,6 +504,7 @@
 					icon: imgURL,
 					map: map1
 				});
+				tmap_markers.push(marker);
 				// 마커 드래그 설정
 				marker.tag = tag;
 				marker.addListener("dragend", function (evt) {
@@ -603,17 +605,18 @@
 				}
 			});
 		}
-		function tmap_allClose(tmap_markers){
+		function tmap_allClose(){
 			for(let i =0; i<tmap_markers.length; i++){
 				tmap_markers[i].setMap(null);
 			}
 			tmap_markers=[];
 		}
-		function tmap_poly_allClose(new_polyLine){
+		function tmap_poly_allClose(){
 			console.log('tmap_poly_allClose>> ',new_polyLine);
 			
 			if(new_polyLine!=null){
 				for(let i =0; i<new_polyLine.length; i++){
+					console.log(new_polyLine[i]);
 					new_polyLine[i].setMap(null);
 				}
 				new_polyLine=[];

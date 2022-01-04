@@ -14,9 +14,8 @@
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
-	</div> 
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
+	</div>
 	<div id="side_all">
 		<div id="side_one">
 			<nav>
@@ -79,7 +78,7 @@
 							if (res[i].mb_img == null) {
 								table += '<td rowspan="2" width="20%"><img src="./phm_img/default_profile.png" width="50" height="50" style="border:1px solid #c8c8c8; border-radius:70%;"></td>';	
 							} else {
-								table += '<td rowspan="2" width="20%"><img src="' + res[i].mb_img + '" width="50" height="50" style="border-radius:70%;"></td>';
+								table += '<td rowspan="2" width="20%"><img src="tm_upload/' + res[i].mb_img + '" width="50" height="50" style="border-radius:70%;"></td>';
 							}
 							table += '<td><b>' + res[i].mb_nickname + '</b></td>';
 							table += '</tr>';
@@ -99,7 +98,7 @@
 							if (res[i].mb_img == null) {
 								table += '<td rowspan="2" width="20%"><img src="./phm_img/default_profile.png" width="50" height="50" style="border:1px solid #c8c8c8; border-radius:70%;"></td>';	
 							} else {
-								table += '<td rowspan="2" width="20%"><img src="' + res[i].mb_img + '" width="50" height="50" style="border-radius:70%;"></td>';
+								table += '<td rowspan="2" width="20%"><img src="tm_upload/' + res[i].mb_img + '" width="50" height="50" style="border-radius:70%;"></td>';
 							}
 							table += '<td><b>' + res[i].mb_nickname + '</b></td>';
 							table += '</tr>';

@@ -14,8 +14,7 @@
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div> 
     <div id="side_all">
         <div id="side_one">

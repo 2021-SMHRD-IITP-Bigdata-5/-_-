@@ -16,6 +16,7 @@ import com.PHM_travel_mapDTO.PHM_travel_mapDTO;
 import com.PHM_travel_mapDTO.PHM_travel_planDTO;
 import com.boardDAO.tm_boardDAO;
 import com.boardDTO.tm_boardDTO;
+import com.memberDTO.tm_memberDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -25,7 +26,7 @@ public class boardInsert extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		ServletContext context = getServletContext();
-		String saveDir = context.getRealPath("board_upload");
+		String saveDir = context.getRealPath("tm_upload");
 		System.out.println(saveDir);
 		int maxSize = 50 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, "utf-8",
@@ -33,9 +34,12 @@ public class boardInsert extends HttpServlet {
 		
 		PHM_travel_planDAO dao1 = new PHM_travel_planDAO();
 		
+		
+		
 		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
 		ArrayList<PHM_travel_planDTO> arr2 = (ArrayList<PHM_travel_planDTO>)session.getAttribute("plan2");
-	
+		tm_memberDTO dto1 = (tm_memberDTO)session.getAttribute("dto");
+		
 		String tb_title = multi.getParameter("tb_title");
 		String tb_content = multi.getParameter("tb_content");
 		String tb_file = multi.getFilesystemName("tb_file");
@@ -43,7 +47,7 @@ public class boardInsert extends HttpServlet {
 		int tb_likes = 0;
 		
 		String tb_open = multi.getParameter("tb_open");
-		String mb_id = "admin"; 
+		String mb_id = dto1.getMb_id(); 
 		String t_title = (String)session.getAttribute("t_title");
 		int tb_total = Integer.parseInt(dao1.bring_people(t_title));
 		

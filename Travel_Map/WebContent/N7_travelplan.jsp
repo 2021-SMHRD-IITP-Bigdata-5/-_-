@@ -36,8 +36,7 @@
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div> 
 	<div id="side_all">
 		<div id="side_one">
@@ -404,8 +403,8 @@
 		var new_polyLine = [];
 		// 지도 경로미리보기 파트(티맵)
 		function tmap_route(plan_list){
-			tmap_allClose(tmap_markers);
-			tmap_poly_allClose(new_polyLine);
+			tmap_allClose();
+			tmap_poly_allClose();
 			
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
@@ -509,6 +508,7 @@
 					icon: imgURL,
 					map: map1
 				});
+				tmap_markers.push(marker);
 				// 마커 드래그 설정
 				marker.tag = tag;
 				marker.addListener("dragend", function (evt) {
@@ -609,13 +609,13 @@
 				}
 			});
 		}
-		function tmap_allClose(tmap_markers){
+		function tmap_allClose(){
 			for(let i =0; i<tmap_markers.length; i++){
 				tmap_markers[i].setMap(null);
 			}
 			tmap_markers=[];
 		}
-		function tmap_poly_allClose(new_polyLine){
+		function tmap_poly_allClose(){
 			console.log('tmap_poly_allClose>> ',new_polyLine);
 			
 			if(new_polyLine!=null){

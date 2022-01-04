@@ -56,7 +56,7 @@ public class tm_followCon extends HttpServlet {
 				
 				// 멤버 테이블 카운트
 				dao.followIncrease(mb_id);
-				dao.followerIncrease(f_id, conID);
+				dao.followerIncrease(f_id, conID);	//테이블저장
 
 			}
 		} // check = false 로 넘어올 때 , 언팔

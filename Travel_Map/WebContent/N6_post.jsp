@@ -42,10 +42,10 @@
 					<a href="N_travelplanCon?mb_id=<%=snsdto.getMb_id()%>&t_title=<%=snsdto.getT_title() %>" class="travel_plan">TravelPlan</a>
 				</div>
 			</div>
-			<div class="item4" style="height:10%;"><%=snsdto.getTb_content()%>
+			<div class="item4" style="height:10%;"><%=snsdto.getT_title()%>
 			</div>
 			<div class="item5" style="height:71.8%;">
-				<div id="tailList"></div>
+				<div id="tailList"><%=snsdto.getTb_content()%></div>
 			</div>
 			<div class="item6" style="height:10%;">
 				<button id="likesButton" onclick="likes()">

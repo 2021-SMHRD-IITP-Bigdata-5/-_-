@@ -198,7 +198,7 @@ public void followerIncrease(String f_id, String conID) {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, f_id);
 			psmt.setString(2, "follower");
-			psmt.setInt(3, (Integer) null);
+			psmt.setString(3, null);
 			psmt.setString(4, mb_nickname);
 			psmt.setString(5, mb_img);
 			psmt.executeUpdate();
@@ -206,12 +206,13 @@ public void followerIncrease(String f_id, String conID) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close();
 		}
 
-		close();
+		
 
 	}
-
+	
 	public void followDecrease(String mb_id) {
 
 		getConn();
@@ -362,5 +363,27 @@ public void followerIncrease(String f_id, String conID) {
 			close();
 		}
 	}
+	
+	public String searchNick(String mb_id){
+		getConn();
+		String nick = null;
+		try {
+			String sql = "select mb_nickname from t_member WHERE mb_id = ?";
 
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				nick =rs.getString(1);
+			}
+
+		} catch (Exception e) {
+			System.out.println("클래스파일 로딩실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return nick;
+	}
+	
 }

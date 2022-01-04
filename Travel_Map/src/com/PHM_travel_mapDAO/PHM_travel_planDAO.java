@@ -113,15 +113,15 @@ public class PHM_travel_planDAO {
 		}
 	}
 
-	public ArrayList<PHM_travel_mapDTO> bring_planData1() {
+	public ArrayList<PHM_travel_mapDTO> bring_planData1(String mb_id) {
 		PHM_travel_mapDTO dto = null;
 		ArrayList<PHM_travel_mapDTO> arr = new ArrayList<PHM_travel_mapDTO>();
 		try {
 			getConn();
 			
-			String sql = "select * from phm_travel_plan";
+			String sql = "select * from phm_travel_plan where mb_id = ?";
 			psmt = conn.prepareStatement(sql);
-	
+			psmt.setString(1,mb_id);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -130,8 +130,8 @@ public class PHM_travel_planDAO {
 				String end_date = rs.getString(3);
 				String people = rs.getString(4);
 				String createDate = rs.getString(5);
-				String mb_id = rs.getString(6);
-				dto = new PHM_travel_mapDTO(title, start_date, end_date, people, createDate, mb_id);
+				String mb_id2 = rs.getString(6);
+				dto = new PHM_travel_mapDTO(title, start_date, end_date, people, createDate, mb_id2);
 				arr.add(dto);
 				
 			}

@@ -28,13 +28,9 @@ public class UserSearchCon extends HttpServlet {
 		ArrayList<tm_memberDTO> UserList = dao.UserSearch(keyword);
 		
 		Gson gson = new Gson();
-		
 		String json = gson.toJson(UserList);
-		
 		response.setCharacterEncoding("utf-8");
-		
 		PrintWriter out = response.getWriter();
-		
 		out.print(json);
 	}
 

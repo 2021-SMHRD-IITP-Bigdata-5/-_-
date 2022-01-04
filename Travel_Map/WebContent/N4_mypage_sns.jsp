@@ -72,8 +72,7 @@
 	%>
 	<div class="header">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div>
 	<div class="side_all">
 		<div class="side_one">
@@ -118,7 +117,7 @@
 				} else {
 			%>
 			<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
-				style="align-self: center; height: 26px; width: 86px;">UNFOLLOW</button>
+				style="align-self: center; height: 26px; width: 100px;">UNFOLLOW</button>
 			<%
 				}
 			%>

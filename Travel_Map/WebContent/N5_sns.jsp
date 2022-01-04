@@ -21,12 +21,11 @@
 <body>
 	<div class="header">
 		<b>My Real Travel in GwangJu </b>
-		<button>회원가입</button>
 		<%
-			tm_memberDTO dto = (tm_memberDTO) session.getAttribute("dto");
-		if (dto != null) {
+			tm_memberDTO dto = (tm_memberDTO)session.getAttribute("dto");
+			if (dto != null) {
 		%>
-		<button>로그아웃</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 		<%
 			} else {
 		%>
@@ -38,11 +37,13 @@
 
 	<%
 		tm_snsDAO dao = new tm_snsDAO();
-	tm_memberDAO memberdao = new tm_memberDAO();
-	ArrayList<tm_snsDTO> list = dao.selectAll();
-	tm_memberDTO memberdto = null;
-	ArrayList<String> imgList = new ArrayList<String>();
-	request.setAttribute("list", list);
+		tm_memberDAO memberdao = new tm_memberDAO();
+		ArrayList<tm_snsDTO> list = dao.selectAll();
+		tm_memberDTO memberdto = null;
+		ArrayList<String> imgList = new ArrayList<String>();
+		request.setAttribute("list", list);
+		String nick = null;
+		
 	%>
 	<div class="side_all">
 		<div class="side_one">
@@ -83,12 +84,13 @@
 		<div class="side_three">
 			<%
 				for (tm_snsDTO i : list) {
+					nick = memberdao.searchNick(i.getMb_id());
 			%>
 			<div class="sns_feed">
 				<div class="profile">
 					<a href="#" class="profile_img"><img
 						src="tm_upload/<%=memberdao.imgMemberSelect(i.getMb_id())%>"></a>
-					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=i.getMb_id()%></a>
+					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=nick%></a>
 					<div style="float:right; margin:20px;">
 						<a href="N_travelplanCon?mb_id=<%=i.getMb_id()%>&t_title=<%=i.getT_title() %>" style="font-size:12px; color:cornflowerblue;">TravelPlan</a>
 					</div>
@@ -105,7 +107,8 @@
 					<h4><%=i.getTb_likes()%></h4>
 				</div>
 				<div class="trvel_writing">
-					<p><%=i.getTb_content()%></p>
+					<h4 style="margin-left:23px; margin-bottom:8px"><%=i.getTb_title()%></h4>
+					<p style="margin-top:5px"><%=i.getTb_content()%><p>
 				</div>
 			</div>
 			<%

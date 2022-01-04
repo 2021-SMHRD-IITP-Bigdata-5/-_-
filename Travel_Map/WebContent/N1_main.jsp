@@ -16,9 +16,11 @@
 <body>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
+		
 		<% tm_memberDTO dto = (tm_memberDTO)session.getAttribute("dto");
+		
 		if (dto == null) {%>
+		<button onClick="location.href='Join.jsp'">회원가입</button>
 		<button onClick="location.href='Login.jsp'">로그인</button>
 		<%} else { %>
 		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
@@ -30,15 +32,15 @@
                 <ul class="side_menu">
                 	<!-- onClick="window.location.reload()" -->
                     <li><button class = "side_button" onClick="location.href='N1_main.jsp'"><a href="#" >검색</a></button></li>
-					<!-- <%//if (dto == null) {%>
+					<%if (dto == null) {%>
 					<li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >My</a></button></li>
                     <li><button class = "side_button" onClick="location.href='mypage_logout.jsp'"><a href="#" >SNS</a></button></li>
-					<%//} else {%> -->
+					<%} else {%>
                     <li><button class = "side_button" onClick="location.href='N2_travelplan1.jsp'"><a href="#" >여행계획</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'"><a href="#" >My</a></button></li>
                     <li><button class = "side_button" onClick="location.href='N5_sns.jsp'"><a href="#" >SNS</a></button></li>
-                    <%//} %>
+                    <%} %>
                 </ul>
             </nav>
         </div>

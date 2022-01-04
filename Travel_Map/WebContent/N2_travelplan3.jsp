@@ -32,8 +32,7 @@
 	<div id="day_location" style="display:none;"></div>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button type="button" onClick="location.href='Join.jsp'">회원가입</button>
-		<button type="button" onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div> 
     <div id="side_all">
         <div id="side_one">
@@ -129,8 +128,8 @@
 		<div id="side_five" align="center">
 		</div>
 		<div id="side_six" align="center" style="margin-top:20px;">
-				<button	type="button" class="side_button" onClick="kakao_route()" style="width:100px; margin-right:10px;">지도 미리보기</button>
-				<button type="button" class="side_button" onClick="tmap_route()" style="width:100px; margin-right:10px;">경로 미리보기</button>
+				<button	type="button" class="side_button" onClick="kakao_route()" style="width:110px; margin-right:10px;">지도 미리보기</button>
+				<button type="button" class="side_button" onClick="tmap_route()" style="width:110px; margin-right:10px;">경로 미리보기</button>
 				<button type="submit" class="side_button" style="width:100px;">계획 세우기</button>
 		</div>
 		</form>
@@ -138,7 +137,7 @@
 	
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="kakao_map" style="width: 73.3%; height: 100vh; float: right;"></div>
-	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; "></div>
+	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; display:none;"></div>
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	
@@ -374,8 +373,8 @@
 				marker_allClose(markers6,6);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list);
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 			}else if(d==2){
 				displayMarker2(positions2,d);
 				marker_allClose(markers1,1);
@@ -385,8 +384,8 @@
 				marker_allClose(markers6,6);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list)
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 				
 			}else if(d==3){
 				displayMarker2(positions3,d);
@@ -397,8 +396,8 @@
 				marker_allClose(markers6,6);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list);
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 			}else if(d==4){
 				displayMarker2(positions4,d);
 				marker_allClose(markers1,1);
@@ -408,8 +407,8 @@
 				marker_allClose(markers6,6);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list);
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 			}else if(d==5){
 				displayMarker2(positions5,d);
 				marker_allClose(markers1,1);
@@ -419,8 +418,8 @@
 				marker_allClose(markers6,6);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list);
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 			}else if(d==6){
 				displayMarker2(positions6,d);
 				marker_allClose(markers1,1);
@@ -430,8 +429,8 @@
 				marker_allClose(markers5,5);
 				drawLine_allClose(drawLine_list);
 				distanceOverlay_allClose(distanceOverlay_list);
-				tmap_allClose(tmap_markers);
-				tmap_poly_allClose(new_polyLine);
+				tmap_allClose();
+				tmap_poly_allClose();
 			}
 		}
 	
@@ -793,17 +792,18 @@
 	<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxefc4aaf819ab46d09bfedeef6adff714"></script>
 	<script type="text/javascript">
 		 // 1. 지도 띄우기
-		map1 = new Tmapv2.Map("tmap_map", {
+		/*map1 = new Tmapv2.Map("tmap_map", {
 			center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
 		});
-		map1.setZoom(14);  
+		map1.setZoom(14);  */
 	</script>
 	<script>
 		// 지도 경로미리보기 파트(티맵)
 		var tmap_markers =[];
 		var new_polyLine = [];
-		
+		var map1 = null;
 		function tmap_route(){
+			
 			if(day==1){
 				plan_list = plan_list1;
 			}else if(day==2){
@@ -821,14 +821,15 @@
 			// 1. 지도 띄우기
 			
 			document.getElementById('kakao_map').style.display="none";
-			document.getElementById('tmap_map').style.display="block";
+				document.getElementById('tmap_map').style.display="block";
 			
-			/* map1 = null;
-			
+			//map1 = null;
+			if(map1==null){
 			map1 = new Tmapv2.Map("tmap_map", {
 				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
 			});
-			map1.setZoom(14); */
+			map1.setZoom(14);
+			}
 			
 			var new_Click_polyLine = [];
 			
@@ -1031,13 +1032,13 @@
 			});
 		}
 		
-		function tmap_allClose(tmap_markers){
+		function tmap_allClose(){
 			for(let i =0; i<tmap_markers.length; i++){
 				tmap_markers[i].setMap(null);
 			}
 			tmap_markers=[];
 		}
-		function tmap_poly_allClose(new_polyLine){
+		function tmap_poly_allClose(){
 			for(let i =0; i<new_polyLine.length; i++){
 				new_polyLine[i].setMap(null);
 			}

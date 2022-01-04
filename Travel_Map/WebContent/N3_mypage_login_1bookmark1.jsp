@@ -1,3 +1,4 @@
+<%@page import="com.memberDTO.tm_memberDTO"%>
 <%@page import="com.PHM_travel_mapDAO.PHM_travel_planDAO"%>
 <%@page import="com.PHM_travel_mapDTO.PHM_travel_mapDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,17 +17,18 @@
 
 <body>
 	<%
+		tm_memberDTO dto = (tm_memberDTO)session.getAttribute("dto");
+		String mb_id = dto.getMb_id();
 		PHM_travel_planDAO dao = new PHM_travel_planDAO();
-		ArrayList<PHM_travel_mapDTO> arr1 = dao.bring_planData1();
-		//ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
+		ArrayList<PHM_travel_mapDTO> arr1 = dao.bring_planData1(mb_id);
+		/*ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");*/
 		int end_date = 0;
 		int start_date = 0;
 		int total_date = 0;
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
-		<button onClick="location.href='Join.jsp'">회원가입</button>
-		<button onClick="location.href='Login.jsp'">로그인</button>
+		<button onClick="location.href='tm_LogoutCon'">로그아웃</button>
 	</div> 
 	<div id="side_all">
 		<div id="side_one">

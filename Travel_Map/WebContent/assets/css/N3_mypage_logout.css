@@ -13,7 +13,7 @@
 
 
  *{ 
-    font-family: 'NanumBarunGothic';
+       font-family: 'NEXON Lv1 Gothic OTF';
     
 }
 
@@ -141,7 +141,7 @@
 
     #side_five { 
         height: 55%; 
-        background-image: url("../../img/aron_ch.PNG"); 
+        background-image: url("../../img/Trip-person.png"); 
         background-size : cover; 
     }
 
