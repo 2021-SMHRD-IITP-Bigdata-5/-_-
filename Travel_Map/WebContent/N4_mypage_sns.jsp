@@ -112,13 +112,23 @@
 			<%
 				if (check == true) {
 			%>
-			<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
-				style="align-self: center; height: 26px; width: 86px;">FOLLOW</button>
+			<div class="followbox" style="align-self: center">
+				<label id="followlabel" for="followButton">FOLLOW</label>
+				<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
+					style="display: none"></button>
+			</div>
 			<%
-				} else {
+				}
 			%>
-			<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
-				style="align-self: center; height: 26px; width: 86px;">UNFOLLOW</button>
+
+			<%
+				if (check == false) {
+			%>
+			<div class="followbox" style="align-self: center">
+				<label id="followlabel" for="followButton">UNFOLLOW</label>
+				<button id="followButton" onclick="follow('<%=opdto.getMb_id()%>')"
+					style="display: none"></button>
+			</div>
 			<%
 				}
 			%>
@@ -159,10 +169,10 @@
 					console.log(res);
 					// true로 넘어오면 팔로우 된 상태
 					if (res.check == true) {
-						$('#followButton').html("언팔로우");
+						$('#followlabel').html("UNFOLLOW");
 						$('#mb_follower').html('팔로워 : ' + res.follow);
 					} else {
-						$('#followButton').html("팔로우");
+						$('#followlabel').html("FOLLOW");
 						$('#mb_follower').html('팔로워 : ' + res.follow);
 					}
 
