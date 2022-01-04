@@ -1,3 +1,5 @@
+<%@page import="com.PHM_travel_mapDAO.PHM_travel_planDAO"%>
+<%@page import="com.snsDTO.tm_snsDTO"%>
 <%@page import="com.PHM_travel_mapDTO.PHM_travel_planDTO"%>
 <%@page import="com.PHM_travel_mapDTO.PHM_travel_mapDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,11 +18,21 @@
 
 <body>
 	<%
-		int total = (int)session.getAttribute("total_date");
-		ArrayList<PHM_travel_mapDTO> arr1 = (ArrayList<PHM_travel_mapDTO>)session.getAttribute("plan1");
-		ArrayList<PHM_travel_planDTO> arr2 = (ArrayList<PHM_travel_planDTO>)session.getAttribute("plan2");
-	
-	
+		tm_snsDTO dto1 = (tm_snsDTO)session.getAttribute("id_title");
+		String t_title = dto1.getT_title();
+		String mb_id = dto1.getMb_id();
+		System.out.println(t_title);
+		PHM_travel_planDAO dao = new PHM_travel_planDAO();
+		
+		PHM_travel_mapDTO dto2 = dao.bring_travelplan1(mb_id, t_title);
+		
+		int end_date = Integer.parseInt(dto2.getEnd_date().substring(8));
+		int start_date = Integer.parseInt(dto2.getStart_date().substring(8));
+		int total = end_date - start_date+1;
+		
+		ArrayList<PHM_travel_planDTO> arr2 = dao.bring_travelplan2(mb_id, t_title);
+		
+		
 	%>
 	<div id="side_bar">
 		<b>My Real Travel in GwangJu </b>
@@ -39,14 +51,8 @@
                 </ul>
 			</nav>
 		</div>
-		<div id="side_two">
-			<ul>
-			
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_1bookmark1.jsp'">내 계획</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_2mynews.jsp'">내소식</button></li>
-				<li><button class = "side_button" onClick="location.href='N3_mypage_login_3myinfo.jsp'">내정보</button></li>
-			</ul>
-		</div>
+		<!--  <div id="side_two">
+		</div>-->
 		<div id="side_three">
 			<% 
 			int a = 1;
@@ -91,7 +97,7 @@
 		
 		<div id="side_four">
 			<ul>
-				<li><button class="side_button" onClick="location.href='N3_mypage_login_1bookmark3.jsp'">다음으로</button></li>
+				<li><button class="side_button" onClick="location.href='N5_sns.jsp'" style="width:150px;">sns로 돌아가기</button></li>
 			</ul>
 		</div>
 		<div id="side_five">

@@ -89,6 +89,9 @@
 					<a href="#" class="profile_img"><img
 						src="tm_upload/<%=memberdao.imgMemberSelect(i.getMb_id())%>"></a>
 					<a href="tm_selectMember?mb_id=<%=i.getMb_id()%>" class="user_nick"><%=i.getMb_id()%></a>
+					<div style="float:right; margin:20px;">
+						<a href="N_travelplanCon?mb_id=<%=i.getMb_id()%>&t_title=<%=i.getT_title() %>" style="font-size:12px; color:cornflowerblue;">TravelPlan</a>
+					</div>
 				</div>
 				<div class="trvel_pictures">
 					<a href="tm_SelectOne?tb_seq=<%=i.getTb_seq()%>"> <img

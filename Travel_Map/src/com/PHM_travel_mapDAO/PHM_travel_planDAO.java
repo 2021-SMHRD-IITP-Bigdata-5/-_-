@@ -133,6 +133,7 @@ public class PHM_travel_planDAO {
 				String mb_id = rs.getString(6);
 				dto = new PHM_travel_mapDTO(title, start_date, end_date, people, createDate, mb_id);
 				arr.add(dto);
+				
 			}
 
 		} catch (SQLException e) {
@@ -203,7 +204,67 @@ public class PHM_travel_planDAO {
 		return people;
 	}
 
+	public PHM_travel_mapDTO bring_travelplan1(String mb_id, String t_title) {
+		PHM_travel_mapDTO dto = null;
+		try {
+			getConn();
+			
+			String sql = "select * from phm_travel_plan where mb_id=? and t_title=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			psmt.setString(2, t_title);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				String title = rs.getString(1);
+				String start_date = rs.getString(2);
+				String end_date = rs.getString(3);
+				String people = rs.getString(4);
+				String createDate = rs.getString(5);
+				dto = new PHM_travel_mapDTO(title, start_date, end_date, people, createDate, mb_id);
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
 
+		}
+		return dto;
+	}
 
+	public ArrayList<PHM_travel_planDTO> bring_travelplan2(String mb_id, String t_title) {
+		PHM_travel_planDTO dto = null;
+		ArrayList<PHM_travel_planDTO> arr = new ArrayList<PHM_travel_planDTO>();
+		try {
+			getConn();
+			
+			String sql = "select * from phm_travel_plan2 where mb_id=? and t_title=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mb_id);
+			psmt.setString(2, t_title);
+	
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				String t_day = rs.getString(1);
+				String days_cnt = rs.getString(2);
+				String map_name = rs.getString(3);
+				String startTime = rs.getString(4);
+				String endTime = rs.getString(5);
+				String memo = rs.getString(6);
+				String t_title2 = rs.getString(8);
+				dto = new PHM_travel_planDTO(t_day, days_cnt, map_name, startTime, endTime, memo, mb_id, t_title2);
+				arr.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+
+		}
+		return arr;
+	}
 }

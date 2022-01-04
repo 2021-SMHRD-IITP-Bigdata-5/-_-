@@ -138,7 +138,7 @@
 	
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->    
 	<div id="kakao_map" style="width: 73.3%; height: 100vh; float: right;"></div>
-	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; display:none; "></div>
+	<div id="tmap_map" style="width: 73.3%; height: 100vh; float: right; "></div>
 	
 	<script src="./assets/js/jquery-3.6.0.min.js"></script>
 	
@@ -792,11 +792,11 @@
 	
 	<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxefc4aaf819ab46d09bfedeef6adff714"></script>
 	<script type="text/javascript">
-		// 1. 지도 띄우기
-			map1 = new Tmapv2.Map("tmap_map", {
-				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
-			});
-			map1.setZoom(14);
+		 // 1. 지도 띄우기
+		map1 = new Tmapv2.Map("tmap_map", {
+			center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
+		});
+		map1.setZoom(14);  
 	</script>
 	<script>
 		// 지도 경로미리보기 파트(티맵)
@@ -818,14 +818,17 @@
 				plan_list = plan_list6;
 			}
 			console.log("plan_list",plan_list)
+			// 1. 지도 띄우기
+			
 			document.getElementById('kakao_map').style.display="none";
 			document.getElementById('tmap_map').style.display="block";
-			// 1. 지도 띄우기
-			/*map1 = new Tmapv2.Map("tmap_map", {
+			
+			/* map1 = null;
+			
+			map1 = new Tmapv2.Map("tmap_map", {
 				center: new Tmapv2.LatLng(35.1599801229349, 126.85227886055003),
 			});
-			map1.setZoom(14);*/
-			
+			map1.setZoom(14); */
 			
 			var new_Click_polyLine = [];
 			
@@ -960,7 +963,7 @@
 					method:"POST", 
 					headers : headers, 
 					url:"https://apis.openapi.sk.com/tmap/routes?version=1&format=json",//
-					async:false,
+					//async:false,
 					data:{ 
 						startX : startX,
 						startY : startY,
@@ -994,11 +997,13 @@
 						pointRadius: 2,
 						title: "this is a red line"
 					};
+					
 					drawData(prtcl);
 				
+					
 				
 					// 6. 경로탐색 결과 반경만큼 지도 레벨 조정
-					var newData = geoData[0];
+					/* var newData = geoData[0];
 					PTbounds = new Tmapv2.LatLngBounds();
 							for (var i = 0; i < newData.length; i++) {
 								var mData = newData[i];
@@ -1017,7 +1022,7 @@
 									}
 							}
 						}
-						map1.fitBounds(PTbounds);
+						map1.fitBounds(PTbounds); */
 				
 					},
 					error:function(request,status,error){

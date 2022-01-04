@@ -23,6 +23,14 @@ public class tm_snsDTO {
 		return log_type;
 	}
 
+	public String getT_title() {
+		return t_title;
+	}
+
+	public void setT_title(String t_title) {
+		this.t_title = t_title;
+	}
+
 	public void setLog_type(String log_type) {
 		this.log_type = log_type;
 	}
@@ -113,6 +121,12 @@ public class tm_snsDTO {
 
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
+	}
+
+	public tm_snsDTO(String mb_id, String t_title) {
+		super();
+		this.mb_id = mb_id;
+		this.t_title = t_title;
 	}
 
 	public tm_snsDTO(int tb_seq, String tb_title, String tb_content, String tb_file, int tb_cnt, int tb_likes,

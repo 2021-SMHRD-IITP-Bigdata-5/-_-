@@ -37,15 +37,17 @@
 				<a href="#" class="profile_img"><img
 					src="tm_upload/<%=memberdao.imgMemberSelect(snsdto.getMb_id())%>"></a>
 				<a href="tm_selectMember?mb_id=<%=snsdto.getMb_id()%>"
-					class="user_nick"><%=snsdto.getMb_id()%></a> <a href="#"
-					class="travel_plan"><%=snsdto.getTb_title()%></a>
+					class="user_nick"><%=snsdto.getMb_id()%></a> 
+				<div style="float:right; margin:20px; margin-top:40px;">
+					<a href="N_travelplanCon?mb_id=<%=snsdto.getMb_id()%>&t_title=<%=snsdto.getT_title() %>" class="travel_plan">TravelPlan</a>
+				</div>
 			</div>
-			<div class="item4"><%=snsdto.getTb_content()%>
+			<div class="item4" style="height:10%;"><%=snsdto.getTb_content()%>
 			</div>
-			<div class="item5">
+			<div class="item5" style="height:71.8%;">
 				<div id="tailList"></div>
 			</div>
-			<div class="item6">
+			<div class="item6" style="height:10%;">
 				<button id="likesButton" onclick="likes()">
 					<img src="img/heart_tung.png">
 				</button>
@@ -56,10 +58,10 @@
 					<img src="img/details.png">
 				</button>
 			</div>
-			<div class="item7">
+			<!--  <div class="item7">
 				<input id="commContent" type="text">
 				<button id="sendTail" onclick="sendTail()">댓글달기</button>
-			</div>
+			</div>-->
 		</div>
 	</div>
 
